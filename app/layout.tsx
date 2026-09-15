@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Gab Real Inc. | Learn AI. Build Better Work.",
+  title: "Gab Real Inc. | Use AI to Think More Clearly. Build What Matters.",
   description: "Human-first AI education and automation systems that make work better.",
   icons: {
     icon: "/favicon.svg",

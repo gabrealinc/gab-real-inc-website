@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Asterisk, Check, Play, Sparkles } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const automations = [
   { tag: "MEETINGS", title: "The meeting that finishes itself", copy: "Notes become decisions, owners, follow-ups, and a ready-to-send recap before everyone opens another tab." },
@@ -10,10 +11,10 @@ const automations = [
   { tag: "OPERATIONS", title: "The handoff that never drops", copy: "Intake, routing, status updates, and next steps move forward without the spreadsheet scavenger hunt." },
 ];
 
-const presets = [
-  "Turn client notes into a polished follow-up",
-  "Find the answer hidden across our docs",
-  "Turn a voice memo into a project plan",
+const demos = [
+  { label: "Follow-ups", input: "Client call: keep the launch on June 12. Maya sends revised copy by Friday. We need approval on the homepage.", steps: ["Read the notes", "Find decisions + owners", "Draft the follow-up"], result: "Hi team, we’re keeping June 12 as our launch date. Maya will share revised copy by Friday. Please review and approve the homepage so we can move forward.", review: "Confirm dates, owners, and tone before sending." },
+  { label: "Find answers", input: "Question: When should a new client receive their welcome pack? Sample onboarding guide, section 2: send it within one business day of the signed agreement.", steps: ["Search the guide", "Locate the source", "Answer with context"], result: "Send the welcome pack within one business day after the agreement is signed. Source: sample onboarding guide, section 2.", review: "Check that the guide is current and applies to this client." },
+  { label: "Plan projects", input: "Voice memo: Let’s run an AI workshop next month. First ask the team what feels confusing, then choose three everyday tasks and build a practice session.", steps: ["Capture the idea", "Sequence the work", "Draft the plan"], result: "1. Survey the team this week.\n2. Select three recurring tasks from their answers.\n3. Build a hands-on practice session.\n4. Choose a workshop date for next month.", review: "Assign owners and agree on dates before adding tasks to your calendar." },
 ];
 
 type ModelContext = {
@@ -28,8 +29,9 @@ type ModelContext = {
 };
 
 export default function Home() {
-  const [idea, setIdea] = useState(presets[0]);
-  const [running, setRunning] = useState(false);
+  const [demoIndex, setDemoIndex] = useState("0");
+  const [showResult, setShowResult] = useState(false);
+  const demo = demos[Number(demoIndex)];
   const [activeAutomation, setActiveAutomation] = useState(0);
   const [sent, setSent] = useState(false);
 
@@ -40,25 +42,22 @@ export default function Home() {
     void Promise.resolve(context.registerTool({
       name: "configure_possibility_machine",
       title: "Configure the Possibility Machine",
-      description: "Put a repetitive task into the visible Gab Real automation demo and run its three-step system.",
-      inputSchema: { type: "object", properties: { task: { type: "string", minLength: 3, maxLength: 220 } }, required: ["task"], additionalProperties: false },
+      description: "Select and reveal a prepared automation demonstration. This does not run AI or send data.",
+      inputSchema: { type: "object", properties: { example: { type: "integer", minimum: 0, maximum: 2 } }, required: ["example"], additionalProperties: false },
       annotations: { readOnlyHint: false, untrustedContentHint: true },
       async execute(input) {
-        const task = typeof input === "object" && input !== null && "task" in input ? String(input.task).trim() : "";
-        if (task.length < 3 || task.length > 220) throw new Error("Task must be between 3 and 220 characters.");
-        setIdea(task);
-        setRunning(true);
-        window.setTimeout(() => setRunning(false), 1400);
-        return { task, stages: ["capture", "think", "act"], status: "running" };
+        const example = typeof input === "object" && input !== null && "example" in input ? input.example : undefined;
+        if (typeof example !== "number" || !Number.isInteger(example) || example < 0 || example > 2) throw new Error("Choose example 0, 1, or 2.");
+        setDemoIndex(String(example)); setShowResult(true);
+        await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+        return { example, result: demos[example].result, review: demos[example].review, status: "demonstration" };
       },
     }, { signal: lifecycle.signal })).catch(() => undefined);
     return () => lifecycle.abort();
   }, []);
 
   function runDemo() {
-    setRunning(false);
-    window.setTimeout(() => setRunning(true), 40);
-    window.setTimeout(() => setRunning(false), 1450);
+    setShowResult(value => !value);
   }
 
   function submit(event: FormEvent<HTMLFormElement>) {
@@ -77,8 +76,8 @@ export default function Home() {
       <section id="top" className="hero">
         <div className="hero-copy">
           <p className="eyebrow"><Asterisk size={14} /> AI education + automation studio</p>
-          <h1>Learn AI.<br />Build <em>better</em> work.</h1>
-          <p className="lede">Gab Real helps people and teams understand AI, automate the work that drains them, and use the time they get back to make something that matters.</p>
+          <h1>Use AI to think<br />more clearly.<br /><em>Build what<br />matters.</em></h1>
+          <p className="lede">Gab Real helps founders and teams learn AI, automate repetitive work, and build better ways of working.</p>
           <div className="hero-actions">
             <a className="button-primary" href="#contact">Start with Gab <ArrowUpRight size={16} /></a>
             <a className="text-link" href="#build">See how it works <ArrowDown size={15} /></a>
@@ -86,21 +85,18 @@ export default function Home() {
         </div>
 
         <div className="automation-lab" aria-label="Interactive automation example">
-          <div className="lab-topline"><span>THE POSSIBILITY MACHINE</span><span>01 / LIVE</span></div>
+          <div className="lab-topline"><span>THE POSSIBILITY MACHINE</span><span>DEMONSTRATION</span></div>
           <div className="lab-body">
-            <label htmlFor="automation-idea">What should AI take off your plate?</label>
-            <textarea id="automation-idea" value={idea} onChange={(event) => setIdea(event.target.value)} />
-            <div className="preset-row" aria-label="Example ideas">
-              {presets.map((preset, index) => <button type="button" key={preset} onClick={() => setIdea(preset)}>0{index + 1}</button>)}
-            </div>
-            <button onClick={runDemo} className="run-button" type="button"><Play size={14} fill="currentColor" /> Show me the system</button>
-            <div className={`flow ${running ? "is-running" : ""}`}>
-              <div><b>01</b><span>Capture</span><small>A signal arrives</small></div><i />
-              <div><b>02</b><span>Think</span><small>AI finds the meaning</small></div><i />
-              <div><b>03</b><span>Act</span><small>The next step is ready</small></div>
-            </div>
+            <h2>What could come<br /><em>off your plate?</em></h2>
+            <Tabs value={demoIndex} onValueChange={value => { setDemoIndex(value); setShowResult(false); }} className="demo-tabs">
+              <TabsList aria-label="Choose a demonstration" className="demo-choices">{demos.map((item,index) => <TabsTrigger key={item.label} value={String(index)}>{item.label}</TabsTrigger>)}</TabsList>
+              {demos.map((item,index) => <TabsContent key={item.label} value={String(index)}><p className="demo-caption">SAMPLE INPUT</p><p className="demo-input">{item.input}</p></TabsContent>)}
+            </Tabs>
+            <ol className="demo-steps">{demo.steps.map((step,index) => <li key={step}><span>0{index+1}</span>{step}</li>)}</ol>
+            <button onClick={runDemo} className="run-button" type="button" aria-expanded={showResult} aria-controls="demo-result"><Play size={14} /> {showResult ? "Hide sample result" : "Show sample result"}</button>
+            <div id="demo-result" hidden={!showResult} aria-live="polite" className="demo-result"><p className="demo-caption">SAMPLE RESULT</p><p>{demo.result}</p><div className="human-review"><Check size={18} /><p><strong>Your judgment stays in the loop.</strong><br />{demo.review}</p></div></div>
           </div>
-          <p className="lab-note">No jargon. No hype. Just one useful system at a time.</p>
+          <p className="lab-note">Prepared examples. No live AI or connected accounts.</p>
         </div>
       </section>
 
@@ -125,14 +121,14 @@ export default function Home() {
       <section id="build" className="systems-section section-pad">
         <div className="systems-header"><p className="section-index">02 / WHAT WE BUILD</p><h2>Small systems.<br /><em>Big shifts.</em></h2></div>
         <div className="system-browser">
-          <div className="system-list" role="tablist" aria-label="Automation ideas">
+          <div className="system-list" role="group" aria-label="Automation ideas">
             {automations.map((item, index) => (
-              <button className={activeAutomation === index ? "active" : ""} key={item.title} onClick={() => setActiveAutomation(index)} role="tab" aria-selected={activeAutomation === index}>
+              <button type="button" className={activeAutomation === index ? "active" : ""} key={item.title} onClick={() => setActiveAutomation(index)} aria-pressed={activeAutomation === index} aria-controls="automation-detail">
                 <span>0{index + 1}</span>{item.title}<ArrowRight size={17} />
               </button>
             ))}
           </div>
-          <div className="system-detail" role="tabpanel">
+          <div className="system-detail" id="automation-detail" role="region" aria-label="Selected automation" aria-live="polite">
             <span>{automations[activeAutomation].tag}</span>
             <h3>{automations[activeAutomation].title}</h3>
             <p>{automations[activeAutomation].copy}</p>
@@ -151,7 +147,7 @@ export default function Home() {
       </section>
 
       <section id="about" className="about-section">
-        <div className="about-image"><img src="/gab-real-sculpture.png" alt="A glass ribbon woven through a chrome knot, with a small acid-yellow sphere" /><span>HUMAN × MACHINE × POSSIBILITY</span></div>
+        <div className="about-image"><img src="/orange-disco.png" loading="lazy" alt="An orange sliced open inside a sparkling golden disco ball" /><span>HUMAN × MACHINE × POSSIBILITY</span></div>
         <div className="about-copy section-pad">
           <p className="section-index">04 / WHY GAB REAL</p>
           <h2>Serious about the future.<br /><em>Not serious about gatekeeping it.</em></h2>
@@ -161,16 +157,19 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="reclaimed"><img src="/time-reclaimed.png" loading="lazy" alt="Friends sharing a relaxed meal beside the water" /><div><p className="section-index">ROOM FOR WHAT MATTERS</p><h2>The time you get back<br />is <em>yours.</em></h2><p>To create. To connect. To actually be there.</p></div></section>
+
       <section id="contact" className="contact-section section-pad">
         <p className="section-index">05 / START HERE</p>
         <div className="contact-grid">
           <h2>What is the one thing at work you never want to do <em>again?</em></h2>
           <form onSubmit={submit}>
-            {sent ? <div className="success-message"><Check size={30} /><h3>That is exactly where we start.</h3><p>Your note is saved in this preview. Connect this form to your inbox when you are ready to launch publicly.</p></div> : <>
+            <p className="prototype-note">Preview form only. Entries are not sent or saved.</p>
+            {sent ? <div className="success-message" role="status"><Check size={30} /><h3>That is exactly where we start.</h3><p>This demonstrates the confirmation screen. No message was sent or saved.</p><button type="button" className="submit-button" onClick={() => setSent(false)}>Try the form again</button></div> : <>
               <label htmlFor="name">Your name</label><input id="name" name="name" required placeholder="First name is perfect" />
               <label htmlFor="email">Email</label><input id="email" name="email" type="email" required placeholder="you@work.com" />
               <label htmlFor="stuck">The thing that is stuck</label><textarea id="stuck" name="stuck" required placeholder="Every Friday, I spend three hours..." />
-              <button className="submit-button" type="submit">Send the messy version <ArrowUpRight size={17} /></button>
+              <button className="submit-button" type="submit">Preview inquiry <ArrowUpRight size={17} /></button>
             </>}
           </form>
         </div>
