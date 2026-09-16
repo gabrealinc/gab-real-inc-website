@@ -1,181 +1,100 @@
 "use client";
-
-import { FormEvent, useEffect, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Asterisk, Check, Play, Sparkles } from "lucide-react";
+import { ArrowUpRight, ArrowDown, Asterisk, Check, Plus, Minus } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
-const automations = [
-  { tag: "MEETINGS", title: "The meeting that finishes itself", copy: "Notes become decisions, owners, follow-ups, and a ready-to-send recap before everyone opens another tab." },
-  { tag: "KNOWLEDGE", title: "The answer that finds you", copy: "Scattered docs become one plain-language source of truth your team can actually ask questions." },
-  { tag: "CREATIVE", title: "The blank-page breaker", copy: "A small spark becomes a useful first draft in your voice, with room for your taste and judgment." },
-  { tag: "OPERATIONS", title: "The handoff that never drops", copy: "Intake, routing, status updates, and next steps move forward without the spreadsheet scavenger hunt." },
+const scenarios = [
+ { label:"Follow-ups", before:"Finish the meeting. Then finish it again.", input:"Launch stays on June 12. Maya sends revised copy Friday. Homepage needs client approval.", steps:["Find decisions and owners","Prepare a clear recap","Check it before it leaves"], result:"Launch: June 12.\nMaya: revised copy by Friday.\nClient: review and approve the homepage.", review:"Confirm the dates, ownership, and recipients. Nothing is sent automatically.", change:"The follow-up starts with a draft, not your memory." },
+ { label:"Finding information", before:"You know it’s somewhere. But where?", input:"A teammate asks: when do we send the welcome pack? The sample onboarding guide says within one business day of a signed agreement.", steps:["Search the agreed source","Bring the answer and its context","Check the source is current"], result:"Send the welcome pack within one business day after the agreement is signed.\nSource: sample onboarding guide, section 2.", review:"Verify that the guide is current and applies to this client.", change:"The answer has a source. And it doesn’t have to be you." },
+ { label:"Planning projects", before:"A good idea shouldn’t disappear into a voice note.", input:"Let’s run an AI workshop next month. Ask the team what feels confusing, choose three everyday tasks, then build a practice session.", steps:["Capture the idea","Put the work in order","Agree on owners and dates"], result:"1. Ask the team where they get stuck.\n2. Choose three recurring tasks.\n3. Build a hands-on session.\n4. Agree on a workshop date.", review:"Assign owners and confirm timing before any tasks or calendar events are created.", change:"You have a starting point you can actually act on." }
 ];
-
-const demos = [
-  { label: "Follow-ups", input: "Client call: keep the launch on June 12. Maya sends revised copy by Friday. We need approval on the homepage.", steps: ["Read the notes", "Find decisions + owners", "Draft the follow-up"], result: "Hi team, we’re keeping June 12 as our launch date. Maya will share revised copy by Friday. Please review and approve the homepage so we can move forward.", review: "Confirm dates, owners, and tone before sending." },
-  { label: "Find answers", input: "Question: When should a new client receive their welcome pack? Sample onboarding guide, section 2: send it within one business day of the signed agreement.", steps: ["Search the guide", "Locate the source", "Answer with context"], result: "Send the welcome pack within one business day after the agreement is signed. Source: sample onboarding guide, section 2.", review: "Check that the guide is current and applies to this client." },
-  { label: "Plan projects", input: "Voice memo: Let’s run an AI workshop next month. First ask the team what feels confusing, then choose three everyday tasks and build a practice session.", steps: ["Capture the idea", "Sequence the work", "Draft the plan"], result: "1. Survey the team this week.\n2. Select three recurring tasks from their answers.\n3. Build a hands-on practice session.\n4. Choose a workshop date for next month.", review: "Assign owners and agree on dates before adding tasks to your calendar." },
-];
-
-type ModelContext = {
-  registerTool: (tool: {
-    name: string;
-    title: string;
-    description: string;
-    inputSchema: object;
-    annotations: { readOnlyHint: boolean; untrustedContentHint: boolean };
-    execute: (input: unknown) => Promise<object>;
-  }, options?: { signal?: AbortSignal }) => void | Promise<void>;
-};
-
 export default function Home() {
-  const [demoIndex, setDemoIndex] = useState("0");
-  const [showResult, setShowResult] = useState(false);
-  const demo = demos[Number(demoIndex)];
-  const [activeAutomation, setActiveAutomation] = useState(0);
-  const [sent, setSent] = useState(false);
+ const [selected,setSelected] = useState("0");
+ const [revealed,setRevealed] = useState(false);
+ const [formState,setFormState] = useState(false);
+ const [menuOpen,setMenuOpen] = useState(false);
+ useEffect(()=>{
+   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+   if(reduced) return;
+   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}}),{threshold:.08});
+   document.querySelectorAll("[data-reveal]").forEach(el=>{const bounds=el.getBoundingClientRect();if(bounds.top>window.innerHeight){el.classList.add("will-reveal");observer.observe(el)}});
+   return ()=>observer.disconnect();
+ },[]);
+ function reviewForm(event:FormEvent<HTMLFormElement>){event.preventDefault();setFormState(true);}
 
-  useEffect(() => {
-    const context = (document as Document & { modelContext?: ModelContext }).modelContext;
-    if (!context?.registerTool) return;
-    const lifecycle = new AbortController();
-    void Promise.resolve(context.registerTool({
-      name: "configure_possibility_machine",
-      title: "Configure the Possibility Machine",
-      description: "Select and reveal a prepared automation demonstration. This does not run AI or send data.",
-      inputSchema: { type: "object", properties: { example: { type: "integer", minimum: 0, maximum: 2 } }, required: ["example"], additionalProperties: false },
-      annotations: { readOnlyHint: false, untrustedContentHint: true },
-      async execute(input) {
-        const example = typeof input === "object" && input !== null && "example" in input ? input.example : undefined;
-        if (typeof example !== "number" || !Number.isInteger(example) || example < 0 || example > 2) throw new Error("Choose example 0, 1, or 2.");
-        setDemoIndex(String(example)); setShowResult(true);
-        await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
-        return { example, result: demos[example].result, review: demos[example].review, status: "demonstration" };
-      },
-    }, { signal: lifecycle.signal })).catch(() => undefined);
-    return () => lifecycle.abort();
-  }, []);
+return <main id="top">
+<a className="skip-link" href="#main-content">Skip to content</a>
+<header className="site-header"><a href="#top" className="wordmark" aria-label="Gab Real Inc home">gab real inc<span>®</span></a><button type="button" className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-nav" onClick={()=>setMenuOpen(!menuOpen)}>{menuOpen ? "Close" : "Menu"} {menuOpen ? <Minus size={17}/> : <Plus size={17}/>}</button><nav id="main-nav" className={menuOpen ? "is-open" : ""} aria-label="Main navigation" onClick={()=>setMenuOpen(false)}><a href="#learn">Learn</a><a href="#work">Work with Gabby</a><a href="#ideas">Ideas</a><a href="#about">About</a></nav><a href="/learn" className="header-cta">Explore the courses <ArrowUpRight size={17}/></a></header>
+<section className="hero" id="main-content">
+<div className="hero-topline"><span>AI EDUCATION · STRATEGY · SYSTEMS ENGINEERING</span><span>FOR FOUNDERS & TEAMS WITH A DIFFERENT IDEA.</span></div>
+<div className="hero-grid"><div className="hero-copy"><h1><span>Use AI to think</span><span>more clearly.</span><em><span>Build what</span><span>matters.</span></em></h1><p className="hero-description">Learn to use AI without making it another job. Or work with me to rethink the parts of your business that still depend on you remembering, repeating, and checking everything.</p><div className="hero-actions"><a className="button" href="#learn">Learn with me <ArrowUpRight size={18}/></a><a className="inline-link" href="#work">Work with me <ArrowUpRight size={18}/></a></div></div>
+<figure className="hero-art"><div className="art-label"><span>FRESH PERSPECTIVE, BY DESIGN.</span><Asterisk size={25}/></div><img src="/orange-disco.png" alt="A mirrored disco orange, sliced open to reveal a bright citrus interior" width="816" height="960" fetchPriority="high"/><figcaption><span>Good things happen<br/>when you look at it differently.</span><span className="handwritten">shall we?</span></figcaption><a href="#changes" className="art-seal" aria-label="Explore what could change"><ArrowDown size={27}/><span>LET’S RETHINK IT</span></a></figure></div>
+<div className="hero-bottom"><span>FOR CURIOUS PEOPLE BUILDING REAL BUSINESSES.</span><a href="#changes">A different way to work <ArrowDown size={16}/></a></div>
+</section>
 
-  function runDemo() {
-    setShowResult(value => !value);
-  }
-
-  function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSent(true);
-  }
-
-  return (
-    <main>
-      <nav className="nav-shell" aria-label="Main navigation">
-        <a href="#top" className="wordmark">GAB REAL<span>®</span></a>
-        <div className="nav-links"><a href="#learn">Learn</a><a href="#build">Build</a><a href="#about">About</a></div>
-        <a className="nav-cta" href="#contact">Make it real <ArrowUpRight size={15} /></a>
-      </nav>
-
-      <section id="top" className="hero">
-        <div className="hero-copy">
-          <p className="eyebrow"><Asterisk size={14} /> AI education + automation studio</p>
-          <h1>Use AI to think<br />more clearly.<br /><em>Build what<br />matters.</em></h1>
-          <p className="lede">Gab Real helps founders and teams learn AI, automate repetitive work, and build better ways of working.</p>
-          <div className="hero-actions">
-            <a className="button-primary" href="#contact">Start with Gab <ArrowUpRight size={16} /></a>
-            <a className="text-link" href="#build">See how it works <ArrowDown size={15} /></a>
-          </div>
-        </div>
-
-        <div className="automation-lab" aria-label="Interactive automation example">
-          <div className="lab-topline"><span>THE POSSIBILITY MACHINE</span><span>DEMONSTRATION</span></div>
-          <div className="lab-body">
-            <h2>What could come<br /><em>off your plate?</em></h2>
-            <Tabs value={demoIndex} onValueChange={value => { setDemoIndex(value); setShowResult(false); }} className="demo-tabs">
-              <TabsList aria-label="Choose a demonstration" className="demo-choices">{demos.map((item,index) => <TabsTrigger key={item.label} value={String(index)}>{item.label}</TabsTrigger>)}</TabsList>
-              {demos.map((item,index) => <TabsContent key={item.label} value={String(index)}><p className="demo-caption">SAMPLE INPUT</p><p className="demo-input">{item.input}</p></TabsContent>)}
-            </Tabs>
-            <ol className="demo-steps">{demo.steps.map((step,index) => <li key={step}><span>0{index+1}</span>{step}</li>)}</ol>
-            <button onClick={runDemo} className="run-button" type="button" aria-expanded={showResult} aria-controls="demo-result"><Play size={14} /> {showResult ? "Hide sample result" : "Show sample result"}</button>
-            <div id="demo-result" hidden={!showResult} aria-live="polite" className="demo-result"><p className="demo-caption">SAMPLE RESULT</p><p>{demo.result}</p><div className="human-review"><Check size={18} /><p><strong>Your judgment stays in the loop.</strong><br />{demo.review}</p></div></div>
-          </div>
-          <p className="lab-note">Prepared examples. No live AI or connected accounts.</p>
-        </div>
-      </section>
-
-      <div className="ticker" aria-hidden="true"><span>AI FOR REAL PEOPLE</span><i>✦</i><span>AUTOMATION WITH A POINT OF VIEW</span><i>✦</i><span>LESS BUSYWORK, MORE HUMAN WORK</span></div>
-
-      <section id="learn" className="belief-section section-pad">
-        <p className="section-index">01 / THE BELIEF</p>
-        <div className="belief-grid">
-          <h2>AI should make you feel more <em>capable</em>, not less human.</h2>
-          <div className="belief-copy">
-            <p>You do not need to become a technologist. You need a translator, a safe place to experiment, and a few systems that genuinely change your day.</p>
-            <p>That is the Gab Real difference: education and implementation happen together. You leave knowing what was built, why it works, and how to keep shaping it.</p>
-          </div>
-        </div>
-        <div className="proof-strip">
-          <div><strong>NO.</strong><span>Black-box consulting</span></div>
-          <div><strong>YES.</strong><span>Skills that stay with you</span></div>
-          <div><strong>ALWAYS.</strong><span>Human judgment in the loop</span></div>
-        </div>
-      </section>
-
-      <section id="build" className="systems-section section-pad">
-        <div className="systems-header"><p className="section-index">02 / WHAT WE BUILD</p><h2>Small systems.<br /><em>Big shifts.</em></h2></div>
-        <div className="system-browser">
-          <div className="system-list" role="group" aria-label="Automation ideas">
-            {automations.map((item, index) => (
-              <button type="button" className={activeAutomation === index ? "active" : ""} key={item.title} onClick={() => setActiveAutomation(index)} aria-pressed={activeAutomation === index} aria-controls="automation-detail">
-                <span>0{index + 1}</span>{item.title}<ArrowRight size={17} />
-              </button>
-            ))}
-          </div>
-          <div className="system-detail" id="automation-detail" role="region" aria-label="Selected automation" aria-live="polite">
-            <span>{automations[activeAutomation].tag}</span>
-            <h3>{automations[activeAutomation].title}</h3>
-            <p>{automations[activeAutomation].copy}</p>
-            <div className="before-after"><small>BEFORE</small><b>Manual. Repetitive. Easy to miss.</b><ArrowDown size={18} /><small>AFTER</small><b>Automatic. Reviewable. Still yours.</b></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="offers-section" aria-labelledby="offers-heading">
-        <div className="offers-intro section-pad"><p className="section-index">03 / WAYS TO WORK</p><h2 id="offers-heading">Meet people<br />where they are.</h2><p>From “what even is a prompt?” to “let’s redesign this whole workflow.”</p></div>
-        <div className="offer-grid">
-          <article><span>01</span><Sparkles size={28} strokeWidth={1.2} /><h3>AI, but make it make sense</h3><p>Workshops that turn curiosity and anxiety into confidence, fluency, and an actual point of view.</p><a href="#contact">Bring Gab to your team <ArrowUpRight size={15} /></a></article>
-          <article><span>02</span><Asterisk size={28} strokeWidth={1.2} /><h3>Your first useful automation</h3><p>We find one stubborn process and build a working system around the way you already think.</p><a href="#contact">Build something useful <ArrowUpRight size={15} /></a></article>
-          <article><span>03</span><ArrowRight size={28} strokeWidth={1.2} /><h3>The whole new way of working</h3><p>Strategy, team learning, and custom automations for organizations ready to move with intention.</p><a href="#contact">Rethink the system <ArrowUpRight size={15} /></a></article>
-        </div>
-      </section>
-
-      <section id="about" className="about-section">
-        <div className="about-image"><img src="/orange-disco.png" loading="lazy" alt="An orange sliced open inside a sparkling golden disco ball" /><span>HUMAN × MACHINE × POSSIBILITY</span></div>
-        <div className="about-copy section-pad">
-          <p className="section-index">04 / WHY GAB REAL</p>
-          <h2>Serious about the future.<br /><em>Not serious about gatekeeping it.</em></h2>
-          <p className="about-lede">Gabby makes the complicated click.</p>
-          <p>Part strategist, part teacher, part builder, she creates the kind of room where people can ask the obvious question, try the weird idea, and leave with something real.</p>
-          <blockquote>“The future should not belong to the people who understood the demo first.”</blockquote>
-        </div>
-      </section>
-
-      <section className="reclaimed"><img src="/time-reclaimed.png" loading="lazy" alt="Friends sharing a relaxed meal beside the water" /><div><p className="section-index">ROOM FOR WHAT MATTERS</p><h2>The time you get back<br />is <em>yours.</em></h2><p>To create. To connect. To actually be there.</p></div></section>
-
-      <section id="contact" className="contact-section section-pad">
-        <p className="section-index">05 / START HERE</p>
-        <div className="contact-grid">
-          <h2>What is the one thing at work you never want to do <em>again?</em></h2>
-          <form onSubmit={submit}>
-            <p className="prototype-note">Preview form only. Entries are not sent or saved.</p>
-            {sent ? <div className="success-message" role="status"><Check size={30} /><h3>That is exactly where we start.</h3><p>This demonstrates the confirmation screen. No message was sent or saved.</p><button type="button" className="submit-button" onClick={() => setSent(false)}>Try the form again</button></div> : <>
-              <label htmlFor="name">Your name</label><input id="name" name="name" required placeholder="First name is perfect" />
-              <label htmlFor="email">Email</label><input id="email" name="email" type="email" required placeholder="you@work.com" />
-              <label htmlFor="stuck">The thing that is stuck</label><textarea id="stuck" name="stuck" required placeholder="Every Friday, I spend three hours..." />
-              <button className="submit-button" type="submit">Preview inquiry <ArrowUpRight size={17} /></button>
-            </>}
-          </form>
-        </div>
-      </section>
-
-      <footer><a href="#top" className="wordmark">GAB REAL<span>®</span></a><p>LEARN IT. BUILD IT. MAKE IT MATTER.</p><a href="#top">Back to top ↑</a></footer>
-    </main>
-  );
+<section className="changes section-pad" id="changes" data-reveal>
+ <div className="section-meta"><span>01 / A DIFFERENT WAY</span><span>LESS REPEATING. MORE POSSIBILITY.</span></div>
+ <div className="section-heading"><h2>What would you rather<br/><em>stop doing by hand?</em></h2><p>Not everything needs an automation.<br/>But some things don’t need another hour of you.</p></div>
+ <div className="change-grid">
+  <article><span className="small-number">01</span><h3>Explaining your<br/>business. <em>Again.</em></h3><p>A new AI conversation. Another twenty minutes explaining what you do, who you work with, and why that draft sounds nothing like you.</p><div className="change-outcome"><ArrowUpRight size={19}/><p>Reusable context. Clear instructions. A starting point that isn’t zero.</p></div></article>
+  <article><span className="small-number">02</span><h3>Being the person<br/>everyone has to ask.</h3><p>Where’s the latest version? What did the client decide? Who’s handling that? You know the answers. You’re interrupted every time someone needs one.</p><div className="change-outcome"><ArrowUpRight size={19}/><p>Decisions, ownership, and current information have a place your team can use.</p></div></article>
+  <article><span className="small-number">03</span><h3>Finishing the<br/>meeting <em>twice.</em></h3><p>Once on the call. Again afterward, finding the decisions, writing the recap, and remembering who promised what.</p><div className="change-outcome"><ArrowUpRight size={19}/><p>A follow-up prepared for review. Your judgment, without all the reconstruction.</p></div></article>
+ </div>
+ <div className="section-footnote"><Asterisk size={20}/><p>Sometimes the answer is AI. Sometimes it’s a simpler process. We start by figuring out which.</p></div>
+</section>
+<section className="example-section section-pad" id="examples" data-reveal>
+ <div className="section-meta"><span>02 / FROM IDEA TO EVERYDAY</span><span>ILLUSTRATIVE DEMONSTRATIONS · NOT LIVE AI</span></div>
+ <div className="example-intro"><h2>Less theory.<br/><em>Here’s the difference.</em></h2><p>A small look at what can change when the work has somewhere to go.</p></div>
+ <Tabs value={selected} onValueChange={value=>{setSelected(value);setRevealed(false)}} className="editorial-tabs">
+  <TabsList aria-label="Choose a workflow example" className="example-tabs">{scenarios.map((item,index)=><TabsTrigger key={item.label} value={String(index)}><span className="tab-number">0{index+1}</span>{item.label}<ArrowUpRight size={17}/></TabsTrigger>)}</TabsList>
+  {scenarios.map((item,index)=><TabsContent key={item.label} value={String(index)}>
+   <div className="example-body"><div className="example-before"><span className="eyebrow">THE FAMILIAR PART</span><h3>{item.before}</h3><p className="sample-input">{item.input}</p><span className="micro">SAMPLE INPUT</span></div>
+   <div className="example-after"><span className="eyebrow">A BETTER WAY THROUGH</span><ol>{item.steps.map((step,i)=><li key={step}><span>0{i+1}</span>{step}</li>)}</ol><button className="example-reveal" onClick={()=>setRevealed(!revealed)} aria-expanded={revealed} aria-controls={"sample-"+index}>{revealed ? "Close the sample" : "See the sample result"}{revealed ? <Minus size={20}/> : <Plus size={20}/>}</button>
+   <div id={"sample-"+index} hidden={!revealed} className="sample-result"><p>{item.result}</p><div><Check size={17}/><span>{item.review}</span></div></div></div></div>
+   <p className="example-takeaway">{item.change}</p>
+  </TabsContent>)}
+ </Tabs>
+ <p className="micro example-note">Prepared examples, not client results. No accounts connected, no information sent, no AI running.</p>
+</section>
+<section className="offer-section section-pad" id="learn" data-reveal>
+ <div className="section-meta"><span>03 / CHOOSE YOUR WAY IN</span><span>YOUR CURIOSITY. YOUR NEXT STEP.</span></div>
+ <div className="section-heading"><h2>Learn to build it.<br/><em>Or let’s think it through.</em></h2></div>
+ <div className="offer-grid">
+  <div className="learn-offer"><span className="eyebrow">THE SELF-GUIDED ROUTE</span><h3>Learn with me.</h3><p>AI education for people with a business to run and no interest in making every new tool their hobby.</p>
+   <a className="course-row" href="/learn#foundations"><span className="course-index">01</span><span><strong>AI Foundations</strong><small>A useful starting point you understand and control.</small></span><ArrowUpRight size={24}/></a>
+   <a className="course-row" href="/learn#advanced"><span className="course-index">02</span><span><strong>Build Your AI System</strong><small>Connect the context, tools, and work. Keep the judgment.</small></span><ArrowUpRight size={24}/></a>
+   <div className="offer-bottom"><span className="status-pill"><span/>COURSES COMING SOON</span><a href="/learn" className="inline-link">Explore the courses <ArrowUpRight size={18}/></a></div>
+  </div>
+  <div className="work-offer" id="work"><span className="eyebrow">THE WORK-TOGETHER ROUTE</span><h3>Bring the<br/><em>interesting problem.</em></h3><p>The one that doesn’t fit a tutorial. We look at how your business actually works, decide what needs to change, and shape the right next step.</p>
+   <Accordion type="single" collapsible className="service-list">
+    <AccordionItem value="strategy"><AccordionTrigger>Strategy & advisory</AccordionTrigger><AccordionContent>For decisions before you build. Identify the actual friction, compare your options, and leave with a practical direction, including what not to automate.</AccordionContent></AccordionItem>
+    <AccordionItem value="workshops"><AccordionTrigger>Workshops & speaking</AccordionTrigger><AccordionContent>Help your team understand AI well enough to question it, try it, and make informed decisions. Practical examples and discussion shaped around the people in the room.</AccordionContent></AccordionItem>
+    <AccordionItem value="engineering"><AccordionTrigger>Selective systems engineering</AccordionTrigger><AccordionContent>Company-specific interfaces, knowledge systems, and workflows. We agree on scope, responsibilities, approval boundaries, and handoff before implementation.</AccordionContent></AccordionItem>
+   </Accordion>
+   <a href="#contact" className="inline-link">Tell me what you’re working on <ArrowUpRight size={18}/></a>
+  </div>
+ </div>
+</section>
+<section className="about-section section-pad" id="about" data-reveal>
+ <div className="section-meta"><span>04 / THE PERSON BEHIND THE QUESTIONS</span><span>GABBY GREENBERG · FOUNDER</span></div>
+ <div className="about-grid"><div className="portrait-composition"><figure><img src="/gabby.png" alt="Gabby Greenberg, founder of Gab Real Inc" width="816" height="960" loading="lazy"/><figcaption>STRATEGIST. ENGINEER. AUTHOR. CURIOUS HUMAN.</figcaption></figure><span className="portrait-note">But why are we<br/>doing it this way?</span></div>
+ <div className="about-copy"><h2>I didn’t leave one<br/>way of working<br/><em>just to recreate it<br/>for myself.</em></h2><p>When I started working for myself, I took on too much, stayed constantly available, and measured my value by how much I could get done.</p><p>I had changed who I worked for. I hadn’t changed the rules.</p><p>That’s why I’m interested in more than making the same work happen faster. I want to understand what we’re trying to build, what we can stop carrying, and where technology actually helps.</p><a className="inline-link" href="https://growithgab.substack.com/p/three-years-later-im-finally-free" target="_blank" rel="noreferrer">The longer story <ArrowUpRight size={18}/></a></div></div>
+</section>
+<section className="ideas-section section-pad" id="ideas" data-reveal>
+ <div className="section-meta"><span>05 / SAME CURIOSITY. DIFFERENT PAGES.</span><span>THE THINKING DOESN’T STOP AT WORK.</span></div>
+ <div className="section-heading"><h2>Question what you inherited.<br/><em>Build what comes next.</em></h2></div>
+ <div className="ideas-grid">
+  <a className="idea-feature book-feature" href="https://readfromscratch.com/" target="_blank" rel="noreferrer"><div className="idea-top"><span>THE BOOK</span><span>AVAILABLE NOW ↗</span></div><div className="book-title">From<br/><em>Scratch.</em></div><div className="idea-bottom"><p>The book I co-wrote with Ryan Welti about redefining success and creating a life that feels like yours.</p><span className="idea-link">Explore the book <ArrowUpRight size={20}/></span></div></a>
+  <article className="idea-feature podcast-feature"><div className="idea-top"><span>THE PODCAST</span><span>COMING SOON</span></div><div className="podcast-title">exploit<span>WITH GABBY GREENBERG</span></div><div className="idea-bottom"><p>The ideas we inherit. The questions we can’t leave alone. And what the hell we do with what we learn.</p><details className="podcast-details"><summary>Meet the podcast <Plus size={18}/></summary><p>A curiosity-led conversation across technology, creativity, work, culture, and whatever question comes next. Guest conversations and solo explorations. Launch details to come.</p></details></div></article>
+  <a className="idea-feature writing-feature" href="https://growithgab.substack.com/" target="_blank" rel="noreferrer"><div className="idea-top"><span>THE WRITING</span><ArrowUpRight size={20}/></div><h3>Still<br/><em>figuring<br/>it out.</em></h3><div className="idea-bottom"><p>Essays on work, technology, success, and the things I’m still thinking through.</p><span className="idea-link">Read Grow With Gab <ArrowUpRight size={20}/></span></div></a>
+ </div>
+</section>
+<section className="contact-section section-pad" id="contact" data-reveal>
+ <div className="section-meta"><span>06 / LET’S START WITH A QUESTION</span><span>GOOD WORK STARTS WITH CONTEXT.</span></div>
+ <div className="contact-grid"><div><h2>What keeps<br/>coming back<br/><em>to you?</em></h2><p>The task nobody owns. The information only you can find. The idea you know could work, but haven’t figured out how to build.</p><span className="handwritten">let’s talk about that.</span></div>
+ <form onSubmit={reviewForm} onChange={()=>setFormState(false)}><p className="form-note">Preview form · not connected. Nothing entered here is sent or saved.</p><div className="form-pair"><label>Your name<input name="name" autoComplete="name" required placeholder="First & last name"/></label><label>Email address<input name="email" type="email" autoComplete="email" required placeholder="you@yourbusiness.com"/></label></div><label>What are you working on?<textarea name="project" required rows={2} placeholder="The business, project, or question on your mind."/></label><label>What would you like to change?<textarea name="change" required rows={2} placeholder="Tell me what happens now, and what you wish happened instead."/></label><div className="form-bottom"><span>No polished pitch necessary.</span><button className="button" type="submit">Preview inquiry <ArrowUpRight size={18}/></button></div><p className="form-feedback" role="status">{formState ? "Your inquiry is ready to review here. This preview isn’t connected, so nothing has been sent or saved." : ""}</p></form></div>
+</section>
+<footer className="site-footer"><div className="footer-top"><a className="wordmark" href="#top">gab real inc<span>®</span></a><p>Think clearly. Stay curious.<br/>Make something that matters.</p><a href="#top" className="back-top">BACK TO TOP <ArrowUpRight size={18}/></a></div><div className="footer-bottom"><span>© 2026 GAB REAL INC.</span><div><a href="/learn">Learn</a><a href="#work">Work</a><a href="#ideas">Ideas</a><a href="#about">About</a><a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Substack ↗</a><a href="https://www.linkedin.com/in/gabriellegreenberg" target="_blank" rel="noreferrer">LinkedIn ↗</a></div><span>HUMAN FIRST. ALWAYS.</span></div></footer>
+</main>;
 }
