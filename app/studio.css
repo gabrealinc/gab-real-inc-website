@@ -153,6 +153,7 @@ form label{font-size:14px}form input,form textarea{font-size:16px;background:#fa
 .book-feature{background:#f2f0eb}
 form input,form textarea{background:#faf9f5}
 @media(prefers-reduced-motion:reduce){.hero-collage,.hero-collage .photo-print{animation:none}.photo-print,.change-grid article,.idea-feature{transition:none}}
+/* Filled editorial panels reuse the established palette. */
 /* Studio composition, with a quieter reading experience. */
 .section-meta>span:only-child{display:block}
 .site-header{margin:0 4%;height:88px;padding:0;border-radius:0;box-shadow:none;background:var(--paper)}

@@ -79,7 +79,7 @@ return <main id="top">
 </section>
 <section className="about-section section-pad" id="about" data-reveal>
  <div className="section-meta"><span>HI, I’M GABBY.</span></div>
- <div className="about-grid"><div className="portrait-composition"><figure><img src="/gabby.png" alt="Gabby Greenberg, founder of Gab Real Inc" width="816" height="960" loading="lazy"/><figcaption>STRATEGIST. ENGINEER. AUTHOR. CURIOUS HUMAN.</figcaption></figure><span className="portrait-note">But why are we<br/>{" "}doing it this way?</span></div>
+ <div className="about-grid"><div className="portrait-composition"><figure><div className="portrait-crop"><img src="/gabby-portrait.jpg" alt="Gabby Greenberg, founder of Gab Real Inc" width="2400" height="1600" loading="lazy"/></div><figcaption>STRATEGIST. ENGINEER. AUTHOR. CURIOUS HUMAN.</figcaption></figure><span className="portrait-note">But why are we<br/>{" "}doing it this way?</span></div>
  <div className="about-copy"><h2>I didn’t leave one<br/>{" "}way of working<br/>{" "}<em>just to recreate it<br/>{" "}for myself.</em></h2><p>When I started working for myself, I took on too much, stayed constantly available, and measured my value by how much I could get done.</p><p>I had changed who I worked for. I hadn’t changed the rules.</p><p>That’s why I’m interested in more than making the same work happen faster. I want to understand what we’re trying to build, what we can stop carrying, and where technology actually helps.</p><a className="inline-link" href="https://growithgab.substack.com/p/three-years-later-im-finally-free" target="_blank" rel="noreferrer">The longer story <ArrowUpRight size={18}/></a></div></div>
 </section>
 <section className="ideas-section section-pad" id="ideas" data-reveal>

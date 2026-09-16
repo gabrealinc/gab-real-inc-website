@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./studio.css";
+import "./depth.css";
 
 export const metadata: Metadata = {
   title: "Gab Real Inc. | Use AI to Think More Clearly. Build What Matters.",
