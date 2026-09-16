@@ -5,7 +5,7 @@ import "./depth.css";
 
 export const metadata: Metadata = {
   title: "Gab Real Inc. | Use AI to Think More Clearly. Build What Matters.",
-  description: "AI education, strategy, and systems engineering for founders and teams. Learn with Gabby Greenberg or work together to build better ways of working.",
+  description: "AI education for everyday people and small business owners, with practical AI roadmaps and custom builds. Learn with Gabby Greenberg or work together to build better ways of working.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
