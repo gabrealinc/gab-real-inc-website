@@ -42,7 +42,7 @@ export default function Home() {
           {menuOpen ? "Close" : "Menu"} {menuOpen ? <Minus size={17} /> : <Plus size={17} />}
         </button>
         <nav id="ecosystem-nav" className={menuOpen ? "is-open" : ""} aria-label="Main navigation" onClick={() => setMenuOpen(false)}>
-          <a href="#explore">The idea</a><a href="#work-with-me">Work with me</a><a href="#selected-work">Past work</a><a href="#more">More than work</a>
+          <a href="#explore">The point</a><a href="#course">AI course</a><a href="#work-with-me">Work with me</a><a href="#selected-work">Past work</a>
         </nav>
         <a className="ecosystem-header-cta" href="#work-with-me">Start here <ArrowDown size={16} /></a>
       </header>
@@ -75,8 +75,16 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="course-section" id="course" data-rise>
+        <div className="section-label"><span>02</span><span>AI WITH GAB</span></div>
+        <div className="course-layout">
+          <div className="course-copy"><span>THE SELF-PACED COURSE</span><h2>Use AI without becoming<br /><em>an AI person.</em></h2><p>Learn how to choose the right tools, communicate with them, protect your information, and build workflows that actually save you time.</p><a className="yellow-button" href="/learn">Explore the course <ArrowUpRight size={18} /></a></div>
+          <div className="course-steps" aria-label="Course learning path"><span>THINK</span><span>CHOOSE</span><span>SET UP</span><span>USE</span><span>BUILD</span></div>
+        </div>
+      </section>
+
       <section className="work-section" id="work-with-me" data-rise>
-        <div className="section-label light"><span>02</span><span>WORK WITH ME</span></div>
+        <div className="section-label light"><span>03</span><span>WORK WITH ME</span></div>
         <div className="work-heading"><h2>What Gab Real Inc.<br /><em>actually does.</em></h2><p>Choose the kind of help you need, from a one-time talk or workshop to ongoing advice or a custom AI system.</p></div>
         <div className="service-stack">
           <article><span>01</span><h3>Workshops + Team Training</h3><p>Practical sessions that help your team understand AI, use it in their day-to-day work, and know where to be careful.</p></article>
@@ -84,14 +92,11 @@ export default function Home() {
           <article><span>03</span><h3>AI Strategy + Advisory</h3><p>Ongoing guidance to help you decide where AI fits, choose the right tools, and make better decisions as things change.</p></article>
           <article><span>04</span><h3>Custom AI Buildouts</h3><p>Useful workflows, dashboards, internal tools, and AI assistants designed around how your business actually works.</p></article>
         </div>
-        <div className="work-actions">
-          <a className="yellow-button work-cta" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a>
-          <a className="course-path" href="/learn"><span>WANT TO LEARN IT YOURSELF?</span><strong>AI with Gab</strong><small>Explore the course <ArrowUpRight size={17} /></small></a>
-        </div>
+        <div className="work-actions"><a className="yellow-button work-cta" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a></div>
       </section>
 
       <section className="selected-section" id="selected-work" data-rise>
-        <div className="section-label"><span>03</span><span>SELECTED WORK</span></div>
+        <div className="section-label"><span>04</span><span>CASE STUDIES</span></div>
         <div className="section-title-row"><h2>Here’s what that looks like<br /><em>in real life.</em></h2><p>A few examples of problems I’ve helped businesses make simpler.</p></div>
         <div className="case-folder">
           <div className="folder-tabs" role="tablist" aria-label="Selected work categories">
@@ -102,6 +107,10 @@ export default function Home() {
             <div className="folder-detail"><p>{selectedWork[activeWork].description}</p><span>THE CHANGE</span><strong>{selectedWork[activeWork].outcome}</strong></div>
           </div>
         </div>
+      </section>
+
+      <section className="testimonial-section" id="testimonials" data-rise>
+        <div className="section-label"><span>05</span><span>TESTIMONIALS</span></div>
         <div className="testimonial-heading"><div><span>CLIENT NOTES</span><h3>What people<br /><em>say afterward.</em></h3></div><p>Real client quotes can drop into these cards when you’re ready—without changing the layout again.</p></div>
         <div className="testimonial-chain" aria-label="Testimonial placeholders">
           {testimonialPlaceholders.map((item) => <article key={item.number}><span>{item.number} / PLACEHOLDER</span><blockquote>“{item.quote}”</blockquote><footer><strong>{item.name}</strong><small>{item.role}</small></footer></article>)}
@@ -109,7 +118,7 @@ export default function Home() {
       </section>
 
       <section className="world-section" id="more" data-rise>
-        <div className="section-label"><span>04</span><span>THERE’S MORE TO LIFE THAN WORK</span></div>
+        <div className="section-label"><span>06</span><span>THERE’S MORE TO LIFE THAN WORK</span></div>
         <div className="section-title-row life-title"><h2>There’s more to life<br /><em>than work.</em></h2><p>These are the places where I question the rules we inherit, follow what I’m curious about, and make room for conversations that matter.</p></div>
         <div className="world-cards">
           <a className="world-card book-world" href="https://readfromscratch.com/" target="_blank" rel="noreferrer"><span>01 / THE BOOK</span><h3>From<br /><em>Scratch.</em></h3><p>A book about questioning the life you inherited and creating one that actually feels like yours.</p><small>READ THE BOOK <ArrowUpRight size={17} /></small></a>
