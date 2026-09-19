@@ -64,15 +64,25 @@ export default function Home() {
       </section>
 
       <section className="idea-section" id="about" data-rise>
-        <div className="section-label"><span>01</span><span>THE IDEA</span></div>
-        <div className="idea-copy">
-          <h2>One company for <em>everything I do.</em></h2>
-          <div>
-            <p>Gab Real Inc. is where I put all my work: teaching people about AI, helping businesses fix messy systems, building useful tools, and writing about the bigger questions technology brings up.</p>
-            <p>Serious health experiences in my twenties forced me to question how I was living and what I had been taught to chase. That experience still shapes my work today: understand what is influencing you, decide what you actually want, and build from there.</p>
+        <div className="section-label"><span>01</span><span>THE POINT</span></div>
+        <div className="creative-mode">
+          <div className="creative-switch-card" role="img" aria-label="Creative mode switching from off to on">
+            <span className="creative-switch-title">CREATIVE<br />MODE</span>
+            <div className="creative-switch-face">
+              <span className="creative-status creative-status-on">ON</span>
+              <span className="creative-switch-track"><span className="creative-switch-knob" /></span>
+              <span className="creative-status creative-status-off">OFF</span>
+            </div>
+          </div>
+          <div className="creative-message">
+            <h2>Turning creative mode <em>on.</em></h2>
+            <p className="creative-lede">AI should give us more room to think, create, connect, and do the work that actually matters.</p>
+            <p>I help people understand the tools, decide where they belong, and use them without handing over their voice or judgment.</p>
+            <div className="creative-manifesto" aria-label="Less busywork. More human work.">
+              <span>LESS BUSYWORK.</span><span>MORE HUMAN WORK.</span>
+            </div>
           </div>
         </div>
-        <div className="idea-question"><span>THE QUESTION UNDERNEATH EVERYTHING</span><p>How can we use technology to make our work and lives better—not just faster?</p></div>
       </section>
 
       <section className="explore-section" id="explore" data-rise>
