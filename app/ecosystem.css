@@ -42,3 +42,27 @@
 @media(max-width:900px){.creative-mode{grid-template-columns:.78fr 1.22fr;gap:6%}.creative-switch-card{min-height:420px;padding:22px}.creative-switch-face{min-height:205px}}
 @media(max-width:700px){.creative-mode{grid-template-columns:1fr;gap:55px;padding:42px 0 6px}.creative-switch-card{min-height:440px;max-width:430px;width:94%;justify-self:center}.creative-message h2{font-size:clamp(3.4rem,16vw,5.6rem)}.creative-message .creative-lede{font-size:23px;margin-top:30px}.creative-message>p{font-size:17px}.creative-manifesto{flex-direction:column;gap:7px;margin-top:32px}}
 @media(prefers-reduced-motion:reduce){.creative-switch-card{transform:rotate(1deg);transition:none}.creative-switch-track{background:var(--pool);transition:none}.creative-switch-knob{transform:translateX(calc(var(--track-width) - var(--knob-size) - 18px));background:#fffaf1;transition:none}.creative-status-on{opacity:1;transform:none}.creative-status-off{opacity:.25}}
+
+/* Portfolio-template rhythm, translated into the Gab Real visual system. */
+.hero-template-meta{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:24px;padding-top:14px;border-top:1px solid #231b1840;font-size:11px;font-weight:700;letter-spacing:.09em}
+.hero-hello{display:block;font:500 clamp(2.7rem,4vw,5rem)/.9 Cormorant,Georgia,serif;font-style:italic;color:var(--oxblood);margin-bottom:18px}
+.belief-marquee{background:var(--ink);color:var(--paper);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);overflow:hidden;white-space:nowrap;padding:18px 0}
+.belief-marquee>div{width:max-content;display:flex;align-items:center;gap:34px;animation:belief-scroll 25s linear infinite}
+.belief-marquee span,.belief-marquee em{font-size:clamp(1.1rem,2vw,1.8rem);font-weight:800;letter-spacing:-.025em}
+.belief-marquee em{font-family:Cormorant,Georgia,serif;font-size:clamp(1.35rem,2.4vw,2.2rem);font-weight:600;color:var(--yellow)}
+@keyframes belief-scroll{to{transform:translateX(-50%)}}
+.idea-section,.explore-section,.work-section,.selected-section,.world-section{border-bottom:1px solid var(--ink)}
+.section-label{font-weight:700}
+.service-stack article{transition:background .3s,color .3s,padding .3s}
+.service-stack article:hover{background:var(--yellow);color:var(--ink);padding-left:22px;padding-right:22px}
+.service-stack article:hover>span,.service-stack article:hover p{color:var(--ink)}
+.life-title{margin-bottom:60px}
+.world-cards{grid-template-columns:repeat(3,1fr);gap:20px}
+.world-card{min-height:520px;padding:30px}
+.world-card h3{font-size:clamp(2.8rem,4.5vw,5.5rem)}
+.exploit-world{background:var(--pool);color:#fff}
+.exploit-world h3{font-size:clamp(3.2rem,5.5vw,6.6rem);margin-top:auto;margin-bottom:30px}
+.exploit-world h3 em{color:var(--yellow)}
+@media(max-width:1000px){.world-cards{grid-template-columns:1fr 1fr}.exploit-world{grid-column:1/-1;min-height:360px}.hero-template-meta{font-size:10px}}
+@media(max-width:700px){.hero-template-meta{align-items:flex-start;flex-direction:column;gap:6px}.hero-hello{font-size:3.2rem}.belief-marquee{padding:14px 0}.world-cards{grid-template-columns:1fr}.world-card,.exploit-world{grid-column:auto;min-height:390px}.life-title{margin-bottom:38px}}
+@media(prefers-reduced-motion:reduce){.belief-marquee>div{animation:none}}

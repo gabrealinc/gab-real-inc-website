@@ -43,8 +43,9 @@ export default function Home() {
 
       <section className="ecosystem-hero" id="main-content">
         <div className="hero-identity">
-          <p className="hero-kicker">AI STRATEGY · SYSTEMS · WRITING · EDUCATION</p>
+          <p className="hero-kicker">/ AI STRATEGY · SYSTEMS · WRITING · EDUCATION</p>
           <h1>GAB<br />REAL<br /><em>INC.</em></h1>
+          <div className="hero-template-meta"><span>©2026</span><span>/ CREATING WHAT COMES NEXT</span></div>
         </div>
         <figure className="hero-portrait">
           <div className="hero-photo-crop"><img src="/gabby-portrait.jpg" alt="Gabby Greenberg, founder of Gab Real Inc." width="2400" height="1600" fetchPriority="high" /></div>
@@ -52,6 +53,7 @@ export default function Home() {
           <span className="hero-stamp">QUESTION<br />THE<br />DEFAULT.</span>
         </figure>
         <div className="hero-intro">
+          <span className="hero-hello">Hey!</span>
           <p>I help people and small businesses figure out how to use AI in ways that are actually useful—without losing their voice, judgment, or time to another complicated tool.</p>
           <div className="hero-links">
             <a className="yellow-button" href="#explore">Explore the work <ArrowDown size={18} /></a>
@@ -62,6 +64,10 @@ export default function Home() {
           <span>AI strategist + systems consultant</span><span>Co-author of <em>From Scratch</em></span><span>Founder across food, community + tech</span><span>6× national champion equestrian</span>
         </div>
       </section>
+
+      <div className="belief-marquee" aria-label="Think clearly. Question the default. Build what matters.">
+        <div><span>THINK CLEARLY.</span><em>QUESTION THE DEFAULT.</em><span>BUILD WHAT MATTERS.</span><span>THINK CLEARLY.</span><em>QUESTION THE DEFAULT.</em><span>BUILD WHAT MATTERS.</span></div>
+      </div>
 
       <section className="idea-section" id="about" data-rise>
         <div className="section-label"><span>01</span><span>THE POINT</span></div>
@@ -121,13 +127,12 @@ export default function Home() {
       </section>
 
       <section className="world-section" data-rise>
-        <div className="section-label"><span>05</span><span>THE REST OF THE UNIVERSE</span></div>
-        <div className="section-title-row"><h2>There’s more to me<br /><em>than AI.</em></h2><p>The other work and experiences that shape how I think, teach, and build.</p></div>
+        <div className="section-label"><span>05</span><span>THERE’S MORE TO LIFE THAN WORK</span></div>
+        <div className="section-title-row life-title"><h2>There’s more to life<br /><em>than work.</em></h2><p>These are the places where I question the rules we inherit, follow what I’m curious about, and make room for conversations that matter.</p></div>
         <div className="world-cards">
-          <a className="world-card book-world" href="https://readfromscratch.com/" target="_blank" rel="noreferrer"><span>THE BOOK</span><h3>From<br /><em>Scratch.</em></h3><p>Creating a life that feels like yours.</p><small>READ THE BOOK <ArrowUpRight size={17} /></small></a>
-          <a className="world-card writing-world" href="https://growithgab.substack.com/" target="_blank" rel="noreferrer"><span>THE WRITING</span><h3>Grow<br /><em>with Gab.</em></h3><p>Ideas about AI, work, identity, creativity, and whatever I can’t stop thinking about.</p><small>READ THE LATEST <ArrowUpRight size={17} /></small></a>
-          <article className="world-card founder-world"><span>THE BUILDER</span><h3>Food.<br />Community.<br /><em>Technology.</em></h3><p>I’ve built businesses, events, experiences, recipes, brands, and systems. The medium changes. The instinct doesn’t.</p></article>
-          <article className="world-card champion-world"><span>THE BACKSTORY</span><h3>6× national<br /><em>champion.</em></h3><p>I rode competitively from age three to eighteen. Discipline, pattern recognition, and learning to respond in real time started there.</p></article>
+          <a className="world-card book-world" href="https://readfromscratch.com/" target="_blank" rel="noreferrer"><span>01 / THE BOOK</span><h3>From<br /><em>Scratch.</em></h3><p>A book about questioning the life you inherited and creating one that actually feels like yours.</p><small>READ THE BOOK <ArrowUpRight size={17} /></small></a>
+          <a className="world-card writing-world" href="https://growithgab.substack.com/" target="_blank" rel="noreferrer"><span>02 / THE WRITING</span><h3>Grow<br /><em>with Gab.</em></h3><p>Essays and field notes about AI, identity, creativity, work, and whatever I can’t stop thinking about.</p><small>READ THE LATEST <ArrowUpRight size={17} /></small></a>
+          <article className="world-card exploit-world"><span>03 / THE PODCAST</span><h3>Exploit<em>.</em></h3><p>Honest conversations with people using technology, creativity, and their own lives to question what comes next.</p><small>COMING SOON <span aria-hidden="true">↗</span></small></article>
         </div>
       </section>
 
