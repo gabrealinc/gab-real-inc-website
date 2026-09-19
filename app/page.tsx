@@ -41,44 +41,31 @@ export default function Home() {
         <a className="ecosystem-header-cta" href="#work-with-me">Start here <ArrowDown size={16} /></a>
       </header>
 
-      <section className="ecosystem-hero" id="main-content">
-        <div className="hero-identity">
-          <p className="hero-kicker">/ AI STRATEGY · SYSTEMS · WRITING · EDUCATION</p>
-          <h1>GAB<br />REAL<br /><em>INC.</em></h1>
-          <div className="hero-template-meta"><span>©2026</span><span>/ CREATING WHAT COMES NEXT</span></div>
-        </div>
-        <figure className="hero-portrait">
-          <div className="hero-photo-crop"><img src="/gabby-portrait.jpg" alt="Gabby Greenberg, founder of Gab Real Inc." width="2400" height="1600" fetchPriority="high" /></div>
-          <figcaption><span>GABBY GREENBERG</span><span>SAN DIEGO · 2026</span></figcaption>
-          <span className="hero-stamp">QUESTION<br />THE<br />DEFAULT.</span>
-        </figure>
-        <div className="hero-intro">
-          <span className="hero-hello">Hey!</span>
-          <p>I help people and small businesses figure out how to use AI in ways that are actually useful—without losing their voice, judgment, or time to another complicated tool.</p>
-          <div className="hero-links">
-            <a className="yellow-button" href="#explore">Explore the work <ArrowDown size={18} /></a>
-            <a className="text-link" href="#work-with-me">Work with me <ArrowUpRight size={18} /></a>
-          </div>
-        </div>
-        <div className="hero-index" aria-label="Gabby at a glance">
-          <span>AI strategist + systems consultant</span><span>Co-author of <em>From Scratch</em></span><span>Founder across food, community + tech</span><span>6× national champion equestrian</span>
+      <section className="portfolio-hero" id="main-content">
+        <img className="portfolio-hero-background" src="/gabby-portrait.jpg" alt="Gabby Greenberg, founder of Gab Real Inc." width="2400" height="1600" fetchPriority="high" />
+        <div className="portfolio-hero-wash" aria-hidden="true" />
+        <div className="portfolio-hero-topline"><span>AI STRATEGY + SYSTEMS</span><span>BASED IN SAN DIEGO</span><span>WORKING GLOBALLY</span></div>
+        <h1 className="portfolio-promise">AI MADE<br />SIMPLE</h1>
+        <p className="portfolio-hero-description">Practical AI education, strategy, and systems that help people work better without losing what makes them human.</p>
+        <p className="portfolio-hero-belief">QUESTION THE DEFAULT.<br />BUILD WHAT MATTERS.</p>
+        <p className="portfolio-hero-brand">GAB REAL<br />INC.</p>
+      </section>
+
+      <section className="idea-section" id="about" data-rise>
+        <div className="section-label"><span>01</span><span>THE PERSON BEHIND THE WORK</span></div>
+        <div className="bio-layout">
+          <div className="bio-left"><h2>I’m Gabby<br /><em>Greenberg.</em></h2><p>I’m an AI strategist, systems consultant, writer, and educator based in San Diego.</p></div>
+          <figure className="bio-photo"><img src="/gabby-portrait.jpg" alt="Gabby Greenberg" width="2400" height="1600" loading="lazy" /></figure>
+          <div className="bio-right"><p>I help people and small businesses understand AI, fix systems that waste their time, and build useful tools around the way they actually work.</p><p>I’m also the co-author of <em>From Scratch</em>, a book about questioning the definitions we inherit and deciding what we want instead.</p><a className="text-link" href="#work-with-me">Work with me <ArrowUpRight size={18} /></a></div>
         </div>
       </section>
 
-      <div className="belief-marquee" aria-label="Think clearly. Question the default. Build what matters.">
-        <div><span>THINK CLEARLY.</span><em>QUESTION THE DEFAULT.</em><span>BUILD WHAT MATTERS.</span><span>THINK CLEARLY.</span><em>QUESTION THE DEFAULT.</em><span>BUILD WHAT MATTERS.</span></div>
-      </div>
-
-      <section className="idea-section" id="about" data-rise>
-        <div className="section-label"><span>01</span><span>THE POINT</span></div>
+      <section className="explore-section thesis-section" id="explore" data-rise>
+        <div className="section-label"><span>02</span><span>THE POINT</span></div>
         <div className="creative-mode">
           <div className="creative-switch-card" role="img" aria-label="Creative mode switching from off to on">
             <span className="creative-switch-title">CREATIVE<br />MODE</span>
-            <div className="creative-switch-face">
-              <span className="creative-status creative-status-on">ON</span>
-              <span className="creative-switch-track"><span className="creative-switch-knob" /></span>
-              <span className="creative-status creative-status-off">OFF</span>
-            </div>
+            <div className="creative-switch-face"><span className="creative-status creative-status-on">ON</span><span className="creative-switch-track"><span className="creative-switch-knob" /></span><span className="creative-status creative-status-off">OFF</span></div>
           </div>
           <div className="creative-message">
             <h2>Turning creative mode <em>on.</em></h2>
@@ -91,25 +78,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="explore-section" id="explore" data-rise>
-        <div className="section-label"><span>02</span><span>CHOOSE YOUR DOOR</span></div>
-        <div className="section-title-row"><h2>Want to learn?<br /><em>Or want my help?</em></h2><p>Learn how to use AI yourself, or bring me a problem inside your business that you’re tired of dealing with.</p></div>
-        <div className="door-grid">
-          <a className="door-card learn-door" href="/learn"><span className="door-number">01 / LEARN</span><div><h3>AI with Gab</h3><p>Practical AI courses for people who want to use the tools well without becoming tech experts.</p></div><span className="door-action">Explore the courses <ArrowUpRight size={22} /></span></a>
-          <a className="door-card work-door" href="#work-with-me"><span className="door-number">02 / GET HELP</span><div><h3>Work with me</h3><p>Book a workshop or speaking engagement, get ongoing advice, or bring me an AI system you need help building.</p></div><span className="door-action">See how I can help <ArrowDown size={22} /></span></a>
-        </div>
-      </section>
-
       <section className="work-section" id="work-with-me" data-rise>
         <div className="section-label light"><span>03</span><span>WORK WITH ME</span></div>
-        <div className="work-heading"><h2>Four ways we can<br /><em>work together.</em></h2><p>Choose the kind of help you need, from a one-time talk or workshop to ongoing advice or a custom AI system.</p></div>
+        <div className="work-heading"><h2>What Gab Real Inc.<br /><em>actually does.</em></h2><p>Choose the kind of help you need, from a one-time talk or workshop to ongoing advice or a custom AI system.</p></div>
         <div className="service-stack">
           <article><span>01</span><h3>Workshops + Team Training</h3><p>Practical sessions that help your team understand AI, use it in their day-to-day work, and know where to be careful.</p></article>
           <article><span>02</span><h3>Speaking Engagements</h3><p>Keynotes, panels, and conversations about AI, the future of work, human agency, and how we shape what comes next.</p></article>
           <article><span>03</span><h3>AI Strategy + Advisory</h3><p>Ongoing guidance to help you decide where AI fits, choose the right tools, and make better decisions as things change.</p></article>
           <article><span>04</span><h3>Custom AI Buildouts</h3><p>Useful workflows, dashboards, internal tools, and AI assistants designed around how your business actually works.</p></article>
         </div>
-        <a className="yellow-button work-cta" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a>
+        <div className="work-actions"><a className="yellow-button work-cta" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a><a className="text-link light-link" href="/learn">Or learn with AI with Gab <ArrowUpRight size={18} /></a></div>
       </section>
 
       <section className="selected-section" id="selected-work" data-rise>
