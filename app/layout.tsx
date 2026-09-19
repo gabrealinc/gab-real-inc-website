@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./studio.css";
 import "./depth.css";
+import "./ecosystem.css";
 
 export const metadata: Metadata = {
-  title: "Gab Real Inc. | Use AI to Think More Clearly. Build What Matters.",
-  description: "AI education for everyday people and small business owners, with practical AI roadmaps and custom builds. Learn with Gabby Greenberg or work together to build better ways of working.",
+  title: "Gab Real Inc. | AI Strategy, Systems, Writing & Education",
+  description: "Gab Real Inc. is the home of Gabby Greenberg’s work across human-first AI strategy, systems, education, writing, and intentional living.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
