@@ -9,6 +9,12 @@ const selectedWork = [
   { label: "AI workspace", number: "03", title: "An AI setup made for the actual team.", description: "A consulting team wanted to use AI without creating more confusion. I organized its business information, files, and AI workflows around each person’s real role.", outcome: "The team has a practical system it can understand, use, and improve over time." },
 ];
 
+const testimonialPlaceholders = [
+  { number: "01", quote: "Your client’s words will live here.", name: "CLIENT NAME", role: "ROLE · COMPANY" },
+  { number: "02", quote: "Add the moment they knew the work made a difference.", name: "CLIENT NAME", role: "ROLE · COMPANY" },
+  { number: "03", quote: "Use a specific result, feeling, or transformation here.", name: "CLIENT NAME", role: "ROLE · COMPANY" },
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeWork, setActiveWork] = useState(0);
@@ -78,7 +84,10 @@ export default function Home() {
           <article><span>03</span><h3>AI Strategy + Advisory</h3><p>Ongoing guidance to help you decide where AI fits, choose the right tools, and make better decisions as things change.</p></article>
           <article><span>04</span><h3>Custom AI Buildouts</h3><p>Useful workflows, dashboards, internal tools, and AI assistants designed around how your business actually works.</p></article>
         </div>
-        <div className="work-actions"><a className="yellow-button work-cta" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a><a className="text-link light-link" href="/learn">Or learn with AI with Gab <ArrowUpRight size={18} /></a></div>
+        <div className="work-actions">
+          <a className="yellow-button work-cta" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a>
+          <a className="course-path" href="/learn"><span>WANT TO LEARN IT YOURSELF?</span><strong>AI with Gab</strong><small>Explore the course <ArrowUpRight size={17} /></small></a>
+        </div>
       </section>
 
       <section className="selected-section" id="selected-work" data-rise>
@@ -93,6 +102,10 @@ export default function Home() {
             <div className="folder-detail"><p>{selectedWork[activeWork].description}</p><span>THE CHANGE</span><strong>{selectedWork[activeWork].outcome}</strong></div>
           </div>
         </div>
+        <div className="testimonial-heading"><div><span>CLIENT NOTES</span><h3>What people<br /><em>say afterward.</em></h3></div><p>Real client quotes can drop into these cards when you’re ready—without changing the layout again.</p></div>
+        <div className="testimonial-chain" aria-label="Testimonial placeholders">
+          {testimonialPlaceholders.map((item) => <article key={item.number}><span>{item.number} / PLACEHOLDER</span><blockquote>“{item.quote}”</blockquote><footer><strong>{item.name}</strong><small>{item.role}</small></footer></article>)}
+        </div>
       </section>
 
       <section className="world-section" id="more" data-rise>
@@ -103,6 +116,12 @@ export default function Home() {
           <a className="world-card writing-world" href="https://growithgab.substack.com/" target="_blank" rel="noreferrer"><span>02 / THE WRITING</span><h3>Grow<br /><em>with Gab.</em></h3><p>Essays and field notes about AI, identity, creativity, work, and whatever I can’t stop thinking about.</p><small>READ THE LATEST <ArrowUpRight size={17} /></small></a>
           <article className="world-card exploit-world"><span>03 / THE PODCAST</span><h3>Exploit<em>.</em></h3><p>Honest conversations with people using technology, creativity, and their own lives to question what comes next.</p><small>COMING SOON <span aria-hidden="true">↗</span></small></article>
         </div>
+      </section>
+
+      <section className="final-cta-section" data-rise>
+        <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
+        <h2>Let’s make it<br /><em>actually useful.</em></h2>
+        <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
       </section>
 
       <footer className="ecosystem-footer">
