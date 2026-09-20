@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap');
 
 .ecosystem {
   --navy: #171714;
   --blue: #b63a24;
   --yellow: #f2eee2;
-  --tan: #d8c8ab;
+  --tan: #f2eee2;
   min-height: 100vh;
   overflow: hidden;
   background: var(--yellow);
@@ -16,8 +16,8 @@
 .ecosystem * { box-sizing: border-box; }
 .ecosystem a { color: inherit; text-decoration: none; }
 .ecosystem h1, .ecosystem h2, .ecosystem h3, .ecosystem p, .ecosystem figure, .ecosystem blockquote, .ecosystem dl, .ecosystem dd { margin: 0; }
-.ecosystem h1, .ecosystem h2, .ecosystem h3, .ecosystem em { font-family: "Bodoni Moda", Georgia, serif; font-weight: 500; }
-.ecosystem em { font-style: italic; }
+.ecosystem h1, .ecosystem h2, .ecosystem h3 { font-family: "Instrument Sans", DM, Arial, sans-serif; font-weight: 500; }
+.ecosystem em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-style: italic; }
 .ecosystem button { font: inherit; }
 .ecosystem a:focus-visible, .ecosystem button:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
 .skip-link { position: fixed; top: -100px; left: 18px; z-index: 500; padding: 13px 18px; background: var(--navy); color: var(--yellow) !important; }
@@ -31,7 +31,7 @@
   transition: height .72s cubic-bezier(.22, 1, .36, 1), transform .72s cubic-bezier(.22, 1, .36, 1);
 }
 .nav-underlay { pointer-events: none; }
-.nav-underlay-tan { z-index: 98; background: var(--tan); }
+.nav-underlay-tan { z-index: 98; background: #8e291a; }
 .nav-underlay-yellow { z-index: 99; background: #d98152; }
 .nav-underlay-tan.is-open { height: min(640px, 80svh); transform: translateY(22px); }
 .nav-underlay-yellow.is-open { height: min(640px, 80svh); transform: translateY(11px); }
@@ -55,11 +55,11 @@
 }
 .layer-nav.is-open .layer-menu { opacity: 1; visibility: visible; transform: none; transition-delay: .18s; }
 .layer-contact, .layer-secondary { display: flex; flex-direction: column; align-items: flex-start; }
-.layer-contact p { max-width: 245px; font: 500 clamp(1.35rem, 2vw, 2rem)/1.08 "Bodoni Moda", Georgia, serif; }
+.layer-contact p { max-width: 245px; font: 500 clamp(1.3rem, 1.8vw, 1.8rem)/1.15 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.03em; }
 .layer-contact a { margin-top: 34px; border-bottom: 1px solid currentColor; padding-bottom: 4px; font-size: 14px; }
 .layer-contact span { margin-top: auto; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
 .layer-menu nav { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-.layer-menu nav a { font: 500 clamp(2.5rem, 4.4vw, 5.2rem)/.91 "Bodoni Moda", Georgia, serif; letter-spacing: -.055em; transition: transform .25s ease, opacity .25s ease; }
+.layer-menu nav a { font: 500 clamp(2.35rem, 3.7vw, 4.4rem)/.95 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.05em; transition: transform .25s ease, opacity .25s ease; }
 .layer-menu nav a:hover { transform: translateX(12px); }
 .layer-menu nav:has(a:hover) a:not(:hover) { opacity: .42; }
 .layer-secondary { justify-content: center; gap: 10px; font-size: 15px; }
@@ -74,10 +74,10 @@
   text-transform: uppercase;
 }
 .section-label { display: flex; gap: 18px; padding-bottom: 18px; border-bottom: 1px solid currentColor; }
-.section-label span:first-child { font-family: "Bodoni Moda", Georgia, serif; font-size: 16px; font-style: italic; font-weight: 500; letter-spacing: 0; }
+.section-label span:first-child { font-family: Georgia, "Times New Roman", serif; font-size: 16px; font-style: italic; font-weight: 400; letter-spacing: 0; }
 .plain-section, .case-section, .more-section, .course-section { padding: 96px 6%; border-bottom: 1px solid var(--navy); }
 .section-heading { display: grid; grid-template-columns: 1fr minmax(250px, .42fr); gap: 9%; align-items: end; padding: 65px 0 55px; }
-.section-heading h2, .thesis-grid h2, .course-grid h2, .final-cta h2 { font-size: clamp(3.6rem, 7vw, 8.4rem); line-height: .89; letter-spacing: -.065em; }
+.section-heading h2, .thesis-grid h2, .course-grid h2, .final-cta h2 { font-size: clamp(3.25rem, 6.2vw, 7rem); line-height: .94; letter-spacing: -.055em; }
 .section-heading h2 em, .thesis-grid h2 em, .course-grid h2 em, .final-cta h2 em { color: inherit; }
 .section-heading > p { max-width: 390px; font-size: 18px; line-height: 1.5; }
 .primary-link { display: inline-flex; align-items: center; gap: 25px; width: max-content; margin-top: 34px; padding: 13px 0 9px; border-bottom: 1px solid currentColor; font-size: 15px; font-weight: 650; }
@@ -119,18 +119,18 @@
 .hero-confidence strong { display: block; margin-top: 13px; font-size: 25px; }
 .hero-confidence span { display: block; margin-top: 18px; color: var(--blue); font-size: 24px; letter-spacing: -.15em; }
 .hero-question { top: 41%; left: 19%; width: 23%; padding: 22px 17px; transform: rotate(-2deg); }
-.hero-question p { margin-top: 18px; font: italic 17px/1.3 "Bodoni Moda", Georgia, serif; }
+.hero-question p { margin-top: 18px; font: italic 17px/1.3 Georgia, "Times New Roman", serif; }
 .hero-question em { display: block; margin-top: 15px; color: var(--blue); font-size: 15px; }
 .hero-education { right: 6%; bottom: 0; padding: 15px 18px; font-size: 9px; font-weight: 700; line-height: 1.15; letter-spacing: .08em; transform: rotate(-1deg); }
 .hero-service-line { position: absolute; left: 4%; bottom: 26px; display: flex; align-items: center; gap: 13px; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .hero-service-line i { width: 4px; height: 4px; display: block; border-radius: 50%; background: var(--blue); }
 
 /* Thesis and course */
-.thesis-section { background: var(--tan); }
+.thesis-section { background: var(--yellow); }
 .thesis-grid { min-height: 620px; display: grid; grid-template-columns: 1.2fr .7fr; gap: 10%; align-items: center; }
 .thesis-grid > div { max-width: 560px; }
 .thesis-grid p { font-size: 18px; line-height: 1.6; }
-.thesis-grid .large-copy { margin-bottom: 25px; font: 500 clamp(1.8rem, 3vw, 3.5rem)/1.13 "Bodoni Moda", Georgia, serif; letter-spacing: -.03em; }
+.thesis-grid .large-copy { margin-bottom: 25px; font: 500 clamp(1.7rem, 2.6vw, 3rem)/1.18 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.035em; }
 .course-section { background: var(--navy); color: var(--yellow); }
 .course-grid { display: grid; grid-template-columns: 1.2fr .55fr; gap: 8%; align-items: end; padding: 70px 0 65px; }
 .course-grid h2 { margin-top: 26px; }
@@ -144,7 +144,7 @@
 .work-section { background: var(--yellow); }
 .services { margin-bottom: 20px; border-top: 1px solid var(--navy); }
 .services article { display: grid; grid-template-columns: 55px .7fr 1fr; gap: 4%; align-items: start; padding: 29px 0; border-bottom: 1px solid var(--navy); }
-.services article > span { font-family: "Bodoni Moda", Georgia, serif; font-style: italic; }
+.services article > span { font-family: Georgia, "Times New Roman", serif; font-style: italic; }
 .services h3 { font-size: clamp(1.8rem, 2.8vw, 3.5rem); line-height: .98; letter-spacing: -.04em; }
 .services p { max-width: 560px; font-size: 17px; line-height: 1.55; }
 
@@ -165,14 +165,14 @@
 .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--navy); border-bottom: 1px solid var(--navy); }
 .testimonials blockquote { min-height: 460px; display: flex; flex-direction: column; padding: 25px; }
 .testimonials blockquote + blockquote { border-left: 1px solid var(--navy); }
-.testimonials blockquote > span { font: italic 16px "Bodoni Moda", Georgia, serif; }
-.testimonials blockquote > p { margin: auto 0; font: 500 clamp(1.55rem, 2.2vw, 2.7rem)/1.12 "Bodoni Moda", Georgia, serif; letter-spacing: -.025em; }
+.testimonials blockquote > span { font: italic 16px Georgia, "Times New Roman", serif; }
+.testimonials blockquote > p { margin: auto 0; font: 400 clamp(1.4rem, 1.9vw, 2.25rem)/1.25 Georgia, "Times New Roman", serif; letter-spacing: -.018em; }
 .testimonials footer { display: flex; flex-direction: column; gap: 3px; padding-top: 17px; border-top: 1px solid var(--navy); }
 .testimonials footer strong { font-size: 14px; }
 .testimonials footer small { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
 
 /* Other work and CTA */
-.more-section { background: var(--tan); }
+.more-section { background: var(--yellow); }
 .more-links { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--navy); }
 .more-links > * { min-height: 430px; display: flex; flex-direction: column; padding: 27px; }
 .more-links > * + * { border-left: 1px solid var(--navy); }
@@ -221,7 +221,7 @@
   .layer-secondary { display: flex; order: 3; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 12px 20px; }
   .plain-section, .case-section, .more-section, .course-section { padding: 68px 6%; }
   .section-heading { grid-template-columns: 1fr; gap: 28px; padding: 48px 0 42px; }
-  .section-heading h2, .thesis-grid h2, .course-grid h2, .final-cta h2 { font-size: clamp(3.4rem, 15vw, 5.6rem); }
+  .section-heading h2, .thesis-grid h2, .course-grid h2, .final-cta h2 { font-size: clamp(3rem, 13vw, 4.8rem); }
   .editorial-hero { min-height: auto; grid-template-columns: 1fr; gap: 45px; padding: 108px 6% 88px; }
   .hero-copy { padding-bottom: 0; }
   .hero-copy h1 { margin-top: 28px; font-size: clamp(3.8rem, 18vw, 5.9rem); line-height: .84; }
