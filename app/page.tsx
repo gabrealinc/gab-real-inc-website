@@ -3,6 +3,7 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { approvedTestimonialFallback, type Testimonial } from "./testimonial-data";
+import { SiteFooter } from "./site-footer";
 import { SiteNavigation } from "./site-navigation";
 
 const philosophyStatement = "Ask harder questions. Challenge what’s normal. Have an actual say in the future we’re building.";
@@ -444,11 +445,7 @@ export default function Home() {
 
       <LiquidDivider top="#b6350b" bottom="#171714" />
 
-      <footer className="ecosystem-footer">
-        <a className="footer-wordmark brand-wordmark" href="#top" aria-label="Gab Real Inc. home"><span>GAB REAL INC</span><sup>®</sup></a>
-        <p>Use AI to think more clearly.<br />Build what matters.</p>
-        <div><a href="/about">About</a><a href="/services">Services</a><a href="/testimonials">Testimonials</a><a href="/learn">Course</a><a href="/case-studies">Case studies</a></div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
