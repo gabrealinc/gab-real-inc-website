@@ -228,6 +228,16 @@
 .case-folder-index button.is-active { background: var(--navy); color: var(--yellow); }
 .case-folder-index span { font-family: Georgia, "Times New Roman", serif; font-style: italic; }
 
+/* Featured client proof */
+.featured-testimonial { min-height: 92svh; display: flex; flex-direction: column; padding: 96px 6% 78px; background: var(--navy); color: var(--yellow); }
+.featured-quote { flex: 1; display: grid; grid-template-columns: .12fr 1fr; gap: 4%; align-items: start; padding: 65px 0 0; }
+.featured-quote > span { color: var(--blue); font: 400 clamp(7rem, 15vw, 17rem)/.72 Georgia, "Times New Roman", serif; }
+.featured-quote blockquote { display: flex; flex-direction: column; min-height: 100%; }
+.featured-quote blockquote > p { max-width: 1180px; font-size: clamp(2.25rem, 3.7vw, 4.7rem); font-weight: 500; line-height: 1.03; letter-spacing: -.052em; }
+.featured-quote figcaption { display: flex; align-items: baseline; gap: 18px; margin-top: 55px; padding-top: 20px; border-top: 1px solid var(--yellow); }
+.featured-quote figcaption strong { font-size: 17px; }
+.featured-quote figcaption small { font-size: 11px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+
 /* Other work and CTA */
 .more-section { background: var(--yellow); }
 .more-carousel { position: relative; }
@@ -382,6 +392,11 @@
   .case-folder-detail dl > div { grid-template-columns: 105px 1fr; gap: 18px; }
   .case-folder-index { display: grid; grid-template-columns: 1fr; }
   .case-folder-index button { justify-content: flex-start; font-size: 13px; }
+  .featured-testimonial { min-height: 100svh; padding: 72px 6% 58px; }
+  .featured-quote { grid-template-columns: 1fr; gap: 0; padding-top: 42px; }
+  .featured-quote > span { height: 70px; font-size: 8rem; }
+  .featured-quote blockquote > p { font-size: clamp(1.8rem, 7.4vw, 2.6rem); line-height: 1.08; letter-spacing: -.045em; }
+  .featured-quote figcaption { align-items: flex-start; flex-direction: column; gap: 5px; margin-top: 36px; }
   .more-carousel-track { min-height: 625px; margin: 0 -6vw; }
   .more-card { width: 84vw; min-height: 575px; top: 24px; padding: 24px; }
   .more-card[data-position="-2"], .more-card[data-position="-1"] { left: 2%; transform: translateX(-50%) scale(.86) rotateY(6deg); }

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const philosophyStatement = "You do not need to be technical to take part in the conversation about AI. You do not even need to use it. But you do deserve to understand the technologies and systems shaping your work, your choices, and our collective future. Literacy creates agency: the ability to ask better questions, challenge the default, decide what should be automated, protect what should stay human, and help shape what comes next.";
 const philosophyWords = philosophyStatement.split(" ");
+const katieTestimonial = "She is a true unicorn of a human in all of the ways… and among the bevy of things she is incredible at, she is a TRUE MAVEN at all things AI. What I find most incredible about her perspective and insight on AI is how effortlessly she makes it make sense. She is able to immediately demystify things that otherwise feel intimidating, confusing or overwhelming to those of us (aka: me) who feel like dinosaurs learning about a whole new world of technology. At times, I feel like she is singlehandedly coaching me through a journey of how to function more efficiently and strategically with the help of these insane new tools that we have at our fingertips.";
 
 const courseSteps = [
   { title: "Understand", copy: "Know what AI is doing, what it is guessing, and where human judgment still matters." },
@@ -68,6 +69,7 @@ const navLinks = [
   ["Learn AI", "#course"],
   ["Work with me", "#work-with-me"],
   ["Case studies", "#selected-work"],
+  ["Client note", "#testimonial"],
   ["More to life", "#more"],
 ];
 
@@ -467,8 +469,23 @@ export default function Home() {
         </div>
       </section>
 
+      <LiquidDivider top="#f2eee2" bottom="#171714" />
+
+      <section className="featured-testimonial" id="testimonial" data-rise>
+        <div className="section-label"><span>05</span><span>CLIENT NOTE</span></div>
+        <figure className="featured-quote">
+          <span aria-hidden="true">“</span>
+          <blockquote>
+            <p>{katieTestimonial}</p>
+            <figcaption><strong>Katie Kuhn</strong><small>Client testimonial</small></figcaption>
+          </blockquote>
+        </figure>
+      </section>
+
+      <LiquidDivider top="#171714" bottom="#f2eee2" />
+
       <section className="more-section" id="more" data-rise>
-        <div className="section-label"><span>05</span><span>MORE TO LIFE</span></div>
+        <div className="section-label"><span>06</span><span>MORE TO LIFE</span></div>
         <div className="section-heading">
           <h2>Work matters.<br /><em>It isn’t everything.</em></h2>
           <p>The other places I explore identity, creativity, technology, and how we choose to live.</p>
