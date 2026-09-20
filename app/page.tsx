@@ -128,7 +128,7 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
         if (x === 0) context.moveTo(x, y);
         else context.lineTo(x, y);
       }
-      context.strokeStyle = "rgba(112,34,23,.45)";
+      context.strokeStyle = "rgba(23,23,20,.4)";
       context.lineWidth = 2;
       context.stroke();
       energy *= .92;
@@ -326,7 +326,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f4efe3" bottom="#b7350b" />
+      <LiquidDivider top="#f4efe3" bottom="#b6350b" />
 
       <section className="course-section" id="course" data-rise>
         <div className="section-label"><span>02</span><span>LEARN AI</span></div>
@@ -357,7 +357,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#b7350b" bottom="#f4efe3" />
+      <LiquidDivider top="#b6350b" bottom="#f4efe3" />
 
       <section className="plain-section work-section" id="work-with-me" data-rise>
         <div className="section-label"><span>03</span><span>WORK WITH ME</span></div>
@@ -460,7 +460,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f4efe3" bottom="#702317" />
+      <LiquidDivider top="#f4efe3" bottom="#171714" />
 
       <section className="featured-testimonial" id="testimonial" data-rise>
         <div className="section-label"><span>05</span><span>CLIENT NOTE</span></div>
@@ -473,7 +473,7 @@ export default function Home() {
         </figure>
       </section>
 
-      <LiquidDivider top="#702317" bottom="#f4efe3" />
+      <LiquidDivider top="#171714" bottom="#f4efe3" />
 
       <section className="more-section" id="more" data-rise>
         <div className="section-label"><span>06</span><span>MORE TO LIFE</span></div>
@@ -531,7 +531,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f4efe3" bottom="#b7350b" />
+      <LiquidDivider top="#f4efe3" bottom="#b6350b" />
 
       <section className="final-cta" id="contact" data-rise>
         <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
@@ -539,7 +539,7 @@ export default function Home() {
         <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
       </section>
 
-      <LiquidDivider top="#b7350b" bottom="#702317" />
+      <LiquidDivider top="#b6350b" bottom="#171714" />
 
       <footer className="ecosystem-footer">
         <a className="footer-wordmark" href="#top">Gab Real Inc.</a>

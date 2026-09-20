@@ -1,26 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Fragment+Mono&family=Inter:wght@400;500;600;700&display=swap');
 
 .ecosystem {
-  --navy: #702317;
+  --navy: #171714;
   --ink: #171714;
-  --blue: #b7350b;
-  --ember: #4b160f;
-  --orange-soft: #ca4100;
+  --blue: #b6350b;
+  --ember: #171714;
+  --orange-soft: #fcb772;
   --yellow: #f4efe3;
-  --tan: #f4efe3;
+  --tan: #fcb772;
   min-height: 100vh;
   overflow-x: clip;
   background: var(--yellow);
   color: var(--ink);
-  font-family: "Instrument Sans", DM, Arial, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   font-size: 16px;
 }
 
 .ecosystem * { box-sizing: border-box; }
 .ecosystem a { color: inherit; text-decoration: none; }
 .ecosystem h1, .ecosystem h2, .ecosystem h3, .ecosystem p, .ecosystem figure, .ecosystem blockquote, .ecosystem dl, .ecosystem dd { margin: 0; }
-.ecosystem h1, .ecosystem h2, .ecosystem h3 { font-family: "Instrument Sans", DM, Arial, sans-serif; font-weight: 500; }
-.ecosystem em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-style: italic; }
+.ecosystem h1, .ecosystem h2, .ecosystem h3 { font-family: "Crimson Text", Georgia, serif; font-weight: 400; }
+.ecosystem em { font-family: "Crimson Text", Georgia, serif; font-weight: 400; font-style: italic; }
 .ecosystem button { font: inherit; }
 .ecosystem a:focus-visible, .ecosystem button:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
 .skip-link { position: fixed; top: -100px; left: 18px; z-index: 500; padding: 13px 18px; background: var(--navy); color: var(--yellow) !important; }
@@ -66,11 +66,11 @@
 }
 .layer-nav.is-open .layer-menu { opacity: 1; visibility: visible; transform: none; transition-delay: .18s; }
 .layer-contact, .layer-secondary { display: flex; flex-direction: column; align-items: flex-start; }
-.layer-contact p { max-width: 245px; font: 500 clamp(1.3rem, 1.8vw, 1.8rem)/1.15 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.03em; }
+.layer-contact p { max-width: 245px; font: 400 clamp(1.45rem, 1.9vw, 2rem)/1.1 "Crimson Text", Georgia, serif; letter-spacing: -.02em; }
 .layer-contact a { margin-top: 34px; border-bottom: 1px solid currentColor; padding-bottom: 4px; font-size: 14px; }
 .layer-contact span { margin-top: auto; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
 .layer-menu nav { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-.layer-menu nav a { font: 500 clamp(2.35rem, 3.7vw, 4.4rem)/.95 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.05em; transition: transform .25s ease, opacity .25s ease; }
+.layer-menu nav a { font: 400 clamp(2.65rem, 4vw, 4.8rem)/.92 "Crimson Text", Georgia, serif; letter-spacing: -.04em; transition: transform .25s ease, opacity .25s ease; }
 .layer-menu nav a:hover { color: var(--orange-soft); transform: translateX(12px); }
 .layer-menu nav:has(a:hover) a:not(:hover) { opacity: .42; }
 .layer-secondary { justify-content: center; gap: 10px; font-size: 15px; }
@@ -79,6 +79,7 @@
 
 /* Shared editorial language */
 .eyebrow, .section-label, .case-title > span, .more-card > span, .final-cta > span {
+  font-family: "Fragment Mono", monospace;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .12em;
@@ -87,7 +88,7 @@
 .section-label { display: flex; align-items: center; gap: 18px; padding-bottom: 18px; border-bottom: 1px solid currentColor; }
 .section-label::after { content: "⌁⌁⌁"; margin-left: auto; color: var(--blue); font-size: 18px; letter-spacing: -.14em; }
 .course-section .section-label::after, .final-cta .section-label::after { color: var(--yellow); }
-.section-label span:first-child { font-family: Georgia, "Times New Roman", serif; font-size: 16px; font-style: italic; font-weight: 400; letter-spacing: 0; }
+.section-label span:first-child { font-family: "Fragment Mono", monospace; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: .08em; }
 .plain-section, .case-section, .more-section, .course-section { padding: 96px 6%; border-bottom: 1px solid var(--navy); }
 .section-heading { display: grid; grid-template-columns: 1fr minmax(250px, .42fr); gap: 9%; align-items: end; padding: 65px 0 55px; }
 .section-heading h2, .thesis-grid h2, .course-grid h2, .final-cta h2 { font-size: clamp(3.25rem, 6.2vw, 7rem); line-height: .94; letter-spacing: -.055em; }
@@ -114,9 +115,9 @@
   border-bottom: 1px solid var(--navy);
 }
 .hero-copy { position: relative; z-index: 5; align-self: center; padding-bottom: 30px; }
-.hero-copy h1 { margin-top: 42px; font-family: "Instrument Sans", DM, Arial, sans-serif; font-size: clamp(4rem, 6.55vw, 8.3rem); font-weight: 500; line-height: .82; letter-spacing: -.07em; text-transform: uppercase; }
+.hero-copy h1 { margin-top: 42px; font-family: "Crimson Text", Georgia, serif; font-size: clamp(4.2rem, 6.9vw, 8.7rem); font-weight: 400; line-height: .79; letter-spacing: -.055em; text-transform: uppercase; }
 .hero-copy h1 em { display: block; margin-top: 12px; color: var(--blue); font-size: .84em; font-weight: 500; line-height: .86; letter-spacing: -.055em; }
-.hero-copy > p { max-width: 680px; margin-top: 38px; font-family: Georgia, serif; font-size: clamp(1.05rem, 1.35vw, 1.35rem); line-height: 1.55; }
+.hero-copy > p { max-width: 680px; margin-top: 38px; font-family: Inter, Arial, sans-serif; font-size: clamp(1rem, 1.2vw, 1.18rem); line-height: 1.65; }
 .hero-button { display: inline-flex; align-items: center; gap: 42px; margin-top: 28px; padding: 15px 22px; background: var(--blue); color: var(--yellow) !important; border-radius: 999px; font-size: 14px; font-weight: 700; transition: background .25s ease, transform .25s ease; }
 .hero-button:hover { background: var(--ember); transform: translateY(-2px); }
 .hero-collage { position: relative; align-self: stretch; min-height: 650px; }
@@ -136,7 +137,7 @@
 .hero-confidence strong { display: block; margin-top: 13px; font-size: 25px; }
 .hero-confidence span { display: block; margin-top: 18px; color: var(--blue); font-size: 24px; letter-spacing: -.15em; }
 .hero-question { top: 41%; left: 19%; width: 23%; padding: 22px 17px; transform: rotate(-2deg); }
-.hero-question p { margin-top: 18px; font: italic 17px/1.3 Georgia, "Times New Roman", serif; }
+.hero-question p { margin-top: 18px; font: italic 17px/1.3 "Crimson Text", Georgia, serif; }
 .hero-question em { display: block; margin-top: 15px; color: var(--blue); font-size: 15px; }
 .hero-education { right: 6%; bottom: 0; padding: 15px 18px; font-size: 9px; font-weight: 700; line-height: 1.15; letter-spacing: .08em; transform: rotate(-1deg); }
 .hero-service-line { position: absolute; left: 4%; bottom: 26px; display: flex; align-items: center; gap: 13px; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
@@ -150,15 +151,15 @@
 .philosophy-sticky { min-height: 100svh; position: sticky; top: 0; display: flex; flex-direction: column; padding: 105px 6% 48px; overflow: hidden; }
 .philosophy-copy-wrap { width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 34px 0; text-align: center; }
 .philosophy-copy-wrap > .eyebrow { margin-bottom: 22px; color: var(--blue); }
-.philosophy-headline { max-width: 1200px; color: var(--blue); font-size: clamp(4.9rem, 9.2vw, 10.8rem); line-height: .79; letter-spacing: -.07em; text-transform: uppercase; }
+.philosophy-headline { max-width: 1200px; color: var(--blue); font-size: clamp(5.2rem, 9.5vw, 11rem); line-height: .77; letter-spacing: -.055em; text-transform: uppercase; }
 .philosophy-headline span, .philosophy-headline em { display: block; }
 .philosophy-headline em { font-size: .82em; line-height: .9; text-transform: lowercase; }
-.philosophy-statement { max-width: 830px; margin-top: 44px !important; font: 600 clamp(1.15rem, 1.7vw, 1.65rem)/1.35 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.03em; }
+.philosophy-statement { max-width: 830px; margin-top: 44px !important; font: 500 clamp(1.15rem, 1.7vw, 1.65rem)/1.4 Inter, Arial, sans-serif; letter-spacing: -.025em; }
 .philosophy-statement span { color: color-mix(in srgb, var(--ink) 15%, var(--yellow)); transition: color .18s linear; }
 .philosophy-statement span.is-lit { color: var(--ink); }
 .philosophy-support { max-width: 690px; margin-top: 16px !important; color: color-mix(in srgb, var(--ink) 72%, transparent); font-size: clamp(1rem, 1.25vw, 1.25rem); line-height: 1.4; letter-spacing: -.02em; }
 .philosophy-footer { display: flex; justify-content: space-between; align-items: end; gap: 35px; }
-.philosophy-footer p { max-width: 420px; font-family: Georgia, "Times New Roman", serif; font-size: 16px; }
+.philosophy-footer p { max-width: 420px; font-family: Inter, Arial, sans-serif; font-size: 16px; }
 .philosophy-progress { width: 165px; height: 3px; overflow: hidden; background: color-mix(in srgb, var(--navy) 18%, transparent); }
 .philosophy-progress i { height: 100%; display: block; background: var(--blue); transition: width .12s linear; }
 .course-section { background: var(--blue); color: var(--yellow); }
@@ -170,7 +171,7 @@
 .course-flipper button { min-width: 0; flex: .72; display: flex; flex-direction: column; align-items: flex-start; gap: 15px; padding: 25px 20px; border: 0; border-right: 1px solid var(--yellow); background: transparent; color: var(--yellow); text-align: left; cursor: pointer; overflow: hidden; transition: flex .55s cubic-bezier(.22,1,.36,1), background .35s ease, color .35s ease; }
 .course-flipper button:last-child { border-right: 0; }
 .course-flipper button.is-active { flex: 2.25; background: var(--yellow); color: var(--ink); }
-.course-flipper button > span { font: italic 16px Georgia, "Times New Roman", serif; }
+.course-flipper button > span { font: 400 12px "Fragment Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
 .course-flipper button strong { margin-top: auto; font-size: clamp(1.35rem, 2.2vw, 2.6rem); letter-spacing: -.045em; writing-mode: vertical-rl; transform: rotate(180deg); }
 .course-flipper button.is-active strong { writing-mode: horizontal-tb; transform: none; }
 .course-flipper button p { max-width: 430px; font-size: 16px; line-height: 1.5; opacity: 0; transform: translateY(12px); transition: opacity .3s ease .12s, transform .3s ease .12s; }
@@ -183,12 +184,12 @@
 .service-tabs button { flex: 1; display: flex; align-items: center; gap: 22px; padding: 22px 24px; border: 0; border-bottom: 1px solid var(--navy); background: transparent; color: var(--ink); font-size: clamp(1.15rem, 1.7vw, 1.8rem); text-align: left; cursor: pointer; transition: padding .35s ease, background .35s ease, color .35s ease; }
 .service-tabs button:last-child { border-bottom: 0; }
 .service-tabs button:hover, .service-tabs button:focus-visible, .service-tabs button.is-active { padding-left: 36px; background: var(--ember); color: var(--yellow); }
-.service-tabs button span { font: italic 13px Georgia, "Times New Roman", serif; }
+.service-tabs button span { font: 400 11px "Fragment Mono", monospace; letter-spacing: .08em; }
 .service-panel { min-width: 0; display: flex; flex-direction: column; padding: 46px; background: var(--blue); color: var(--yellow); }
 .service-panel > span { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .service-panel h3 { max-width: 720px; margin: auto 0; font-size: clamp(3.8rem, 7vw, 8rem); line-height: .82; letter-spacing: -.07em; }
 .service-panel p { max-width: 650px; font-size: 18px; line-height: 1.5; }
-.service-panel small { max-width: 560px; margin-top: 22px; padding-top: 17px; border-top: 1px solid #f2eee26e; font: italic 15px/1.4 Georgia, "Times New Roman", serif; }
+.service-panel small { max-width: 560px; margin-top: 22px; padding-top: 17px; border-top: 1px solid #f2eee26e; font: italic 15px/1.4 "Crimson Text", Georgia, serif; }
 
 /* Case studies */
 .case-section { background: var(--yellow); }
@@ -206,11 +207,11 @@
 .case-paper.is-active { z-index: 5; }
 .case-paper-2::before { background: var(--navy); }
 .case-paper-3::before { background: linear-gradient(135deg, var(--blue) 0 50%, var(--yellow) 50%); border: 1px solid var(--navy); }
-.case-paper > span { position: absolute; top: 30px; left: 31px; color: var(--yellow); font: italic 28px Georgia, "Times New Roman", serif; }
+.case-paper > span { position: absolute; top: 30px; left: 31px; color: var(--yellow); font: italic 28px "Crimson Text", Georgia, serif; }
 .case-paper-3 > span { color: var(--ink); }
 .case-paper small { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .case-paper strong { margin-top: 9px; font-size: 18px; line-height: 1.06; letter-spacing: -.035em; }
-.case-paper i { margin-top: auto; font-family: Georgia, "Times New Roman", serif; font-size: 12px; font-style: italic; }
+.case-paper i { margin-top: auto; font-family: "Fragment Mono", monospace; font-size: 10px; font-style: normal; letter-spacing: .04em; }
 .case-folder-experience:not(.is-open) .case-paper-stack { clip-path: inset(0 0 89px 0); }
 .case-folder-experience:not(.is-open) .case-paper { pointer-events: none; transform: translate(-50%, 211px) rotate(-2deg) scale(.84); }
 .case-folder-experience.is-open .case-paper-1 { transform: translate(calc(-50% - 156px), 21px) rotate(-8deg) scale(1); }
@@ -236,12 +237,12 @@
 .case-folder-index { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 .case-folder-index button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; border: 1px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink); font-size: 12px; cursor: pointer; }
 .case-folder-index button:hover, .case-folder-index button.is-active { background: var(--ember); border-color: var(--ember); color: var(--yellow); }
-.case-folder-index span { font-family: Georgia, "Times New Roman", serif; font-style: italic; }
+.case-folder-index span { font-family: "Fragment Mono", monospace; font-style: normal; }
 
 /* Featured client proof */
 .featured-testimonial { min-height: 92svh; display: flex; flex-direction: column; padding: 96px 6% 78px; background: var(--navy); color: var(--yellow); }
 .featured-quote { flex: 1; display: grid; grid-template-columns: .12fr 1fr; gap: 4%; align-items: start; padding: 65px 0 0; }
-.featured-quote > span { color: var(--blue); font: 400 clamp(7rem, 15vw, 17rem)/.72 Georgia, "Times New Roman", serif; }
+.featured-quote > span { color: var(--blue); font: 400 clamp(7rem, 15vw, 17rem)/.72 "Crimson Text", Georgia, serif; }
 .featured-quote blockquote { display: flex; flex-direction: column; min-height: 100%; }
 .featured-quote blockquote > p { max-width: 1180px; font-size: clamp(2.25rem, 3.7vw, 4.7rem); font-weight: 500; line-height: 1.03; letter-spacing: -.052em; }
 .featured-quote figcaption { display: flex; align-items: baseline; gap: 18px; margin-top: 55px; padding-top: 20px; border-top: 1px solid var(--yellow); }
@@ -269,7 +270,7 @@
 .more-carousel-controls button { width: 46px; height: 46px; border: 1px solid var(--ink); border-radius: 50%; background: transparent; color: var(--ink); font-size: 19px; cursor: pointer; transition: background .25s ease, color .25s ease, border-color .25s ease; }
 .more-carousel-controls button:not(:disabled):hover { background: var(--ember); border-color: var(--ember); color: var(--yellow); }
 .more-carousel-controls button:disabled { opacity: .25; cursor: default; }
-.more-carousel-controls span { min-width: 62px; text-align: center; font: italic 14px Georgia, "Times New Roman", serif; }
+.more-carousel-controls span { min-width: 62px; text-align: center; font: 400 12px "Fragment Mono", monospace; }
 .from-scratch-feature { min-height: 570px !important; position: relative; }
 .interactive-book-stage { min-height: 310px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 15px -5px 0; perspective: 1800px; }
 .interactive-book { width: 156px; height: 232px; position: relative; padding: 0; border: 0; background: transparent; color: inherit; cursor: pointer; perspective: 1800px; transform: translateX(0); transition: transform .65s ease; }
@@ -283,10 +284,10 @@
 .book-face-back::after { inset: 0 0 0 auto; transform: scaleX(-1); }
 .book-face small { position: relative; z-index: 1; font-size: 7px; font-weight: 700; line-height: 1.25; letter-spacing: .1em; }
 .book-face strong { position: relative; z-index: 1; margin: auto 0; font-size: 22px; line-height: .93; letter-spacing: -.055em; }
-.book-face i { position: relative; z-index: 1; font: italic 11px/1.35 Georgia, "Times New Roman", serif; }
+.book-face i { position: relative; z-index: 1; font: italic 11px/1.35 "Crimson Text", Georgia, serif; }
 .book-face b { position: absolute; right: -35px; bottom: -25px; width: 105px; height: 105px; border: 20px solid var(--blue); border-radius: 50%; opacity: .12; }
 .book-face.is-cover, .book-face.is-back-cover { background: var(--blue); color: var(--yellow); border-color: var(--ember); }
-.book-face.is-cover strong { max-width: 120px; font-family: Georgia, "Times New Roman", serif; font-size: 30px; font-style: italic; }
+.book-face.is-cover strong { max-width: 120px; font-family: "Crimson Text", Georgia, serif; font-size: 30px; font-style: italic; }
 .book-face.is-cover b { right: -22px; bottom: -18px; border-color: var(--yellow); opacity: .16; }
 .book-face.is-back-cover { justify-content: space-between; }
 .book-instruction { margin-top: 15px !important; color: color-mix(in srgb, var(--ink) 70%, transparent); font-size: 9px !important; font-weight: 650 !important; letter-spacing: .06em !important; text-transform: uppercase; }
