@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const caseStudies = [
   {
@@ -58,7 +58,6 @@ const navLinks = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -83,47 +82,6 @@ export default function Home() {
     }), { threshold: 0.08 });
     document.querySelectorAll("[data-rise]").forEach((element) => observer.observe(element));
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!hero || reducedMotion.matches) return;
-
-    let animationFrame = 0;
-
-    const updateHeroMotion = () => {
-      animationFrame = 0;
-      const heroHeight = Math.max(hero.offsetHeight, 1);
-      const progress = Math.max(0, Math.min(1, window.scrollY / heroHeight));
-      const mobile = window.matchMedia("(max-width: 720px)").matches;
-      const strength = mobile ? 1 : 0.68;
-
-      hero.style.setProperty("--hero-copy-y", `${progress * -12 * strength}px`);
-      hero.style.setProperty("--hero-main-y", `${progress * -32 * strength}px`);
-      hero.style.setProperty("--hero-main-scale", `${(mobile ? 1.13 : 1.1) + progress * (mobile ? 0.055 : 0.032)}`);
-      hero.style.setProperty("--hero-boat-x", `${progress * 13 * strength}px`);
-      hero.style.setProperty("--hero-boat-y", `${progress * -50 * strength}px`);
-      hero.style.setProperty("--hero-tennis-x", `${progress * -10 * strength}px`);
-      hero.style.setProperty("--hero-tennis-y", `${progress * 42 * strength}px`);
-      hero.style.setProperty("--hero-confidence-y", `${progress * -28 * strength}px`);
-      hero.style.setProperty("--hero-question-y", `${progress * 24 * strength}px`);
-      hero.style.setProperty("--hero-education-y", `${progress * 17 * strength}px`);
-    };
-
-    const requestHeroUpdate = () => {
-      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateHeroMotion);
-    };
-
-    updateHeroMotion();
-    window.addEventListener("scroll", requestHeroUpdate, { passive: true });
-    window.addEventListener("resize", requestHeroUpdate);
-
-    return () => {
-      window.removeEventListener("scroll", requestHeroUpdate);
-      window.removeEventListener("resize", requestHeroUpdate);
-      if (animationFrame) window.cancelAnimationFrame(animationFrame);
-    };
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
@@ -162,7 +120,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="editorial-hero" id="main-content" ref={heroRef}>
+      <section className="editorial-hero" id="main-content">
         <div className="hero-copy">
           <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
           <h1>Use AI to think<br />more clearly.<br /><em>Build what<br />matters.</em></h1>
