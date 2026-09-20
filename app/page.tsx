@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Citrus, Menu, X } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const caseStudies = [
@@ -95,7 +95,6 @@ export default function Home() {
       <header className={`layer-nav ${menuOpen ? "is-open" : ""}`}>
         <div className="layer-nav-bar">
           <a className="layer-wordmark" href="#top" onClick={closeMenu} aria-label="Gab Real Inc. home">
-            <Citrus size={25} strokeWidth={1.6} aria-hidden="true" />
             <span>Gab Real Inc.</span>
           </a>
           <button className="layer-toggle" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="layer-menu" onClick={() => setMenuOpen((open) => !open)}>
@@ -105,7 +104,7 @@ export default function Home() {
         </div>
         <div className="layer-menu" id="layer-menu" aria-hidden={!menuOpen}>
           <div className="layer-contact">
-            <p>Useful AI for people with better things to do.</p>
+            <p>Use AI to think more clearly. Build what matters.</p>
             <a href="mailto:hello@gabrealinc.com">hello@gabrealinc.com</a>
             <span>San Diego · working everywhere</span>
           </div>
@@ -123,16 +122,20 @@ export default function Home() {
 
       <section className="editorial-hero" id="main-content">
         <div className="hero-copy">
-          <span className="eyebrow">AI STRATEGY · EDUCATION · USEFUL SYSTEMS</span>
-          <h1>Build the AI.<br /><em>Go make lemonade.</em></h1>
-          <p>I help people understand AI, decide where it belongs, and build useful systems that give them more time for real life.</p>
-          <a className="primary-link" href="#work-with-me">See how I can help <ArrowUpRight size={18} /></a>
+          <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
+          <h1>Use AI to think<br />more clearly.<br /><em>Build what<br />matters.</em></h1>
+          <p>Gab Real Inc. helps founders and teams understand AI, make smarter business decisions, and design better ways of working.</p>
+          <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
-        <figure className="hero-image">
-          <img src="/gabby-portrait.jpg" alt="Gabby Greenberg, founder of Gab Real Inc." width="2400" height="1600" fetchPriority="high" />
-          <figcaption><span>GABBY GREENBERG</span><span>FOUNDER · GAB REAL INC.</span></figcaption>
-        </figure>
-        <div className="lemon-note" aria-hidden="true"><Citrus size={42} strokeWidth={1.2} /><span>human first,<br />always</span></div>
+        <div className="hero-collage" aria-label="A warm editorial collage featuring a martini, a vintage telephone, a speedboat, and a tennis court">
+          <figure className="hero-main-image"><img src="/studio-martini.png" alt="Martini beside a vintage telephone and record player" width="816" height="960" fetchPriority="high" /></figure>
+          <figure className="hero-polaroid hero-boat"><img src="/studio-boat.png" alt="Woman looking through binoculars on a speedboat" width="816" height="960" /><figcaption>Perspective<br />changes things.</figcaption></figure>
+          <figure className="hero-polaroid hero-tennis"><img src="/studio-tennis.png" alt="Martini glass resting on a tennis racket" width="816" height="960" /><figcaption>Aperitivo<br />is a valid KPI.</figcaption></figure>
+          <div className="hero-card hero-confidence"><small>CONFIDENCE</small><strong>+ clarity</strong><span aria-hidden="true">⌁⌁⌁</span></div>
+          <div className="hero-card hero-question"><small>THE FIRST QUESTION</small><p>What problem<br />are we actually<br />solving?</p><em>start here ↗</em></div>
+          <div className="hero-card hero-education">EDUCATION<br />BEFORE<br />IMPLEMENTATION.</div>
+        </div>
+        <div className="hero-service-line" aria-label="Services"><span>Workshops</span><i /> <span>Advisory</span><i /> <span>Experience design</span><i /> <span>Custom builds</span></div>
       </section>
 
       <section className="plain-section thesis-section" id="explore" data-rise>
@@ -198,10 +201,7 @@ export default function Home() {
 
       <section className="plain-section testimonial-section" id="testimonials" data-rise>
         <div className="section-label"><span>05</span><span>CLIENT NOTES</span></div>
-        <div className="section-heading testimonial-heading">
-          <h2>Kind words from<br /><em>people I’ve helped.</em></h2>
-          <Citrus size={56} strokeWidth={1.1} aria-hidden="true" />
-        </div>
+        <div className="section-heading testimonial-heading"><h2>Kind words from<br /><em>people I’ve helped.</em></h2></div>
         <div className="testimonials">
           {testimonials.map((item, index) => (
             <blockquote key={item.name}>
@@ -227,15 +227,14 @@ export default function Home() {
       </section>
 
       <section className="final-cta" id="contact" data-rise>
-        <Citrus size={70} strokeWidth={1} aria-hidden="true" />
         <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
         <h2>Let’s make it<br /><em>actually useful.</em></h2>
         <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
       </section>
 
       <footer className="ecosystem-footer">
-        <a className="footer-wordmark" href="#top"><Citrus size={23} strokeWidth={1.4} /> Gab Real Inc.</a>
-        <p>Useful AI for people with better things to do.<br />Like making lemonade.</p>
+        <a className="footer-wordmark" href="#top">Gab Real Inc.</a>
+        <p>Use AI to think more clearly.<br />Build what matters.</p>
         <div><a href="/learn">Learn AI</a><a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Writing ↗</a><a href="https://www.instagram.com/aiwithgab/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
       </footer>
     </main>
