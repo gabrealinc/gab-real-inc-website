@@ -345,7 +345,7 @@ export default function Home() {
         <div className="course-grid">
           <div>
             <span className="eyebrow">SELF-PACED COURSE</span>
-            <h2>Use AI without becoming<br /><em>an AI person.</em></h2>
+            <h2>Use AI without having to<br /><em>become an engineer.</em></h2>
           </div>
           <div className="course-summary">
             <p>Learn what AI can do, where it gets things wrong, how to protect your information, and how to build simple workflows that save time.</p>
