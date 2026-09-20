@@ -3,7 +3,8 @@
 import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const philosophyStatement = "You don’t have to use AI, or even like it, to have a point of view. Ask harder questions. Challenge what’s normal. Have an actual say in the future we’re building.";
+const philosophyStatement = "Ask harder questions. Challenge what’s normal. Have an actual say in the future we’re building.";
+const philosophySupport = "You don’t have to use AI, or even like it, to have a point of view.";
 const philosophyWords = philosophyStatement.split(" ");
 const katieTestimonial = "She is a true unicorn of a human in all of the ways… and among the bevy of things she is incredible at, she is a TRUE MAVEN at all things AI. What I find most incredible about her perspective and insight on AI is how effortlessly she makes it make sense. She is able to immediately demystify things that otherwise feel intimidating, confusing or overwhelming to those of us (aka: me) who feel like dinosaurs learning about a whole new world of technology. At times, I feel like she is singlehandedly coaching me through a journey of how to function more efficiently and strategically with the help of these insane new tools that we have at our fingertips.";
 
@@ -328,9 +329,10 @@ export default function Home() {
                 <span className={index < philosophyLitCount ? "is-lit" : ""} aria-hidden="true" key={`${word}-${index}`}>{word}{" "}</span>
               ))}
             </p>
+            <p className="philosophy-support">{philosophySupport}</p>
           </div>
           <div className="philosophy-footer">
-            <p>Understanding creates agency. Agency lets us choose what comes next.</p>
+            <p>When we understand something, we can make better choices about what happens next.</p>
             <div className="philosophy-progress" aria-hidden="true"><i style={{ width: `${(philosophyLitCount / philosophyWords.length) * 100}%` }} /></div>
           </div>
         </div>

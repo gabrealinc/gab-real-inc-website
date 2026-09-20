@@ -151,6 +151,7 @@
 .philosophy-statement { max-width: 830px; margin-top: 44px !important; font: 600 clamp(1.15rem, 1.7vw, 1.65rem)/1.35 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.03em; }
 .philosophy-statement span { color: color-mix(in srgb, var(--navy) 15%, var(--yellow)); transition: color .18s linear; }
 .philosophy-statement span.is-lit { color: var(--navy); }
+.philosophy-support { max-width: 690px; margin-top: 16px !important; color: color-mix(in srgb, var(--navy) 72%, transparent); font-size: clamp(1rem, 1.25vw, 1.25rem); line-height: 1.4; letter-spacing: -.02em; }
 .philosophy-footer { display: flex; justify-content: space-between; align-items: end; gap: 35px; }
 .philosophy-footer p { max-width: 420px; font-family: Georgia, "Times New Roman", serif; font-size: 16px; }
 .philosophy-progress { width: 165px; height: 3px; overflow: hidden; background: color-mix(in srgb, var(--navy) 18%, transparent); }
@@ -353,6 +354,7 @@
   .philosophy-headline { font-size: clamp(3.65rem, 16.7vw, 5.8rem); line-height: .8; }
   .philosophy-headline em { font-size: .78em; line-height: .92; }
   .philosophy-statement { max-width: 520px; margin-top: 32px !important; font-size: clamp(1.05rem, 4.75vw, 1.35rem); line-height: 1.32; letter-spacing: -.025em; }
+  .philosophy-support { max-width: 420px; margin-top: 13px !important; font-size: .98rem; line-height: 1.38; }
   .philosophy-footer { align-items: flex-start; flex-direction: column; gap: 18px; }
   .philosophy-footer p { max-width: 290px; font-size: 14px; }
   .philosophy-progress { width: 100%; }
