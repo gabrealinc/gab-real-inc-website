@@ -2,6 +2,7 @@
 
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
+import { SiteFooter } from "../site-footer";
 import { SiteNavigation } from "../site-navigation";
 import { caseStudies } from "./data";
 
@@ -11,7 +12,7 @@ export default function CaseStudiesPage() {
   const selectedCase = caseStudies[activeCase];
 
   return (
-    <main className="ecosystem case-studies-page">
+    <main className="ecosystem case-studies-page" id="top">
       <SiteNavigation />
 
       <section className="case-page-intro">
@@ -76,10 +77,11 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      <footer className="case-page-footer">
+      <section className="case-page-footer">
         <p>Have a complicated process of your own?</p>
         <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me about it <ArrowUpRight size={20} /></a>
-      </footer>
+      </section>
+      <SiteFooter />
     </main>
   );
 }

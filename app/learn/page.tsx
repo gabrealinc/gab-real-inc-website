@@ -1,5 +1,6 @@
 import { ArrowUpRight, Asterisk } from "lucide-react";
 import type { Metadata } from "next";
+import { SiteFooter } from "../site-footer";
 import { SiteNavigation } from "../site-navigation";
 import { LearningStepCards } from "./learning-step-cards";
 export const metadata: Metadata = {title:"Learn with Gabby | Gab Real Inc.",description:"Self-guided AI courses for everyday people and small business owners. Understand your tools, build useful workflows, and keep control. Coming soon."};
@@ -19,6 +20,6 @@ return <main className="course-page" id="top">
  <details><summary>When can I enroll?</summary><p>The courses are in development. There is no confirmed launch date or active checkout yet. Follow Gabby’s writing for updates, or return here for availability.</p></details>
  </div></section>
  <section className="course-closing"><div><Asterisk size={30}/><h2 style={{marginTop:20}}>The system should serve you.</h2><p>Not the other way around. Follow the ideas behind the courses while they’re taking shape.</p></div><a className="inline-link" href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Read Grow With Gab <ArrowUpRight size={18}/></a></section>
- <footer><a className="brand-wordmark" href="/" aria-label="Gab Real Inc. home"><span>GAB REAL INC</span><sup>®</sup></a><a href="/#contact">Need a more tailored approach? Work with Gabby ↗</a><span>© 2026 GAB REAL INC.</span></footer>
+ <SiteFooter />
 </main>
 }
