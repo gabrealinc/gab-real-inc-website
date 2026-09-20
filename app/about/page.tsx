@@ -21,7 +21,9 @@ export default function AboutPage() {
       </section>
       <section className="about-story">
         <figure className="about-story-image">
-          <img src="/about-gabby-phone.jpg" alt="Gabby Greenberg smiling while speaking on the phone" width="2400" height="1600" />
+          <div className="about-story-photo">
+            <img src="/about-gabby-phone.jpg" alt="Gabby Greenberg smiling while speaking on the phone" width="2400" height="1600" />
+          </div>
           <figcaption>Your business should be an asset that provides you with a life you love, not another job that burns you out.</figcaption>
         </figure>
         <div className="about-story-copy">
