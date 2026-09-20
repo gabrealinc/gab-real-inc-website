@@ -202,7 +202,8 @@
 .case-paper small { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .case-paper strong { margin-top: 9px; font-size: 18px; line-height: 1.06; letter-spacing: -.035em; }
 .case-paper i { margin-top: auto; font-family: Georgia, "Times New Roman", serif; font-size: 12px; font-style: italic; }
-.case-folder-experience:not(.is-open) .case-paper { pointer-events: none; }
+.case-folder-experience:not(.is-open) .case-paper-stack { clip-path: inset(0 0 89px 0); }
+.case-folder-experience:not(.is-open) .case-paper { pointer-events: none; transform: translate(-50%, 211px) rotate(-2deg) scale(.84); }
 .case-folder-experience.is-open .case-paper-1 { transform: translate(calc(-50% - 156px), 21px) rotate(-8deg) scale(1); }
 .case-folder-experience.is-open .case-paper-2 { transform: translate(-50%, -11px) rotate(1deg) scale(1); }
 .case-folder-experience.is-open .case-paper-3 { transform: translate(calc(-50% + 158px), 30px) rotate(8deg) scale(1); }
@@ -382,6 +383,8 @@
   .case-paper small { font-size: 8px; }
   .case-paper strong { margin-top: 6px; font-size: 14px; }
   .case-paper i { font-size: 10px; }
+  .case-folder-experience:not(.is-open) .case-paper-stack { clip-path: inset(0 0 74px 0); }
+  .case-folder-experience:not(.is-open) .case-paper { transform: translate(-50%, 190px) rotate(-2deg) scale(.82); }
   .case-folder-experience.is-open .case-paper-1 { transform: translate(calc(-50% - 88px), 20px) rotate(-8deg); }
   .case-folder-experience.is-open .case-paper-2 { transform: translate(-50%, -5px) rotate(1deg); }
   .case-folder-experience.is-open .case-paper-3 { transform: translate(calc(-50% + 89px), 25px) rotate(8deg); }
