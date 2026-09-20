@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap');
 
 .ecosystem {
-  --navy: #1e1d19;
-  --blue: #c65332;
-  --ember: #702217;
-  --orange-soft: #df7954;
+  --navy: #702317;
+  --blue: #b7350b;
+  --ember: #4b160f;
+  --orange-soft: #ca4100;
   --yellow: #f4efe3;
   --tan: #f4efe3;
   min-height: 100vh;

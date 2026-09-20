@@ -326,7 +326,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f4efe3" bottom="#c65332" />
+      <LiquidDivider top="#f4efe3" bottom="#b7350b" />
 
       <section className="course-section" id="course" data-rise>
         <div className="section-label"><span>02</span><span>LEARN AI</span></div>
@@ -357,7 +357,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#c65332" bottom="#f4efe3" />
+      <LiquidDivider top="#b7350b" bottom="#f4efe3" />
 
       <section className="plain-section work-section" id="work-with-me" data-rise>
         <div className="section-label"><span>03</span><span>WORK WITH ME</span></div>
@@ -460,7 +460,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f4efe3" bottom="#1e1d19" />
+      <LiquidDivider top="#f4efe3" bottom="#702317" />
 
       <section className="featured-testimonial" id="testimonial" data-rise>
         <div className="section-label"><span>05</span><span>CLIENT NOTE</span></div>
@@ -473,7 +473,7 @@ export default function Home() {
         </figure>
       </section>
 
-      <LiquidDivider top="#1e1d19" bottom="#f4efe3" />
+      <LiquidDivider top="#702317" bottom="#f4efe3" />
 
       <section className="more-section" id="more" data-rise>
         <div className="section-label"><span>06</span><span>MORE TO LIFE</span></div>
@@ -531,7 +531,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f4efe3" bottom="#c65332" />
+      <LiquidDivider top="#f4efe3" bottom="#b7350b" />
 
       <section className="final-cta" id="contact" data-rise>
         <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
@@ -539,7 +539,7 @@ export default function Home() {
         <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
       </section>
 
-      <LiquidDivider top="#c65332" bottom="#1e1d19" />
+      <LiquidDivider top="#b7350b" bottom="#702317" />
 
       <footer className="ecosystem-footer">
         <a className="footer-wordmark" href="#top">Gab Real Inc.</a>
