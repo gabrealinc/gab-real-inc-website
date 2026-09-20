@@ -3,7 +3,7 @@
 import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const philosophyStatement = "You do not need to be technical to take part in the conversation about AI. You do not even need to use it. But you do deserve to understand the technologies and systems shaping your work, your choices, and our collective future. Literacy creates agency: the ability to ask better questions, challenge the default, decide what should be automated, protect what should stay human, and help shape what comes next.";
+const philosophyStatement = "You don’t have to use AI, or even like it, to have a say in what comes next. Ask harder questions. Challenge what’s normal. Decide what should be automated, what shouldn’t, and what needs to stay human.";
 const philosophyWords = philosophyStatement.split(" ");
 const katieTestimonial = "She is a true unicorn of a human in all of the ways… and among the bevy of things she is incredible at, she is a TRUE MAVEN at all things AI. What I find most incredible about her perspective and insight on AI is how effortlessly she makes it make sense. She is able to immediately demystify things that otherwise feel intimidating, confusing or overwhelming to those of us (aka: me) who feel like dinosaurs learning about a whole new world of technology. At times, I feel like she is singlehandedly coaching me through a journey of how to function more efficiently and strategically with the help of these insane new tools that we have at our fingertips.";
 
