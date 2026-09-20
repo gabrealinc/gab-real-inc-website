@@ -479,6 +479,7 @@
 .finder-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .finder-form label { margin: 0; color: color-mix(in srgb, var(--yellow) 76%, transparent); font-size: 12px; font-weight: 700; letter-spacing: .04em; }
 .finder-form label small { font-weight: 400; opacity: .7; }
+.finder-form label .finder-field-note { display: block; margin-top: 5px; color: var(--orange-soft); font-size: 12px; line-height: 1.4; opacity: 1; }
 .finder-form input, .finder-form textarea, .finder-form select { width: 100%; display: block; margin-top: 9px; padding: 12px 0; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--yellow) 42%, transparent); border-radius: 0; outline: 0; background: transparent; color: var(--yellow); font: 400 15px/1.5 Inter, Arial, sans-serif; }
 .finder-form textarea { resize: vertical; }
 .finder-form select { color-scheme: dark; }

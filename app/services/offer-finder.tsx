@@ -69,7 +69,13 @@ const routes: Record<Goal, Route> = {
 };
 
 const timingOptions = ["As soon as possible", "Within 1–3 months", "Within 3–6 months", "I’m exploring"];
-const budgetOptions = ["Under $500", "$500–$1,500", "$1,500–$5,000", "$5,000–$15,000", "$15,000+", "Not sure yet"];
+const budgetOptions = [
+  "$1,500–$5,000",
+  "$5,000–$15,000",
+  "$15,000–$30,000",
+  "$30,000+",
+  "I can invest at least $1,500 but need help scoping",
+];
 
 type Intake = {
   fullName: string;
@@ -126,7 +132,7 @@ export function OfferFinder() {
 
   const chooseGoal = (value: Goal) => {
     setGoal(value);
-    setStep(2);
+    setStep(value === "course" ? 3 : 2);
   };
 
   const submitIntake = (event: FormEvent<HTMLFormElement>) => {
@@ -179,7 +185,7 @@ export function OfferFinder() {
               <label className="finder-wide">What are you trying to change, build, teach, or decide?<textarea required rows={3} value={intake.change} onChange={(event) => update("change", event.target.value)} /></label>
               <label className="finder-wide">What would a meaningful win look like?<textarea required rows={3} value={intake.win} onChange={(event) => update("win", event.target.value)} /></label>
               <label>How soon do you want to move?<select required value={intake.timing} onChange={(event) => update("timing", event.target.value)}><option value="">Choose one</option>{timingOptions.map((item) => <option key={item}>{item}</option>)}</select></label>
-              <label>What investment range feels realistic?<select required value={intake.budget} onChange={(event) => update("budget", event.target.value)}><option value="">Choose one</option>{budgetOptions.map((item) => <option key={item}>{item}</option>)}</select></label>
+              <label>What investment range have you set aside?<small className="finder-field-note">Custom engagements begin at $1,500.</small><select required value={intake.budget} onChange={(event) => update("budget", event.target.value)}><option value="">Choose one</option>{budgetOptions.map((item) => <option key={item}>{item}</option>)}</select></label>
               <label className="finder-wide">{route.detailPrompt}<textarea rows={3} value={intake.details} onChange={(event) => update("details", event.target.value)} /></label>
             </div>
             <div className="finder-actions">
@@ -197,7 +203,7 @@ export function OfferFinder() {
             <p>{route.reason}</p>
             <div className="finder-result-actions">
               <a href={route.href ?? emailHref} target={route.href?.startsWith("http") || !route.href ? "_blank" : undefined} rel={route.href?.startsWith("http") || !route.href ? "noreferrer" : undefined}>{route.action} <ArrowRight size={18} /></a>
-              {route.href ? <a className="finder-email" href={emailHref}>Send Gabby my answers</a> : null}
+              {route.href && goal !== "course" ? <a className="finder-email" href={emailHref}>Send Gabby my answers</a> : null}
             </div>
             <button className="finder-reset" type="button" onClick={reset}><RotateCcw size={15} /> Start over</button>
           </div>
