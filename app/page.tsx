@@ -1,7 +1,25 @@
 "use client";
 
 import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const philosophyStatement = "You do not need to be technical to take part in the conversation about AI. You do not even need to use it. But you do deserve to understand the technologies and systems shaping your work, your choices, and our collective future. Literacy creates agency: the ability to ask better questions, challenge the default, decide what should be automated, protect what should stay human, and help shape what comes next.";
+const philosophyWords = philosophyStatement.split(" ");
+
+const bookLeaves = [
+  [
+    { eyebrow: "GABRIELLE GREENBERG + RYAN WELTI", title: "FROM SCRATCH", copy: "Creating a life that feels like yours.", cover: true },
+    { eyebrow: "START HERE", title: "Who decided what success should look like?", copy: "Turn the page to question the definitions you inherited." },
+  ],
+  [
+    { eyebrow: "PART ONE", title: "Question the default.", copy: "Notice the rules, expectations, and identities you accepted without choosing." },
+    { eyebrow: "PART TWO", title: "Define success for yourself.", copy: "Build a definition that belongs to your actual life, not somebody else’s." },
+  ],
+  [
+    { eyebrow: "THE SCENIC ROUTE", title: "Your nonlinear path still counts.", copy: "You are allowed to evolve, change your mind, and begin again." },
+    { eyebrow: "FROM SCRATCH", title: "A place honest enough to begin.", copy: "239 pages · 12 chapters · 4 parts", back: true },
+  ],
+];
 
 const caseStudies = [
   {
@@ -60,6 +78,9 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [caseFolderOpen, setCaseFolderOpen] = useState(true);
   const [activeCase, setActiveCase] = useState(0);
+  const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
+  const [bookPage, setBookPage] = useState(0);
+  const philosophyRef = useRef<HTMLElement>(null);
   const selectedCase = caseStudies[activeCase];
 
   useEffect(() => {
@@ -85,6 +106,42 @@ export default function Home() {
     }), { threshold: 0.08 });
     document.querySelectorAll("[data-rise]").forEach((element) => observer.observe(element));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const section = philosophyRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!section) return;
+    if (reducedMotion) {
+      setPhilosophyLitCount(philosophyWords.length);
+      return;
+    }
+
+    let animationFrame = 0;
+    let previousCount = -1;
+    const updateWords = () => {
+      animationFrame = 0;
+      const rect = section.getBoundingClientRect();
+      const distance = Math.max(1, rect.height - window.innerHeight);
+      const progress = Math.max(0, Math.min(1, -rect.top / distance));
+      const nextCount = Math.ceil(progress * philosophyWords.length);
+      if (nextCount !== previousCount) {
+        previousCount = nextCount;
+        setPhilosophyLitCount(nextCount);
+      }
+    };
+    const requestUpdate = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateWords);
+    };
+
+    updateWords();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    };
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
@@ -141,13 +198,20 @@ export default function Home() {
         <div className="hero-service-line" aria-label="Services"><span>Workshops</span><i /> <span>Advisory</span><i /> <span>Experience design</span><i /> <span>Custom builds</span></div>
       </section>
 
-      <section className="plain-section thesis-section" id="explore" data-rise>
-        <div className="section-label"><span>01</span><span>THE IDEA</span></div>
-        <div className="thesis-grid">
-          <h2>AI should make<br />life feel <em>more human.</em></h2>
-          <div>
-            <p className="large-copy">The goal is not to use the most AI. It is to remove the work that drains your time and attention.</p>
-            <p>I help you understand the tools, choose the useful ones, and keep your voice and judgment in the process.</p>
+      <section className="philosophy-section" id="explore" ref={philosophyRef}>
+        <div className="philosophy-sticky">
+          <div className="section-label"><span>01</span><span>THE PHILOSOPHY</span></div>
+          <div className="philosophy-copy-wrap">
+            <span className="eyebrow">A HUMAN-FIRST POINT OF VIEW</span>
+            <p className="philosophy-statement" aria-label={philosophyStatement}>
+              {philosophyWords.map((word, index) => (
+                <span className={index < philosophyLitCount ? "is-lit" : ""} aria-hidden="true" key={`${word}-${index}`}>{word}{" "}</span>
+              ))}
+            </p>
+          </div>
+          <div className="philosophy-footer">
+            <p>Understanding creates agency. Agency lets us choose what comes next.</p>
+            <div className="philosophy-progress" aria-hidden="true"><i style={{ width: `${(philosophyLitCount / philosophyWords.length) * 100}%` }} /></div>
           </div>
         </div>
       </section>
@@ -270,7 +334,34 @@ export default function Home() {
           <p>The other places I explore identity, creativity, technology, and how we choose to live.</p>
         </div>
         <div className="more-links">
-          <a href="https://readfromscratch.com/" target="_blank" rel="noreferrer"><span>THE BOOK</span><h3>From Scratch.</h3><p>Question the life you inherited and create one that feels like yours.</p><ArrowUpRight /></a>
+          <article className="from-scratch-feature">
+            <span>THE BOOK</span>
+            <div className={`interactive-book-stage ${bookPage > 0 ? "is-open" : ""}`}>
+              <button
+                className="interactive-book"
+                type="button"
+                onClick={() => setBookPage((page) => page >= bookLeaves.length ? 0 : page + 1)}
+                aria-label={bookPage >= bookLeaves.length ? "Close From Scratch book" : `Turn to page ${bookPage + 1} of From Scratch`}
+              >
+                <span className="book-volume">
+                  {bookLeaves.map(([front, back], index) => (
+                    <span className={`book-leaf ${index < bookPage ? "is-flipped" : ""}`} style={{ zIndex: index === bookPage - 1 ? 20 : index < bookPage ? index + 1 : bookLeaves.length - index }} key={front.eyebrow}>
+                      <span className={`book-face book-face-front ${front.cover ? "is-cover" : ""}`}>
+                        <small>{front.eyebrow}</small><strong>{front.title}</strong><i>{front.copy}</i><b aria-hidden="true" />
+                      </span>
+                      <span className={`book-face book-face-back ${back.back ? "is-back-cover" : ""}`}>
+                        <small>{back.eyebrow}</small><strong>{back.title}</strong><i>{back.copy}</i><b aria-hidden="true" />
+                      </span>
+                    </span>
+                  ))}
+                </span>
+              </button>
+              <small className="book-instruction">Tap the book to turn the page · {bookPage}/{bookLeaves.length}</small>
+            </div>
+            <a className="from-scratch-copy" href="https://readfromscratch.com/" target="_blank" rel="noreferrer">
+              <h3>From Scratch.</h3><p>Question the life you inherited and create one that feels like yours.</p><ArrowUpRight />
+            </a>
+          </article>
           <a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer"><span>THE WRITING</span><h3>Grow with Gab.</h3><p>Essays about AI, identity, creativity, work, and whatever I cannot stop thinking about.</p><ArrowUpRight /></a>
           <article><span>THE PODCAST</span><h3>Exploit.</h3><p>Honest conversations about technology, creativity, and what comes next.</p><small>COMING SOON</small></article>
         </div>

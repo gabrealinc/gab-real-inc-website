@@ -6,7 +6,7 @@
   --yellow: #f2eee2;
   --tan: #f2eee2;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: clip;
   background: var(--yellow);
   color: var(--navy);
   font-family: "Instrument Sans", DM, Arial, sans-serif;
@@ -125,12 +125,18 @@
 .hero-service-line { position: absolute; left: 4%; bottom: 26px; display: flex; align-items: center; gap: 13px; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .hero-service-line i { width: 4px; height: 4px; display: block; border-radius: 50%; background: var(--blue); }
 
-/* Thesis and course */
-.thesis-section { background: var(--yellow); }
-.thesis-grid { min-height: 620px; display: grid; grid-template-columns: 1.2fr .7fr; gap: 10%; align-items: center; }
-.thesis-grid > div { max-width: 560px; }
-.thesis-grid p { font-size: 18px; line-height: 1.6; }
-.thesis-grid .large-copy { margin-bottom: 25px; font: 500 clamp(1.7rem, 2.6vw, 3rem)/1.18 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.035em; }
+/* Philosophy and course */
+.philosophy-section { height: 210svh; position: relative; background: var(--yellow); border-bottom: 1px solid var(--navy); }
+.philosophy-sticky { min-height: 100svh; position: sticky; top: 0; display: flex; flex-direction: column; padding: 105px 6% 48px; overflow: hidden; }
+.philosophy-copy-wrap { width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 42px 0; text-align: center; }
+.philosophy-copy-wrap > .eyebrow { margin-bottom: 28px; color: var(--blue); }
+.philosophy-statement { max-width: 1180px; font: 500 clamp(2.7rem, 3.5vw, 4.7rem)/1 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.05em; }
+.philosophy-statement span { color: color-mix(in srgb, var(--navy) 15%, var(--yellow)); transition: color .18s linear; }
+.philosophy-statement span.is-lit { color: var(--navy); }
+.philosophy-footer { display: flex; justify-content: space-between; align-items: end; gap: 35px; }
+.philosophy-footer p { max-width: 420px; font-family: Georgia, "Times New Roman", serif; font-size: 16px; }
+.philosophy-progress { width: 165px; height: 3px; overflow: hidden; background: color-mix(in srgb, var(--navy) 18%, transparent); }
+.philosophy-progress i { height: 100%; display: block; background: var(--blue); transition: width .12s linear; }
 .course-section { background: var(--navy); color: var(--yellow); }
 .course-grid { display: grid; grid-template-columns: 1.2fr .55fr; gap: 8%; align-items: end; padding: 70px 0 65px; }
 .course-grid h2 { margin-top: 26px; }
@@ -218,6 +224,30 @@
 .more-links p { margin-top: auto; font-size: 16px; line-height: 1.55; }
 .more-links svg, .more-links small { margin-top: 22px; }
 .more-links small { font-size: 11px; font-weight: 700; letter-spacing: .1em; }
+.from-scratch-feature { min-height: 570px !important; position: relative; }
+.interactive-book-stage { min-height: 310px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 15px -5px 0; perspective: 1800px; }
+.interactive-book { width: 156px; height: 232px; position: relative; padding: 0; border: 0; background: transparent; color: inherit; cursor: pointer; perspective: 1800px; transform: translateX(0); transition: transform .65s ease; }
+.interactive-book-stage.is-open .interactive-book { transform: translateX(78px); }
+.book-volume { width: 100%; height: 100%; position: relative; display: block; transform-style: preserve-3d; }
+.book-leaf { position: absolute; inset: 0; display: block; transform-origin: left center; transform-style: preserve-3d; transition: transform .72s cubic-bezier(.4,0,.2,1); }
+.book-leaf.is-flipped { transform: rotateY(-180deg); }
+.book-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; padding: 18px 16px; overflow: hidden; border: 1px solid #cfc9ba; border-radius: 0 8px 8px 0; background: #fffdf6; color: var(--navy); text-align: left; backface-visibility: hidden; box-shadow: 5px 7px 14px #17171420; }
+.book-face::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 14%; background: linear-gradient(90deg, #17171424, transparent); pointer-events: none; }
+.book-face-back { border-radius: 8px 0 0 8px; transform: rotateY(180deg) translateZ(.1px); }
+.book-face-back::after { inset: 0 0 0 auto; transform: scaleX(-1); }
+.book-face small { position: relative; z-index: 1; font-size: 7px; font-weight: 700; line-height: 1.25; letter-spacing: .1em; }
+.book-face strong { position: relative; z-index: 1; margin: auto 0; font-size: 22px; line-height: .93; letter-spacing: -.055em; }
+.book-face i { position: relative; z-index: 1; font: italic 11px/1.35 Georgia, "Times New Roman", serif; }
+.book-face b { position: absolute; right: -35px; bottom: -25px; width: 105px; height: 105px; border: 20px solid var(--blue); border-radius: 50%; opacity: .12; }
+.book-face.is-cover, .book-face.is-back-cover { background: var(--blue); color: var(--yellow); border-color: #8e291a; }
+.book-face.is-cover strong { max-width: 120px; font-family: Georgia, "Times New Roman", serif; font-size: 30px; font-style: italic; }
+.book-face.is-cover b { right: -22px; bottom: -18px; border-color: var(--yellow); opacity: .16; }
+.book-face.is-back-cover { justify-content: space-between; }
+.book-instruction { margin-top: 15px !important; color: color-mix(in srgb, var(--navy) 70%, transparent); font-size: 9px !important; font-weight: 650 !important; letter-spacing: .06em !important; text-transform: uppercase; }
+.from-scratch-copy { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 8px 20px; margin-top: auto; }
+.from-scratch-copy h3 { grid-column: 1 / -1; margin-top: 0; }
+.from-scratch-copy p { margin-top: 0; }
+.from-scratch-copy svg { align-self: end; }
 .final-cta { min-height: 670px; display: grid; grid-template-columns: 1fr auto; gap: 30px 8%; align-content: center; align-items: end; padding: 95px 6%; background: var(--blue); color: var(--yellow); border-bottom: 1px solid var(--navy); }
 .final-cta > span { grid-column: 1 / -1; }
 .final-cta a { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; min-width: 260px; padding: 14px 0; border-bottom: 2px solid var(--yellow); font-weight: 700; }
@@ -234,7 +264,6 @@
   .hero-copy h1 { font-size: 6.8vw; }
   .hero-collage { min-height: 600px; }
   .hero-question { left: 13%; width: 28%; }
-  .thesis-grid { grid-template-columns: 1fr .8fr; }
   .course-grid { grid-template-columns: 1fr .65fr; }
   .case-folder-experience { grid-template-columns: minmax(430px, .9fr) 1.1fr; gap: 3%; }
   .case-folder-stage { transform: scale(.87); transform-origin: center; }
@@ -259,7 +288,7 @@
   .layer-secondary { display: flex; order: 3; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 12px 20px; }
   .plain-section, .case-section, .more-section, .course-section { padding: 68px 6%; }
   .section-heading { grid-template-columns: 1fr; gap: 28px; padding: 48px 0 42px; }
-  .section-heading h2, .thesis-grid h2, .course-grid h2, .final-cta h2 { font-size: clamp(3rem, 13vw, 4.8rem); }
+  .section-heading h2, .course-grid h2, .final-cta h2 { font-size: clamp(3rem, 13vw, 4.8rem); }
   .editorial-hero { min-height: auto; grid-template-columns: 1fr; gap: 45px; padding: 108px 6% 88px; }
   .hero-copy { padding-bottom: 0; }
   .hero-copy h1 { margin-top: 28px; font-size: clamp(3.8rem, 18vw, 5.9rem); line-height: .84; }
@@ -277,7 +306,14 @@
   .hero-question p { font-size: 14px; }
   .hero-education { display: none; }
   .hero-service-line { left: 6%; right: 6%; bottom: 30px; flex-wrap: wrap; gap: 7px 11px; }
-  .thesis-grid { min-height: auto; grid-template-columns: 1fr; gap: 50px; padding: 55px 0 10px; }
+  .philosophy-section { height: 230svh; }
+  .philosophy-sticky { min-height: 100svh; padding: 92px 6% 34px; }
+  .philosophy-copy-wrap { padding: 18px 0; }
+  .philosophy-copy-wrap > .eyebrow { margin-bottom: 20px; }
+  .philosophy-statement { font-size: clamp(1.7rem, 7.3vw, 2.45rem); line-height: 1.03; letter-spacing: -.045em; }
+  .philosophy-footer { align-items: flex-start; flex-direction: column; gap: 18px; }
+  .philosophy-footer p { max-width: 290px; font-size: 14px; }
+  .philosophy-progress { width: 100%; }
   .course-grid { grid-template-columns: 1fr; gap: 38px; padding: 55px 0; }
   .course-path { grid-template-columns: 1fr; }
   .course-path span { text-align: left; padding: 15px 4px; }
@@ -312,6 +348,9 @@
   .testimonials blockquote + blockquote { border-left: 0; border-top: 1px solid var(--navy); }
   .more-links { grid-template-columns: 1fr; }
   .more-links > * { min-height: 360px; }
+  .from-scratch-feature { min-height: 575px !important; }
+  .interactive-book-stage { min-height: 300px; }
+  .interactive-book-stage.is-open .interactive-book { transform: translateX(70px); }
   .more-links > * + * { border-left: 0; border-top: 1px solid var(--navy); }
   .final-cta { min-height: 610px; grid-template-columns: 1fr; padding: 75px 6%; }
   .final-cta a { min-width: 0; width: 100%; }
@@ -322,5 +361,5 @@
   .ecosystem { scroll-behavior: auto; }
   .nav-underlay, .layer-nav, .layer-menu, .layer-menu nav a, .primary-link svg, .ecosystem [data-rise] { transition: none; }
   .ecosystem [data-rise] { opacity: 1; transform: none; }
-  .case-paper, .case-folder-front, .case-folder-shadow { transition: none; }
+  .case-paper, .case-folder-front, .case-folder-shadow, .philosophy-statement span, .philosophy-progress i, .interactive-book, .book-leaf { transition: none; }
 }
