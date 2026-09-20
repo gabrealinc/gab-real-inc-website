@@ -27,6 +27,27 @@
 
 .course-page .course-hero { padding-top: 135px; }
 
+.learning-steps { padding: 110px 5% 145px; overflow: clip; background: #f4efe3; border-top: 1px solid #171714; border-bottom: 1px solid #171714; }
+.learning-steps-intro { width: min(1120px, 100%); margin: 0 auto 86px; text-align: center; }
+.learning-steps-intro h2 { margin-top: 24px; font: 400 clamp(3.5rem, 6.5vw, 7.2rem)/.9 "Crimson Text", Georgia, serif; letter-spacing: -.055em; }
+.learning-steps-intro h2 em { display: block; color: #b6350b; }
+.learning-steps-intro > p { max-width: 720px; margin: 30px auto 0; font-size: 18px; line-height: 1.6; }
+.learning-step-stack { width: min(1180px, 100%); margin: 0 auto; }
+.learning-step-card { min-height: 420px; position: sticky; display: grid; grid-template-columns: 110px minmax(0, 1fr) minmax(240px, 330px); gap: 5%; align-items: stretch; margin-bottom: 52px; padding: 46px; overflow: hidden; border: 1px solid currentColor; box-shadow: 0 18px 48px rgba(23, 23, 20, .14); transform-origin: center top; }
+.learning-step-card-1 { top: 92px; z-index: 11; background: #f4efe3; color: #171714; }
+.learning-step-card-2 { top: 104px; z-index: 12; background: #fcb772; color: #171714; }
+.learning-step-card-3 { top: 116px; z-index: 13; background: #b6350b; color: #f4efe3; }
+.learning-step-card-4 { top: 128px; z-index: 14; background: #171714; color: #f4efe3; }
+.learning-step-card-5 { top: 140px; z-index: 15; margin-bottom: 0; background: #f4efe3; color: #171714; }
+.learning-step-number { display: flex; flex-direction: column; justify-content: space-between; }
+.learning-step-number span { font: italic 400 clamp(4.5rem, 7vw, 7.5rem)/.72 "Crimson Text", Georgia, serif; letter-spacing: -.06em; }
+.learning-step-number small, .learning-step-outcome span { font-family: Inter, Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .11em; }
+.learning-step-copy { display: flex; flex-direction: column; justify-content: space-between; }
+.learning-step-copy h3 { max-width: 690px; font: 400 clamp(3.2rem, 5.2vw, 6rem)/.88 "Crimson Text", Georgia, serif; letter-spacing: -.055em; }
+.learning-step-copy > p { max-width: 650px; margin-top: 42px; font-size: 18px; line-height: 1.58; }
+.learning-step-outcome { display: flex; flex-direction: column; justify-content: flex-end; gap: 20px; padding-left: 32px; border-left: 1px solid currentColor; font: italic 400 clamp(1.6rem, 2.4vw, 2.5rem)/1.08 "Crimson Text", Georgia, serif; }
+.learning-step-outcome span { font-style: normal; }
+
 .ecosystem * { box-sizing: border-box; }
 .ecosystem a { color: inherit; text-decoration: none; }
 .ecosystem h1, .ecosystem h2, .ecosystem h3, .ecosystem p, .ecosystem figure, .ecosystem blockquote, .ecosystem dl, .ecosystem dd { margin: 0; }
@@ -481,6 +502,22 @@
 
 @media (max-width: 720px) {
   .course-page .course-hero { padding-top: 108px; }
+  .learning-steps { padding: 76px 6% 95px; }
+  .learning-steps-intro { margin-bottom: 58px; text-align: left; }
+  .learning-steps-intro h2 { font-size: clamp(3.25rem, 14vw, 5rem); }
+  .learning-steps-intro h2 em { display: inline; }
+  .learning-steps-intro > p { margin-left: 0; font-size: 17px; }
+  .learning-step-card { min-height: 525px; grid-template-columns: 1fr; gap: 28px; margin-bottom: 34px; padding: 28px 24px; }
+  .learning-step-card-1 { top: 76px; }
+  .learning-step-card-2 { top: 84px; }
+  .learning-step-card-3 { top: 92px; }
+  .learning-step-card-4 { top: 100px; }
+  .learning-step-card-5 { top: 108px; }
+  .learning-step-number { flex-direction: row; align-items: flex-start; }
+  .learning-step-number span { font-size: 4.4rem; }
+  .learning-step-copy h3 { font-size: clamp(3rem, 13vw, 4.6rem); }
+  .learning-step-copy > p { margin-top: 24px; font-size: 17px; }
+  .learning-step-outcome { gap: 12px; padding: 22px 0 0; border-top: 1px solid currentColor; border-left: 0; font-size: 1.65rem; }
   .nav-underlay, .layer-nav { height: 64px; }
   .nav-underlay-tan.is-open { height: 100svh; transform: translateY(12px); }
   .nav-underlay-yellow.is-open { height: 100svh; transform: translateY(6px); }
