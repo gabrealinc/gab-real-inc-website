@@ -1,23 +1,75 @@
 "use client";
 
-import { ArrowDown, ArrowUpRight, Minus, Plus } from "lucide-react";
+import { ArrowUpRight, Citrus, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const selectedWork = [
-  { label: "Internal AI tool", number: "01", title: "Weekly reporting in one place.", description: "A luxury wellness business was using separate tools for weekly reports and client protocols. I combined them into one internal system.", outcome: "The team can spend less time switching between tools and see the information they need more easily." },
-  { label: "Digital operations", number: "02", title: "Important product information, easier to find.", description: "A healthcare e-commerce business needed a clearer way to organize product details, documentation, and customer information across its website.", outcome: "Customers can make more informed decisions, and the internal team has a simpler process to manage." },
-  { label: "AI workspace", number: "03", title: "An AI setup made for the actual team.", description: "A consulting team wanted to use AI without creating more confusion. I organized its business information, files, and AI workflows around each person’s real role.", outcome: "The team has a practical system it can understand, use, and improve over time." },
+const caseStudies = [
+  {
+    number: "01",
+    label: "Client onboarding",
+    title: "A faster welcome for every new partner.",
+    problem: "A growing company was welcoming hundreds of partners by hand. Every person needed a web page, instructions, files, and follow-up.",
+    built: "One connected process that creates the right materials and guides each person from approval to launch.",
+    result: "The team spends less time copying information and more time helping people succeed.",
+  },
+  {
+    number: "02",
+    label: "Client experience",
+    title: "One calm home for the whole client journey.",
+    problem: "Intake forms, payments, plans, and weekly check-ins lived in different places. The founder had to chase every update.",
+    built: "A private client portal that brings each step together, from the first form to ongoing progress.",
+    result: "Clients know what happens next, and the team can support them without the constant manual follow-up.",
+  },
+  {
+    number: "03",
+    label: "Business overview",
+    title: "The numbers leaders need, all in one place.",
+    problem: "Important information was spread across different tools, so reports were slow to build and hard to trust.",
+    built: "A central workspace that brings the company’s data together and gives each team a clear view of its work.",
+    result: "Leaders can see what is happening sooner, make decisions with confidence, and catch problems before they grow.",
+  },
 ];
 
-const testimonialPlaceholders = [
-  { number: "01", quote: "Your client’s words will live here.", name: "CLIENT NAME", role: "ROLE · COMPANY" },
-  { number: "02", quote: "Add the moment they knew the work made a difference.", name: "CLIENT NAME", role: "ROLE · COMPANY" },
-  { number: "03", quote: "Use a specific result, feeling, or transformation here.", name: "CLIENT NAME", role: "ROLE · COMPANY" },
+const testimonials = [
+  {
+    quote: "Gabby integrated everything we needed. My clients now have a flawless experience from discovery call to payment. It’s like she built a magic backstage conveyor belt that handles every detail.",
+    name: "Olivia M.",
+    role: "Wellness Coach",
+  },
+  {
+    quote: "Implementing new systems is always overwhelming, but Gabby made it so smooth and simple. Now we have real-time visibility into every prospect, and our follow-up rates have skyrocketed.",
+    name: "Sarah L.",
+    role: "Director of Operations",
+  },
+  {
+    quote: "Our team loved working with Gabby. She was patient, explained everything clearly, and made sure we could confidently use the system ourselves.",
+    name: "Emily K.",
+    role: "Head of Client Success",
+  },
+];
+
+const navLinks = [
+  ["The idea", "#explore"],
+  ["Learn AI", "#course"],
+  ["Work with me", "#work-with-me"],
+  ["Case studies", "#selected-work"],
+  ["Client notes", "#testimonials"],
 ];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeWork, setActiveWork] = useState(0);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -27,116 +79,164 @@ export default function Home() {
         entry.target.classList.add("is-visible");
         observer.unobserve(entry.target);
       }
-    }), { threshold: 0.1 });
+    }), { threshold: 0.08 });
     document.querySelectorAll("[data-rise]").forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <main className="ecosystem" id="top">
       <a className="skip-link" href="#main-content">Skip to content</a>
 
-      <header className="ecosystem-header">
-        <a className="ecosystem-wordmark" href="#top" aria-label="Gab Real Inc. home">GAB REAL INC.<span>®</span></a>
-        <button className="ecosystem-menu" type="button" aria-expanded={menuOpen} aria-controls="ecosystem-nav" onClick={() => setMenuOpen((open) => !open)}>
-          {menuOpen ? "Close" : "Menu"} {menuOpen ? <Minus size={17} /> : <Plus size={17} />}
-        </button>
-        <nav id="ecosystem-nav" className={menuOpen ? "is-open" : ""} aria-label="Main navigation" onClick={() => setMenuOpen(false)}>
-          <a href="#explore">The point</a><a href="#course">AI course</a><a href="#work-with-me">Work with me</a><a href="#selected-work">Past work</a>
-        </nav>
-        <a className="ecosystem-header-cta" href="#work-with-me">Start here <ArrowDown size={16} /></a>
+      <div className={`nav-underlay nav-underlay-tan ${menuOpen ? "is-open" : ""}`} aria-hidden="true" />
+      <div className={`nav-underlay nav-underlay-yellow ${menuOpen ? "is-open" : ""}`} aria-hidden="true" />
+      <header className={`layer-nav ${menuOpen ? "is-open" : ""}`}>
+        <div className="layer-nav-bar">
+          <a className="layer-wordmark" href="#top" onClick={closeMenu} aria-label="Gab Real Inc. home">
+            <Citrus size={25} strokeWidth={1.6} aria-hidden="true" />
+            <span>Gab Real Inc.</span>
+          </a>
+          <button className="layer-toggle" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="layer-menu" onClick={() => setMenuOpen((open) => !open)}>
+            <span>{menuOpen ? "Close" : "Menu"}</span>
+            {menuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={25} strokeWidth={1.5} />}
+          </button>
+        </div>
+        <div className="layer-menu" id="layer-menu" aria-hidden={!menuOpen}>
+          <div className="layer-contact">
+            <p>Useful AI for people with better things to do.</p>
+            <a href="mailto:hello@gabrealinc.com">hello@gabrealinc.com</a>
+            <span>San Diego · working everywhere</span>
+          </div>
+          <nav aria-label="Main navigation">
+            {navLinks.map(([label, href]) => <a key={href} href={href} onClick={closeMenu}>{label}</a>)}
+          </nav>
+          <div className="layer-secondary">
+            <a href="#more" onClick={closeMenu}>More to life</a>
+            <a href="#contact" onClick={closeMenu}>Let’s talk</a>
+            <a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Writing ↗</a>
+            <a href="https://www.instagram.com/aiwithgab/" target="_blank" rel="noreferrer">Instagram ↗</a>
+          </div>
+        </div>
       </header>
 
-      <section className="portfolio-hero" id="main-content">
-        <img className="portfolio-hero-background" src="/gabby-portrait.jpg" alt="Gabby Greenberg, founder of Gab Real Inc." width="2400" height="1600" fetchPriority="high" />
-        <div className="portfolio-hero-wash" aria-hidden="true" />
-        <div className="portfolio-hero-topline"><span>AI STRATEGY + SYSTEMS</span><span>BASED IN SAN DIEGO</span><span>WORKING GLOBALLY</span></div>
-        <h1 className="portfolio-promise">AI MADE<br />SIMPLE</h1>
-        <p className="portfolio-hero-description">Practical AI education, strategy, and systems that help people work better without losing what makes them human.</p>
-        <p className="portfolio-hero-belief">QUESTION THE DEFAULT.<br />BUILD WHAT MATTERS.</p>
-        <p className="portfolio-hero-brand">GAB REAL<br />INC.</p>
+      <section className="editorial-hero" id="main-content">
+        <div className="hero-copy">
+          <span className="eyebrow">AI STRATEGY · EDUCATION · USEFUL SYSTEMS</span>
+          <h1>Build the AI.<br /><em>Go make lemonade.</em></h1>
+          <p>I help people understand AI, decide where it belongs, and build useful systems that give them more time for real life.</p>
+          <a className="primary-link" href="#work-with-me">See how I can help <ArrowUpRight size={18} /></a>
+        </div>
+        <figure className="hero-image">
+          <img src="/gabby-portrait.jpg" alt="Gabby Greenberg, founder of Gab Real Inc." width="2400" height="1600" fetchPriority="high" />
+          <figcaption><span>GABBY GREENBERG</span><span>FOUNDER · GAB REAL INC.</span></figcaption>
+        </figure>
+        <div className="lemon-note" aria-hidden="true"><Citrus size={42} strokeWidth={1.2} /><span>human first,<br />always</span></div>
       </section>
 
-      <section className="explore-section thesis-section" id="explore" data-rise>
-        <div className="section-label"><span>01</span><span>THE POINT</span></div>
-        <div className="creative-mode">
-          <div className="creative-switch-card" role="img" aria-label="Creative mode switching from off to on">
-            <span className="creative-switch-title">CREATIVE<br />MODE</span>
-            <div className="creative-switch-face"><span className="creative-status creative-status-on">ON</span><span className="creative-switch-track"><span className="creative-switch-knob" /></span><span className="creative-status creative-status-off">OFF</span></div>
-          </div>
-          <div className="creative-message">
-            <h2>Turning creative mode <em>on.</em></h2>
-            <p className="creative-lede">AI should give us more room to think, create, connect, and do the work that actually matters.</p>
-            <p>I help people understand the tools, decide where they belong, and use them without handing over their voice or judgment.</p>
-            <div className="creative-manifesto" aria-label="Less busywork. More human work.">
-              <span>LESS BUSYWORK.</span><span>MORE HUMAN WORK.</span>
-            </div>
+      <section className="plain-section thesis-section" id="explore" data-rise>
+        <div className="section-label"><span>01</span><span>THE IDEA</span></div>
+        <div className="thesis-grid">
+          <h2>AI should make<br />life feel <em>more human.</em></h2>
+          <div>
+            <p className="large-copy">The goal is not to use the most AI. It is to remove the work that drains your time and attention.</p>
+            <p>I help you understand the tools, choose the useful ones, and keep your voice and judgment in the process.</p>
           </div>
         </div>
       </section>
 
       <section className="course-section" id="course" data-rise>
-        <div className="section-label"><span>02</span><span>AI WITH GAB</span></div>
-        <div className="course-layout">
-          <div className="course-copy"><span>THE SELF-PACED COURSE</span><h2>Use AI without becoming<br /><em>an AI person.</em></h2><p>Learn how to choose the right tools, communicate with them, protect your information, and build workflows that actually save you time.</p><a className="yellow-button" href="/learn">Explore the course <ArrowUpRight size={18} /></a></div>
-          <div className="course-steps" aria-label="Course learning path"><span>THINK</span><span>CHOOSE</span><span>SET UP</span><span>USE</span><span>BUILD</span></div>
+        <div className="section-label"><span>02</span><span>LEARN AI</span></div>
+        <div className="course-grid">
+          <div>
+            <span className="eyebrow">SELF-PACED COURSE</span>
+            <h2>Use AI without becoming<br /><em>an AI person.</em></h2>
+          </div>
+          <div className="course-summary">
+            <p>Learn what AI can do, where it gets things wrong, how to protect your information, and how to build simple workflows that save time.</p>
+            <a className="primary-link light" href="/learn">Explore the course <ArrowUpRight size={18} /></a>
+          </div>
         </div>
+        <div className="course-path" aria-label="Course learning path"><span>Understand</span><span>Choose</span><span>Set up</span><span>Use</span><span>Improve</span></div>
       </section>
 
-      <section className="work-section" id="work-with-me" data-rise>
-        <div className="section-label light"><span>03</span><span>WORK WITH ME</span></div>
-        <div className="work-heading"><h2>What Gab Real Inc.<br /><em>actually does.</em></h2><p>Choose the kind of help you need, from a one-time talk or workshop to ongoing advice or a custom AI system.</p></div>
-        <div className="service-stack">
-          <article><span>01</span><h3>Workshops + Team Training</h3><p>Practical sessions that help your team understand AI, use it in their day-to-day work, and know where to be careful.</p></article>
-          <article><span>02</span><h3>Speaking Engagements</h3><p>Keynotes, panels, and conversations about AI, the future of work, human agency, and how we shape what comes next.</p></article>
-          <article><span>03</span><h3>AI Strategy + Advisory</h3><p>Ongoing guidance to help you decide where AI fits, choose the right tools, and make better decisions as things change.</p></article>
-          <article><span>04</span><h3>Custom AI Buildouts</h3><p>Useful workflows, dashboards, internal tools, and AI assistants designed around how your business actually works.</p></article>
+      <section className="plain-section work-section" id="work-with-me" data-rise>
+        <div className="section-label"><span>03</span><span>WORK WITH ME</span></div>
+        <div className="section-heading">
+          <h2>Choose the help<br /><em>you actually need.</em></h2>
+          <p>From one useful conversation to a complete system built around your business.</p>
         </div>
-        <div className="work-actions"><a className="yellow-button work-cta" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a></div>
+        <div className="services">
+          <article><span>01</span><h3>Team training</h3><p>Clear, practical sessions that help your team use AI in everyday work and understand where to be careful.</p></article>
+          <article><span>02</span><h3>Speaking</h3><p>Keynotes and conversations about AI, the future of work, and what people should still control.</p></article>
+          <article><span>03</span><h3>AI advice</h3><p>Ongoing help choosing tools, setting priorities, and making confident decisions as technology changes.</p></article>
+          <article><span>04</span><h3>Custom systems</h3><p>Workflows, dashboards, and AI assistants designed around how your business really works.</p></article>
+        </div>
+        <a className="primary-link" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a>
       </section>
 
-      <section className="selected-section" id="selected-work" data-rise>
+      <section className="case-section" id="selected-work" data-rise>
         <div className="section-label"><span>04</span><span>CASE STUDIES</span></div>
-        <div className="section-title-row"><h2>Here’s what that looks like<br /><em>in real life.</em></h2><p>A few examples of problems I’ve helped businesses make simpler.</p></div>
-        <div className="case-folder">
-          <div className="folder-tabs" role="tablist" aria-label="Selected work categories">
-            {selectedWork.map((item, index) => <button key={item.label} role="tab" aria-selected={activeWork === index} onClick={() => setActiveWork(index)}><span>{item.number}</span>{item.label}</button>)}
-          </div>
-          <div className="folder-body" role="tabpanel">
-            <div><span className="folder-meta">GAB REAL INC. / SELECTED WORK / {selectedWork[activeWork].number}</span><h3>{selectedWork[activeWork].title}</h3></div>
-            <div className="folder-detail"><p>{selectedWork[activeWork].description}</p><span>THE CHANGE</span><strong>{selectedWork[activeWork].outcome}</strong></div>
-          </div>
+        <div className="section-heading">
+          <h2>Complicated work,<br /><em>made easier.</em></h2>
+          <p>Three examples of what changed, without the technical fog.</p>
+        </div>
+        <div className="case-list">
+          {caseStudies.map((item) => (
+            <article className="case-study" key={item.number}>
+              <div className="case-title"><span>{item.number} · {item.label}</span><h3>{item.title}</h3></div>
+              <dl>
+                <div><dt>The problem</dt><dd>{item.problem}</dd></div>
+                <div><dt>What I built</dt><dd>{item.built}</dd></div>
+                <div><dt>What changed</dt><dd>{item.result}</dd></div>
+              </dl>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="testimonial-section" id="testimonials" data-rise>
-        <div className="section-label"><span>05</span><span>TESTIMONIALS</span></div>
-        <div className="testimonial-heading"><div><span>CLIENT NOTES</span><h3>What people<br /><em>say afterward.</em></h3></div><p>Real client quotes can drop into these cards when you’re ready—without changing the layout again.</p></div>
-        <div className="testimonial-chain" aria-label="Testimonial placeholders">
-          {testimonialPlaceholders.map((item) => <article key={item.number}><span>{item.number} / PLACEHOLDER</span><blockquote>“{item.quote}”</blockquote><footer><strong>{item.name}</strong><small>{item.role}</small></footer></article>)}
+      <section className="plain-section testimonial-section" id="testimonials" data-rise>
+        <div className="section-label"><span>05</span><span>CLIENT NOTES</span></div>
+        <div className="section-heading testimonial-heading">
+          <h2>Kind words from<br /><em>people I’ve helped.</em></h2>
+          <Citrus size={56} strokeWidth={1.1} aria-hidden="true" />
+        </div>
+        <div className="testimonials">
+          {testimonials.map((item, index) => (
+            <blockquote key={item.name}>
+              <span>0{index + 1}</span>
+              <p>“{item.quote}”</p>
+              <footer><strong>{item.name}</strong><small>{item.role}</small></footer>
+            </blockquote>
+          ))}
         </div>
       </section>
 
-      <section className="world-section" id="more" data-rise>
-        <div className="section-label"><span>06</span><span>THERE’S MORE TO LIFE THAN WORK</span></div>
-        <div className="section-title-row life-title"><h2>There’s more to life<br /><em>than work.</em></h2><p>These are the places where I question the rules we inherit, follow what I’m curious about, and make room for conversations that matter.</p></div>
-        <div className="world-cards">
-          <a className="world-card book-world" href="https://readfromscratch.com/" target="_blank" rel="noreferrer"><span>01 / THE BOOK</span><h3>From<br /><em>Scratch.</em></h3><p>A book about questioning the life you inherited and creating one that actually feels like yours.</p><small>READ THE BOOK <ArrowUpRight size={17} /></small></a>
-          <a className="world-card writing-world" href="https://growithgab.substack.com/" target="_blank" rel="noreferrer"><span>02 / THE WRITING</span><h3>Grow<br /><em>with Gab.</em></h3><p>Essays and field notes about AI, identity, creativity, work, and whatever I can’t stop thinking about.</p><small>READ THE LATEST <ArrowUpRight size={17} /></small></a>
-          <article className="world-card exploit-world"><span>03 / THE PODCAST</span><h3>Exploit<em>.</em></h3><p>Honest conversations with people using technology, creativity, and their own lives to question what comes next.</p><small>COMING SOON <span aria-hidden="true">↗</span></small></article>
+      <section className="more-section" id="more" data-rise>
+        <div className="section-label"><span>06</span><span>MORE TO LIFE</span></div>
+        <div className="section-heading">
+          <h2>Work matters.<br /><em>It isn’t everything.</em></h2>
+          <p>The other places I explore identity, creativity, technology, and how we choose to live.</p>
+        </div>
+        <div className="more-links">
+          <a href="https://readfromscratch.com/" target="_blank" rel="noreferrer"><span>THE BOOK</span><h3>From Scratch.</h3><p>Question the life you inherited and create one that feels like yours.</p><ArrowUpRight /></a>
+          <a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer"><span>THE WRITING</span><h3>Grow with Gab.</h3><p>Essays about AI, identity, creativity, work, and whatever I cannot stop thinking about.</p><ArrowUpRight /></a>
+          <article><span>THE PODCAST</span><h3>Exploit.</h3><p>Honest conversations about technology, creativity, and what comes next.</p><small>COMING SOON</small></article>
         </div>
       </section>
 
-      <section className="final-cta-section" data-rise>
+      <section className="final-cta" id="contact" data-rise>
+        <Citrus size={70} strokeWidth={1} aria-hidden="true" />
         <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
         <h2>Let’s make it<br /><em>actually useful.</em></h2>
         <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
       </section>
 
       <footer className="ecosystem-footer">
-        <a className="ecosystem-wordmark" href="#top">GAB REAL INC.<span>®</span></a>
-        <p>Think clearly. Question the default.<br />Build what matters.</p>
-        <div><a href="/learn">AI with Gab</a><a href="https://readfromscratch.com/" target="_blank" rel="noreferrer">From Scratch ↗</a><a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Substack ↗</a><a href="https://www.instagram.com/aiwithgab/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
+        <a className="footer-wordmark" href="#top"><Citrus size={23} strokeWidth={1.4} /> Gab Real Inc.</a>
+        <p>Useful AI for people with better things to do.<br />Like making lemonade.</p>
+        <div><a href="/learn">Learn AI</a><a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Writing ↗</a><a href="https://www.instagram.com/aiwithgab/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
       </footer>
     </main>
   );
