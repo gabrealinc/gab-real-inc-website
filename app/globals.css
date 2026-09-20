@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Fragment+Mono&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "../vendor/shadcn-tailwind-4.13.0.css";
@@ -21,5 +21,5 @@ em,.handwritten{font-family:Cormorant,Georgia,serif;font-weight:500}
 body,button,input,textarea,select{font-family:Inter,Arial,sans-serif}
 h1,h2,h3,.wordmark,.book-title,.podcast-title{font-family:"Crimson Text",Georgia,serif;font-weight:400}
 em,.handwritten{font-family:"Crimson Text",Georgia,serif;font-weight:400}
-.eyebrow,.micro,.section-meta,.hero-topline,.hero-bottom,.art-label,.status-pill,.course-index,.price-line span,.footer-bottom{font-family:"Fragment Mono",monospace}
+.eyebrow,.micro,.section-meta,.hero-topline,.hero-bottom,.art-label,.status-pill,.course-index,.price-line span,.footer-bottom{font-family:Inter,Arial,sans-serif;font-weight:700}
 .eyebrow,.micro,.section-meta,.hero-topline,.art-label,.status-pill,.price-line span{text-transform:uppercase;letter-spacing:.08em}

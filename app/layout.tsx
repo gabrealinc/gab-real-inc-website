@@ -3,6 +3,7 @@ import "./globals.css";
 import "./studio.css";
 import "./depth.css";
 import "./ecosystem.css";
+import { ScrollReveal } from "./scroll-reveal";
 
 export const metadata: Metadata = {
   title: "Gab Real Inc. | Useful AI for Real Life",
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <ScrollReveal />
+      </body>
     </html>
   );
 }

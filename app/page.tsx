@@ -1,21 +1,13 @@
 "use client";
 
-import { ArrowDown, ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { approvedTestimonialFallback, type Testimonial } from "./testimonial-data";
+import { SiteNavigation } from "./site-navigation";
 
 const philosophyStatement = "Ask harder questions. Challenge what’s normal. Have an actual say in the future we’re building.";
 const philosophySupport = "You don’t have to use AI, or even like it, to have a point of view.";
 const philosophyWords = philosophyStatement.split(" ");
-const katieTestimonial = "She is a true unicorn of a human in all of the ways… and among the bevy of things she is incredible at, she is a TRUE MAVEN at all things AI. What I find most incredible about her perspective and insight on AI is how effortlessly she makes it make sense. She is able to immediately demystify things that otherwise feel intimidating, confusing or overwhelming to those of us (aka: me) who feel like dinosaurs learning about a whole new world of technology. At times, I feel like she is singlehandedly coaching me through a journey of how to function more efficiently and strategically with the help of these insane new tools that we have at our fingertips.";
-
-const courseSteps = [
-  { title: "Understand", copy: "Know what AI is doing, what it is guessing, and where human judgment still matters." },
-  { title: "Choose", copy: "Decide which tools deserve a place in your work and which ones are more noise than help." },
-  { title: "Set up", copy: "Give the tool useful context, clear boundaries, and information you are comfortable sharing." },
-  { title: "Use", copy: "Ask better questions, check the answer, and keep your own voice and judgment in the process." },
-  { title: "Improve", copy: "Notice what works, remove what does not, and build a practice that gets more useful over time." },
-];
-
 const services = [
   { title: "Team training", label: "Learn together", copy: "Clear, practical sessions that help your team use AI in everyday work and understand where to be careful.", fit: "Best when people need a shared language and a confident place to begin." },
   { title: "Speaking", label: "Start the conversation", copy: "Keynotes and conversations about AI, the future of work, and what people should still control.", fit: "Best for events, leadership gatherings, and teams navigating change." },
@@ -38,41 +30,7 @@ const bookLeaves = [
   ],
 ];
 
-const caseStudies = [
-  {
-    number: "01",
-    label: "Client onboarding",
-    title: "A faster welcome for every new partner.",
-    problem: "A growing company was welcoming hundreds of partners by hand. Every person needed a web page, instructions, files, and follow-up.",
-    built: "One connected process that creates the right materials and guides each person from approval to launch.",
-    result: "The team spends less time copying information and more time helping people succeed.",
-  },
-  {
-    number: "02",
-    label: "Client experience",
-    title: "One calm home for the whole client journey.",
-    problem: "Intake forms, payments, plans, and weekly check-ins lived in different places. The founder had to chase every update.",
-    built: "A private client portal that brings each step together, from the first form to ongoing progress.",
-    result: "Clients know what happens next, and the team can support them without the constant manual follow-up.",
-  },
-  {
-    number: "03",
-    label: "Business overview",
-    title: "The numbers leaders need, all in one place.",
-    problem: "Important information was spread across different tools, so reports were slow to build and hard to trust.",
-    built: "A central workspace that brings the company’s data together and gives each team a clear view of its work.",
-    result: "Leaders can see what is happening sooner, make decisions with confidence, and catch problems before they grow.",
-  },
-];
-
-const navLinks = [
-  ["The idea", "#explore"],
-  ["Learn AI", "#course"],
-  ["Work with me", "#work-with-me"],
-  ["Case studies", "#selected-work"],
-  ["Client note", "#testimonial"],
-  ["More to life", "#more"],
-];
+const heroServices = ["Team training", "Speaking", "AI advice", "Custom systems"];
 
 function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -160,18 +118,19 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
 }
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [caseFolderOpen, setCaseFolderOpen] = useState(true);
-  const [activeCase, setActiveCase] = useState(0);
   const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
   const [bookPage, setBookPage] = useState(0);
-  const [activeCourseStep, setActiveCourseStep] = useState(0);
   const [activeService, setActiveService] = useState(0);
   const [moreIndex, setMoreIndex] = useState(0);
+  const [morePaused, setMorePaused] = useState(false);
+  const [moreInView, setMoreInView] = useState(false);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(approvedTestimonialFallback);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [curtainPhase, setCurtainPhase] = useState<"closed" | "open" | "done">("closed");
+  const heroRef = useRef<HTMLElement>(null);
   const philosophyRef = useRef<HTMLElement>(null);
+  const moreCarouselRef = useRef<HTMLDivElement>(null);
   const moreTouchStart = useRef<number | null>(null);
-  const selectedCase = caseStudies[activeCase];
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -187,28 +146,59 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    document.addEventListener("keydown", closeOnEscape);
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.removeEventListener("keydown", closeOnEscape);
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
+    const controller = new AbortController();
+    fetch("/api/testimonials", { signal: controller.signal })
+      .then((response) => response.ok ? response.json() : Promise.reject(new Error("Testimonials unavailable")))
+      .then((payload: { configured?: boolean; testimonials?: Testimonial[] }) => {
+        if (payload.configured) {
+          setTestimonials(payload.testimonials ?? []);
+          setTestimonialIndex(0);
+        }
+      })
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, []);
 
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    }), { threshold: 0.08 });
-    document.querySelectorAll("[data-rise]").forEach((element) => observer.observe(element));
+    const carousel = moreCarouselRef.current;
+    if (!carousel) return;
+    const observer = new IntersectionObserver(([entry]) => setMoreInView(entry.isIntersecting), { threshold: .55 });
+    observer.observe(carousel);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!moreInView || morePaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const delay = moreIndex === 0 ? 12000 : 8000;
+    const timer = window.setTimeout(() => setMoreIndex((index) => (index + 1) % 3), delay);
+    return () => window.clearTimeout(timer);
+  }, [moreInView, morePaused, moreIndex]);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!hero || reducedMotion) return;
+
+    let animationFrame = 0;
+    const updateHero = () => {
+      animationFrame = 0;
+      const rect = hero.getBoundingClientRect();
+      const distance = Math.max(1, rect.height * .82);
+      const progress = Math.max(0, Math.min(1, -rect.top / distance));
+      hero.style.setProperty("--hero-scroll", progress.toFixed(3));
+    };
+    const requestUpdate = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateHero);
+    };
+
+    updateHero();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    };
   }, []);
 
   useEffect(() => {
@@ -247,8 +237,6 @@ export default function Home() {
     };
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
-
   return (
     <main className="ecosystem" id="top">
       {curtainPhase !== "done" && (
@@ -258,52 +246,25 @@ export default function Home() {
       )}
       <a className="skip-link" href="#main-content">Skip to content</a>
 
-      <div className={`nav-underlay nav-underlay-tan ${menuOpen ? "is-open" : ""}`} aria-hidden="true" />
-      <div className={`nav-underlay nav-underlay-yellow ${menuOpen ? "is-open" : ""}`} aria-hidden="true" />
-      <header className={`layer-nav ${menuOpen ? "is-open" : ""}`}>
-        <div className="layer-nav-bar">
-          <a className="layer-wordmark" href="#top" onClick={closeMenu} aria-label="Gab Real Inc. home">
-            <span>Gab Real Inc.</span>
-          </a>
-          <button className="layer-toggle" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="layer-menu" onClick={() => setMenuOpen((open) => !open)}>
-            <span>{menuOpen ? "Close" : "Menu"}</span>
-            {menuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={25} strokeWidth={1.5} />}
-          </button>
-        </div>
-        <div className="layer-menu" id="layer-menu" aria-hidden={!menuOpen}>
-          <div className="layer-contact">
-            <p>Use AI to think more clearly. Build what matters.</p>
-            <a href="mailto:hello@gabrealinc.com">hello@gabrealinc.com</a>
-            <span>San Diego · working everywhere</span>
-          </div>
-          <nav aria-label="Main navigation">
-            {navLinks.map(([label, href]) => <a key={href} href={href} onClick={closeMenu}>{label}</a>)}
-          </nav>
-          <div className="layer-secondary">
-            <a href="#more" onClick={closeMenu}>More to life</a>
-            <a href="#contact" onClick={closeMenu}>Let’s talk</a>
-            <a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Writing ↗</a>
-            <a href="https://www.instagram.com/aiwithgab/" target="_blank" rel="noreferrer">Instagram ↗</a>
-          </div>
-        </div>
-      </header>
+      <SiteNavigation />
 
-      <section className="editorial-hero" id="main-content">
+      <section className="editorial-hero" id="main-content" ref={heroRef}>
+        <div className="hero-collage" aria-label="A surreal retro scene about technology, imagination, and possibility">
+          <figure className="hero-main-image"><img src="/course-cosmic.png" alt="A retro illustration of a woman working on a laptop inside a glowing orange galaxy" width="864" height="1536" fetchPriority="high" /></figure>
+          <div className="hero-card hero-confidence"><small>CONFIDENCE</small><strong>+ clarity</strong><span aria-hidden="true">⌁⌁⌁</span></div>
+          <a className="hero-card hero-question" href="/learn" aria-label="Start with the AI course"><small>THE FIRST QUESTION</small><p>What problem<br />are we actually<br />solving?</p><em>start here ↗</em></a>
+        </div>
         <div className="hero-copy">
           <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
-          <h1>Use AI to think<br />more clearly.<br /><em>Build what<br />matters.</em></h1>
+          <h1><span>Use AI to think</span><span>more clearly.</span><strong>Build what matters.</strong></h1>
           <p>Gab Real Inc. helps founders and teams understand AI, make smarter business decisions, and design better ways of working.</p>
           <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
-        <div className="hero-collage" aria-label="A warm editorial collage featuring a martini, a vintage telephone, a speedboat, and a tennis court">
-          <figure className="hero-main-image"><img src="/studio-martini.png" alt="Martini beside a vintage telephone and record player" width="816" height="960" fetchPriority="high" /></figure>
-          <figure className="hero-polaroid hero-boat"><img src="/studio-boat.png" alt="Woman looking through binoculars on a speedboat" width="816" height="960" /><figcaption>Perspective<br />changes things.</figcaption></figure>
-          <figure className="hero-polaroid hero-tennis"><img src="/studio-tennis.png" alt="Martini glass resting on a tennis racket" width="816" height="960" /><figcaption>Aperitivo<br />is a valid KPI.</figcaption></figure>
-          <div className="hero-card hero-confidence"><small>CONFIDENCE</small><strong>+ clarity</strong><span aria-hidden="true">⌁⌁⌁</span></div>
-          <div className="hero-card hero-question"><small>THE FIRST QUESTION</small><p>What problem<br />are we actually<br />solving?</p><em>start here ↗</em></div>
-          <div className="hero-card hero-education">EDUCATION<br />BEFORE<br />IMPLEMENTATION.</div>
+        <div className="hero-service-line" aria-label="Services: team training, speaking, AI advice, and custom systems">
+          <div className="hero-service-track" aria-hidden="true">
+            {[...heroServices, ...heroServices].map((service, index) => <span key={`${service}-${index}`}>{service}<i /></span>)}
+          </div>
         </div>
-        <div className="hero-service-line" aria-label="Services"><span>Workshops</span><i /> <span>Advisory</span><i /> <span>Experience design</span><i /> <span>Custom builds</span></div>
       </section>
 
       <section className="philosophy-section" id="explore" ref={philosophyRef}>
@@ -331,29 +292,24 @@ export default function Home() {
       <section className="course-section" id="course" data-rise>
         <div className="section-label"><span>02</span><span>LEARN AI</span></div>
         <div className="course-grid">
-          <div>
-            <span className="eyebrow">SELF-PACED COURSE</span>
-            <h2>Use AI without having to<br /><em>become an engineer.</em></h2>
+          <div className="course-heading">
+            <span className="eyebrow">AI WITHOUT THE BULLSHIT</span>
+            <h2>Learn AI without having to <em>become an engineer.</em></h2>
           </div>
           <div className="course-summary">
-            <p>Learn what AI can do, where it gets things wrong, how to protect your information, and how to build simple workflows that save time.</p>
-            <a className="primary-link light" href="/learn">Explore the course <ArrowUpRight size={18} /></a>
+            <p>Most AI courses throw a million tools at you or try to sell you more. This one teaches you how to decide what is actually worth using, what to leave alone, and how to build tools that work for your real life. Less stress. Better work. More time to touch grass.</p>
+            <a className="primary-link light" href="/learn">See what changes <ArrowUpRight size={18} /></a>
+            <figure className="course-visual">
+              <img src="/course-work.png" alt="Hands typing on a retro keyboard beside a notebook and coffee" />
+              <figcaption>More effective. More creative. More human.</figcaption>
+            </figure>
           </div>
         </div>
-        <div className="course-flipper" role="tablist" aria-label="Course learning path">
-          {courseSteps.map((step, index) => (
-            <button
-              className={activeCourseStep === index ? "is-active" : ""}
-              type="button"
-              role="tab"
-              aria-selected={activeCourseStep === index}
-              onClick={() => setActiveCourseStep(index)}
-              onMouseEnter={() => setActiveCourseStep(index)}
-              key={step.title}
-            >
-              <span>0{index + 1}</span><strong>{step.title}</strong><p>{step.copy}</p>
-            </button>
-          ))}
+        <div className="course-offer-bar" aria-label="Course details">
+          <span><strong>Use less, better</strong><small>Know which tools deserve your time and which do not.</small></span>
+          <span><strong>Build for your real life</strong><small>Create useful workflows instead of collecting generic hacks.</small></span>
+          <span><strong>Stay human</strong><small>Save time without giving up your judgment, voice, or creativity.</small></span>
+          <a href="/learn">Explore the transformation <ArrowUpRight size={17} /></a>
         </div>
       </section>
 
@@ -393,102 +349,47 @@ export default function Home() {
         <a className="primary-link" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a>
       </section>
 
-      <section className="case-section" id="selected-work" data-rise>
-        <div className="section-label"><span>04</span><span>CASE STUDIES</span></div>
-        <div className="section-heading">
-          <h2>Complicated work,<br /><em>made easier.</em></h2>
-          <p>Three examples of what changed, without the technical fog.</p>
-        </div>
-        <div className={`case-folder-experience ${caseFolderOpen ? "is-open" : ""}`}>
-          <div className="case-folder-stage" role="group" aria-label="Case study folder">
-            <div className="case-folder-shadow" aria-hidden="true" />
-            <div className="case-folder-back" aria-hidden="true"><span /></div>
-            <div className="case-paper-stack" id="case-study-papers" role="tablist" aria-label="Choose a case study">
-              {caseStudies.map((item, index) => (
-                <button
-                  className={`case-paper case-paper-${index + 1} ${activeCase === index ? "is-active" : ""}`}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeCase === index}
-                  aria-controls="case-study-details"
-                  tabIndex={caseFolderOpen ? 0 : -1}
-                  onClick={() => setActiveCase(index)}
-                  key={item.number}
-                >
-                  <span>{item.number}</span>
-                  <small>{item.label}</small>
-                  <strong>{item.title}</strong>
-                  <i>Open file ↗</i>
-                </button>
-              ))}
-            </div>
-            <div className="case-folder-front">
-              <button
-                className="case-folder-toggle"
-                type="button"
-                aria-expanded={caseFolderOpen}
-                aria-controls="case-study-papers"
-                onClick={() => setCaseFolderOpen((open) => !open)}
-              >
-                <span>Case files</span>
-                <small>{caseFolderOpen ? "Close folder" : "Open folder"}</small>
-              </button>
-              <div className="case-folder-dots" aria-hidden="true">
-                {caseStudies.map((item, index) => <i className={activeCase === index ? "is-active" : ""} key={item.number} />)}
-              </div>
-            </div>
-          </div>
-
-          <article className="case-folder-detail" id="case-study-details" role="tabpanel" aria-live="polite">
-            <div className="case-title">
-              <span>{selectedCase.number} · {selectedCase.label}</span>
-              <h3>{selectedCase.title}</h3>
-            </div>
-            <dl>
-              <div><dt>The problem</dt><dd>{selectedCase.problem}</dd></div>
-              <div><dt>What I built</dt><dd>{selectedCase.built}</dd></div>
-              <div><dt>What changed</dt><dd>{selectedCase.result}</dd></div>
-            </dl>
-            <div className="case-folder-index" aria-label="Choose a case study">
-              {caseStudies.map((item, index) => (
-                <button className={activeCase === index ? "is-active" : ""} type="button" onClick={() => { setActiveCase(index); setCaseFolderOpen(true); }} key={item.number}>
-                  <span>{item.number}</span>{item.label}
-                </button>
-              ))}
-            </div>
-          </article>
-        </div>
-      </section>
-
       <LiquidDivider top="#f4efe3" bottom="#171714" />
 
-      <section className="featured-testimonial" id="testimonial" data-rise>
-        <div className="section-label"><span>05</span><span>CLIENT NOTE</span></div>
+      {testimonials.length > 0 && <section className="featured-testimonial" id="testimonial" data-rise>
+        <div className="section-label"><span>04</span><span>CLIENT NOTES</span></div>
         <figure className="featured-quote">
           <span aria-hidden="true">“</span>
           <blockquote>
-            <p>{katieTestimonial}</p>
-            <figcaption><strong>Katie Kuhn</strong><small>Client testimonial</small></figcaption>
+            <p>{testimonials[testimonialIndex]?.quote}</p>
+            <figcaption>
+              <span><strong>{testimonials[testimonialIndex]?.name}</strong><small>{testimonials[testimonialIndex]?.title || testimonials[testimonialIndex]?.service}</small></span>
+              {testimonials.length > 1 && <span className="testimonial-controls" aria-label="Choose a testimonial">
+                {testimonials.map((testimonial, index) => <button className={index === testimonialIndex ? "is-active" : ""} type="button" aria-label={`Show testimonial from ${testimonial.name}`} onClick={() => setTestimonialIndex(index)} key={testimonial.id}>{String(index + 1).padStart(2, "0")}</button>)}
+              </span>}
+            </figcaption>
           </blockquote>
         </figure>
-      </section>
+        <a className="testimonial-more" href="/testimonials">See more client notes <ArrowUpRight size={18} /></a>
+      </section>}
 
       <LiquidDivider top="#171714" bottom="#f4efe3" />
 
       <section className="more-section" id="more" data-rise>
-        <div className="section-label"><span>06</span><span>MORE TO LIFE</span></div>
+        <div className="section-label"><span>05</span><span>MORE TO LIFE</span></div>
         <div className="section-heading">
           <h2>Work matters.<br /><em>It isn’t everything.</em></h2>
           <p>The other places I explore identity, creativity, technology, and how we choose to live.</p>
         </div>
         <div
           className="more-carousel"
-          onTouchStart={(event) => { moreTouchStart.current = event.touches[0]?.clientX ?? null; }}
+          ref={moreCarouselRef}
+          onMouseEnter={() => setMorePaused(true)}
+          onMouseLeave={() => setMorePaused(false)}
+          onFocus={() => setMorePaused(true)}
+          onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setMorePaused(false); }}
+          onTouchStart={(event) => { setMorePaused(true); moreTouchStart.current = event.touches[0]?.clientX ?? null; }}
           onTouchEnd={(event) => {
             if (moreTouchStart.current === null) return;
             const distance = (event.changedTouches[0]?.clientX ?? moreTouchStart.current) - moreTouchStart.current;
             if (Math.abs(distance) > 45) setMoreIndex((index) => Math.max(0, Math.min(2, index + (distance < 0 ? 1 : -1))));
             moreTouchStart.current = null;
+            setMorePaused(false);
           }}
         >
           <div className="more-carousel-track">
@@ -505,7 +406,9 @@ export default function Home() {
                   {bookLeaves.map(([front, back], index) => (
                     <span className={`book-leaf ${index < bookPage ? "is-flipped" : ""}`} style={{ zIndex: index === bookPage - 1 ? 20 : index < bookPage ? index + 1 : bookLeaves.length - index }} key={front.eyebrow}>
                       <span className={`book-face book-face-front ${front.cover ? "is-cover" : ""}`}>
-                        <small>{front.eyebrow}</small><strong>{front.title}</strong><i>{front.copy}</i><b aria-hidden="true" />
+                        {front.cover
+                          ? <img className="book-cover-image" src="/from-scratch-cover.png" alt="From Scratch: Creating a Life That Feels Like Yours" />
+                          : <><small>{front.eyebrow}</small><strong>{front.title}</strong><i>{front.copy}</i><b aria-hidden="true" /></>}
                       </span>
                       <span className={`book-face book-face-back ${back.back ? "is-back-cover" : ""}`}>
                         <small>{back.eyebrow}</small><strong>{back.title}</strong><i>{back.copy}</i><b aria-hidden="true" />
@@ -535,16 +438,16 @@ export default function Home() {
 
       <section className="final-cta" id="contact" data-rise>
         <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
-        <h2>Let’s make it<br /><em>actually useful.</em></h2>
+        <h2>Let’s make AI <em>actually useful</em><br />and create a better future, <em>together.</em></h2>
         <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
       </section>
 
       <LiquidDivider top="#b6350b" bottom="#171714" />
 
       <footer className="ecosystem-footer">
-        <a className="footer-wordmark" href="#top">Gab Real Inc.</a>
+        <a className="footer-wordmark brand-wordmark" href="#top" aria-label="Gab Real Inc. home"><span>GAB REAL INC</span><sup>®</sup></a>
         <p>Use AI to think more clearly.<br />Build what matters.</p>
-        <div><a href="/learn">Learn AI</a><a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Writing ↗</a><a href="https://www.instagram.com/aiwithgab/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
+        <div><a href="/about">About</a><a href="/services">Services</a><a href="/testimonials">Testimonials</a><a href="/learn">Course</a><a href="/case-studies">Case studies</a></div>
       </footer>
     </main>
   );

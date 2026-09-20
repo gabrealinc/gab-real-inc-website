@@ -194,7 +194,7 @@ form input,form textarea{background:#faf9f5}
 body,.course-page,button,input,textarea,select{font-family:Inter,Arial,sans-serif}
 h1,h2,h3,.hero h1,.section-heading h2,.example-intro h2,.about-copy h2,.contact-grid h2,.course-hero h1,.course-detail h2,.course-faq h2,.learn-offer h3,.work-offer h3,.change-grid h3,.book-title,.podcast-title,.writing-feature h3,.course-deliverables h3,.course-deliverables strong{font-family:"Crimson Text",Georgia,serif;font-weight:400;text-transform:none}
 em,.hero h1 em,.section-heading h2 em,.example-intro h2 em,.about-copy h2 em,.change-grid h3 em{font-family:"Crimson Text",Georgia,serif;font-weight:400}
-.eyebrow,.micro,.section-meta,.hero-topline,.hero-bottom,.art-label,.status-pill,.course-index,.price-line span,.small-number,.tab-number,.idea-top,.podcast-title>span,.footer-bottom,.course-page .course-hero::after{font-family:"Fragment Mono",monospace;font-style:normal}
+.eyebrow,.micro,.section-meta,.hero-topline,.hero-bottom,.art-label,.status-pill,.course-index,.price-line span,.small-number,.tab-number,.idea-top,.podcast-title>span,.footer-bottom,.course-page .course-hero::after{font-family:Inter,Arial,sans-serif;font-style:normal;font-weight:700}
 .eyebrow,.micro,.section-meta,.hero-topline,.art-label,.status-pill,.price-line span,.idea-top,.podcast-title>span{text-transform:uppercase;letter-spacing:.08em}
 .hero-description,.section-heading>p,.example-intro p,.about-copy>p,.course-hero p,.course-detail p,.course-questions p{font-family:Inter,Arial,sans-serif}
 .course-page .course-closing::before{font-family:"Crimson Text",Georgia,serif}
