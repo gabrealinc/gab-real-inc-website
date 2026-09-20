@@ -128,7 +128,7 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
         if (x === 0) context.moveTo(x, y);
         else context.lineTo(x, y);
       }
-      context.strokeStyle = "rgba(182,58,36,.38)";
+      context.strokeStyle = "rgba(112,34,23,.45)";
       context.lineWidth = 2;
       context.stroke();
       energy *= .92;
@@ -168,7 +168,6 @@ export default function Home() {
   const [activeCourseStep, setActiveCourseStep] = useState(0);
   const [activeService, setActiveService] = useState(0);
   const [moreIndex, setMoreIndex] = useState(0);
-  const [heroRevealActive, setHeroRevealActive] = useState(false);
   const [curtainPhase, setCurtainPhase] = useState<"closed" | "open" | "done">("closed");
   const philosophyRef = useRef<HTMLElement>(null);
   const moreTouchStart = useRef<number | null>(null);
@@ -296,19 +295,8 @@ export default function Home() {
           <p>Gab Real Inc. helps founders and teams understand AI, make smarter business decisions, and design better ways of working.</p>
           <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
-        <div
-          className={`hero-collage ${heroRevealActive ? "has-reveal" : ""}`}
-          aria-label="A warm editorial collage featuring a martini, a vintage telephone, a speedboat, and a tennis court"
-          onPointerEnter={() => setHeroRevealActive(true)}
-          onPointerLeave={() => setHeroRevealActive(false)}
-          onPointerMove={(event) => {
-            const rect = event.currentTarget.getBoundingClientRect();
-            event.currentTarget.style.setProperty("--reveal-x", `${event.clientX - rect.left}px`);
-            event.currentTarget.style.setProperty("--reveal-y", `${event.clientY - rect.top}px`);
-          }}
-        >
+        <div className="hero-collage" aria-label="A warm editorial collage featuring a martini, a vintage telephone, a speedboat, and a tennis court">
           <figure className="hero-main-image"><img src="/studio-martini.png" alt="Martini beside a vintage telephone and record player" width="816" height="960" fetchPriority="high" /></figure>
-          <figure className="hero-liquid-reveal" aria-hidden="true"><img src="/studio-record.png" alt="" width="816" height="960" /></figure>
           <figure className="hero-polaroid hero-boat"><img src="/studio-boat.png" alt="Woman looking through binoculars on a speedboat" width="816" height="960" /><figcaption>Perspective<br />changes things.</figcaption></figure>
           <figure className="hero-polaroid hero-tennis"><img src="/studio-tennis.png" alt="Martini glass resting on a tennis racket" width="816" height="960" /><figcaption>Aperitivo<br />is a valid KPI.</figcaption></figure>
           <div className="hero-card hero-confidence"><small>CONFIDENCE</small><strong>+ clarity</strong><span aria-hidden="true">⌁⌁⌁</span></div>
@@ -338,7 +326,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f2eee2" bottom="#171714" />
+      <LiquidDivider top="#f4efe3" bottom="#c65332" />
 
       <section className="course-section" id="course" data-rise>
         <div className="section-label"><span>02</span><span>LEARN AI</span></div>
@@ -369,7 +357,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#171714" bottom="#f2eee2" />
+      <LiquidDivider top="#c65332" bottom="#f4efe3" />
 
       <section className="plain-section work-section" id="work-with-me" data-rise>
         <div className="section-label"><span>03</span><span>WORK WITH ME</span></div>
@@ -472,7 +460,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f2eee2" bottom="#171714" />
+      <LiquidDivider top="#f4efe3" bottom="#1e1d19" />
 
       <section className="featured-testimonial" id="testimonial" data-rise>
         <div className="section-label"><span>05</span><span>CLIENT NOTE</span></div>
@@ -485,7 +473,7 @@ export default function Home() {
         </figure>
       </section>
 
-      <LiquidDivider top="#171714" bottom="#f2eee2" />
+      <LiquidDivider top="#1e1d19" bottom="#f4efe3" />
 
       <section className="more-section" id="more" data-rise>
         <div className="section-label"><span>06</span><span>MORE TO LIFE</span></div>
@@ -543,7 +531,7 @@ export default function Home() {
         </div>
       </section>
 
-      <LiquidDivider top="#f2eee2" bottom="#b63a24" />
+      <LiquidDivider top="#f4efe3" bottom="#c65332" />
 
       <section className="final-cta" id="contact" data-rise>
         <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
@@ -551,7 +539,7 @@ export default function Home() {
         <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
       </section>
 
-      <LiquidDivider top="#b63a24" bottom="#171714" />
+      <LiquidDivider top="#c65332" bottom="#1e1d19" />
 
       <footer className="ecosystem-footer">
         <a className="footer-wordmark" href="#top">Gab Real Inc.</a>
