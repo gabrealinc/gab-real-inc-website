@@ -58,6 +58,9 @@ const navLinks = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [caseFolderOpen, setCaseFolderOpen] = useState(true);
+  const [activeCase, setActiveCase] = useState(0);
+  const selectedCase = caseStudies[activeCase];
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -185,17 +188,64 @@ export default function Home() {
           <h2>Complicated work,<br /><em>made easier.</em></h2>
           <p>Three examples of what changed, without the technical fog.</p>
         </div>
-        <div className="case-list">
-          {caseStudies.map((item) => (
-            <article className="case-study" key={item.number}>
-              <div className="case-title"><span>{item.number} · {item.label}</span><h3>{item.title}</h3></div>
-              <dl>
-                <div><dt>The problem</dt><dd>{item.problem}</dd></div>
-                <div><dt>What I built</dt><dd>{item.built}</dd></div>
-                <div><dt>What changed</dt><dd>{item.result}</dd></div>
-              </dl>
-            </article>
-          ))}
+        <div className={`case-folder-experience ${caseFolderOpen ? "is-open" : ""}`}>
+          <div className="case-folder-stage" role="group" aria-label="Case study folder">
+            <div className="case-folder-shadow" aria-hidden="true" />
+            <div className="case-folder-back" aria-hidden="true"><span /></div>
+            <div className="case-paper-stack" id="case-study-papers" role="tablist" aria-label="Choose a case study">
+              {caseStudies.map((item, index) => (
+                <button
+                  className={`case-paper case-paper-${index + 1} ${activeCase === index ? "is-active" : ""}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeCase === index}
+                  aria-controls="case-study-details"
+                  tabIndex={caseFolderOpen ? 0 : -1}
+                  onClick={() => setActiveCase(index)}
+                  key={item.number}
+                >
+                  <span>{item.number}</span>
+                  <small>{item.label}</small>
+                  <strong>{item.title}</strong>
+                  <i>Open file ↗</i>
+                </button>
+              ))}
+            </div>
+            <div className="case-folder-front">
+              <button
+                className="case-folder-toggle"
+                type="button"
+                aria-expanded={caseFolderOpen}
+                aria-controls="case-study-papers"
+                onClick={() => setCaseFolderOpen((open) => !open)}
+              >
+                <span>Case files</span>
+                <small>{caseFolderOpen ? "Close folder" : "Open folder"}</small>
+              </button>
+              <div className="case-folder-dots" aria-hidden="true">
+                {caseStudies.map((item, index) => <i className={activeCase === index ? "is-active" : ""} key={item.number} />)}
+              </div>
+            </div>
+          </div>
+
+          <article className="case-folder-detail" id="case-study-details" role="tabpanel" aria-live="polite">
+            <div className="case-title">
+              <span>{selectedCase.number} · {selectedCase.label}</span>
+              <h3>{selectedCase.title}</h3>
+            </div>
+            <dl>
+              <div><dt>The problem</dt><dd>{selectedCase.problem}</dd></div>
+              <div><dt>What I built</dt><dd>{selectedCase.built}</dd></div>
+              <div><dt>What changed</dt><dd>{selectedCase.result}</dd></div>
+            </dl>
+            <div className="case-folder-index" aria-label="Choose a case study">
+              {caseStudies.map((item, index) => (
+                <button className={activeCase === index ? "is-active" : ""} type="button" onClick={() => { setActiveCase(index); setCaseFolderOpen(true); }} key={item.number}>
+                  <span>{item.number}</span>{item.label}
+                </button>
+              ))}
+            </div>
+          </article>
         </div>
       </section>
 
