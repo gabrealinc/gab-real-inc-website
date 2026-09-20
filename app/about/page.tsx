@@ -35,7 +35,7 @@ export default function AboutPage() {
       <section className="interior-band about-belief">
         <span>THE FUTURE IS SOMETHING WE PARTICIPATE IN</span>
         <h2>We have more power as a <em>collective.</em></h2>
-        <p>It’s time to take proactive action towards a future we are proud we created.</p>
+        <p>It’s time to take proactive action towards a future we are proud to say we helped create.</p>
       </section>
     </InteriorShell>
   );
