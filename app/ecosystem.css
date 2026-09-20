@@ -294,6 +294,14 @@
 .case-folder-dots i.is-active { background: var(--yellow); opacity: 1; }
 .case-folder-detail { min-width: 0; padding: 45px 0; }
 .case-title h3 { max-width: 520px; margin-top: 22px; font-size: clamp(2.4rem, 4.1vw, 5.1rem); line-height: .98; letter-spacing: -.05em; }
+.case-metrics { margin-top: 32px; padding: 22px 0 18px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.case-metrics-label { display: block; margin-bottom: 15px; font-size: 11px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.case-metrics-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.case-metric { min-width: 0; padding: 3px 18px 7px; border-left: 1px solid color-mix(in srgb, var(--navy) 45%, transparent); }
+.case-metric:first-child { padding-left: 0; border-left: 0; }
+.case-metric strong { display: block; color: var(--ember); font: 400 clamp(2.4rem, 4vw, 4.7rem)/.9 "Crimson Text", Georgia, serif; letter-spacing: -.045em; }
+.case-metric span { display: block; max-width: 150px; margin-top: 9px; font-size: 11px; font-weight: 700; line-height: 1.35; letter-spacing: .04em; text-transform: uppercase; }
+.case-metrics > p { max-width: 620px; margin-top: 17px; color: color-mix(in srgb, var(--ink) 72%, transparent); font-size: 12px; line-height: 1.5; }
 .case-folder-detail dl { display: grid; gap: 0; margin-top: 38px; }
 .case-folder-detail dl > div { display: grid; grid-template-columns: 125px 1fr; gap: 25px; padding: 18px 0; border-top: 1px solid color-mix(in srgb, var(--navy) 45%, transparent); }
 .case-folder-detail dt { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
@@ -656,6 +664,11 @@
   .case-folder-toggle span { font-size: 19px; }
   .case-folder-dots { right: 18px; bottom: 22px; }
   .case-folder-detail { padding: 0; }
+  .case-metrics-grid { grid-template-columns: 1fr; }
+  .case-metric { display: grid; grid-template-columns: 105px 1fr; gap: 18px; align-items: baseline; padding: 14px 0; border-left: 0; border-top: 1px solid color-mix(in srgb, var(--navy) 35%, transparent); }
+  .case-metric:first-child { padding-top: 0; border-top: 0; }
+  .case-metric strong { font-size: 3rem; }
+  .case-metric span { max-width: none; margin-top: 0; }
   .case-folder-detail dl > div { grid-template-columns: 105px 1fr; gap: 18px; }
   .case-folder-index { display: grid; grid-template-columns: 1fr; }
   .case-folder-index button { justify-content: flex-start; font-size: 13px; }

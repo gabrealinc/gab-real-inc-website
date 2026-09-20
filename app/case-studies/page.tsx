@@ -61,10 +61,23 @@ export default function CaseStudiesPage() {
               <span>{selectedCase.number} · {selectedCase.label}</span>
               <h2>{selectedCase.title}</h2>
             </div>
+            <section className="case-metrics" aria-label="Quantified outcomes">
+              <span className="case-metrics-label">Quantified outcomes</span>
+              <div className="case-metrics-grid">
+                {selectedCase.metrics.map((metric) => (
+                  <div className="case-metric" key={metric.label}>
+                    <strong>{metric.value}</strong>
+                    <span>{metric.label}</span>
+                  </div>
+                ))}
+              </div>
+              <p>{selectedCase.metricBasis}</p>
+            </section>
             <dl>
               <div><dt>The problem</dt><dd>{selectedCase.problem}</dd></div>
               <div><dt>What I built</dt><dd>{selectedCase.built}</dd></div>
               <div><dt>What changed</dt><dd>{selectedCase.result}</dd></div>
+              <div><dt>Financial impact</dt><dd>{selectedCase.financialImpact}</dd></div>
             </dl>
             <div className="case-folder-index" aria-label="Choose a case study">
               {caseStudies.map((item, index) => (

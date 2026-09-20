@@ -6,6 +6,13 @@ export const caseStudies = [
     problem: "A growing company was welcoming hundreds of partners by hand. Every person needed a web page, instructions, files, and follow-up.",
     built: "One connected process that creates the right materials and guides each person from approval to launch.",
     result: "The team spends less time copying information and more time helping people succeed.",
+    metrics: [
+      { value: "~500", label: "hours returned each month" },
+      { value: "~6,000", label: "hours returned annually" },
+      { value: "250+", label: "partners processed per month" },
+    ],
+    metricBasis: "Estimated from approximately two hours returned per partner at documented peak monthly volume.",
+    financialImpact: "6,000 recovered hours × the client’s verified loaded labor rate. Revenue created from that added capacity has not yet been isolated, so it is not presented as a result.",
   },
   {
     number: "02",
@@ -14,6 +21,13 @@ export const caseStudies = [
     problem: "Intake forms, payments, plans, and weekly check-ins lived in different places. The founder had to chase every update.",
     built: "A private client portal that brings each step together, from the first form to ongoing progress.",
     result: "Clients know what happens next, and the team can support them without the constant manual follow-up.",
+    metrics: [
+      { value: "~5", label: "hours returned per new client" },
+      { value: "~10", label: "hours returned each week" },
+      { value: "~520", label: "recurring hours returned annually" },
+    ],
+    metricBasis: "Annual estimate uses ten hours per week across 52 weeks and does not include the separate per-client savings.",
+    financialImpact: "Five hours per new client plus recurring weekly time × the team’s verified loaded labor rate. Incremental revenue has not yet been isolated from other growth factors.",
   },
   {
     number: "03",
@@ -22,5 +36,12 @@ export const caseStudies = [
     problem: "Important information was spread across different tools, so reports were slow to build and hard to trust.",
     built: "A central workspace that brings the company’s data together and gives each team a clear view of its work.",
     result: "Leaders can see what is happening sooner, make decisions with confidence, and catch problems before they grow.",
+    metrics: [
+      { value: "4", label: "disconnected platforms unified" },
+      { value: "230+", label: "clients visible in one system" },
+      { value: "1", label: "shared operating view" },
+    ],
+    metricBasis: "Scale metrics are documented. A reliable before-and-after reporting-time baseline is still being established.",
+    financialImpact: "The system protects decision speed and removes repeated reporting work. A dollar value will be added only after the time baseline and revenue attribution are verified.",
   },
 ];
