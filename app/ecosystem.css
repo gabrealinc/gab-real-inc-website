@@ -141,11 +141,14 @@
 .liquid-divider canvas { width: 100%; height: 100%; display: block; }
 
 /* Philosophy and course */
-.philosophy-section { height: 155svh; position: relative; background: var(--yellow); border-bottom: 1px solid var(--navy); }
+.philosophy-section { height: 145svh; position: relative; background: var(--yellow); border-bottom: 1px solid var(--navy); }
 .philosophy-sticky { min-height: 100svh; position: sticky; top: 0; display: flex; flex-direction: column; padding: 105px 6% 48px; overflow: hidden; }
-.philosophy-copy-wrap { width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 42px 0; text-align: center; }
-.philosophy-copy-wrap > .eyebrow { margin-bottom: 28px; color: var(--blue); }
-.philosophy-statement { max-width: 1180px; font: 500 clamp(2.7rem, 3.5vw, 4.7rem)/1 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.05em; }
+.philosophy-copy-wrap { width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 34px 0; text-align: center; }
+.philosophy-copy-wrap > .eyebrow { margin-bottom: 22px; color: var(--blue); }
+.philosophy-headline { max-width: 1200px; color: var(--blue); font-size: clamp(4.9rem, 9.2vw, 10.8rem); line-height: .79; letter-spacing: -.07em; text-transform: uppercase; }
+.philosophy-headline span, .philosophy-headline em { display: block; }
+.philosophy-headline em { font-size: .82em; line-height: .9; text-transform: lowercase; }
+.philosophy-statement { max-width: 830px; margin-top: 44px !important; font: 600 clamp(1.15rem, 1.7vw, 1.65rem)/1.35 "Instrument Sans", DM, Arial, sans-serif; letter-spacing: -.03em; }
 .philosophy-statement span { color: color-mix(in srgb, var(--navy) 15%, var(--yellow)); transition: color .18s linear; }
 .philosophy-statement span.is-lit { color: var(--navy); }
 .philosophy-footer { display: flex; justify-content: space-between; align-items: end; gap: 35px; }
@@ -343,11 +346,13 @@
   .hero-question p { font-size: 14px; }
   .hero-education { display: none; }
   .hero-service-line { left: 6%; right: 6%; bottom: 30px; flex-wrap: wrap; gap: 7px 11px; }
-  .philosophy-section { height: 165svh; }
+  .philosophy-section { height: 155svh; }
   .philosophy-sticky { min-height: 100svh; padding: 92px 6% 34px; }
-  .philosophy-copy-wrap { padding: 18px 0; }
-  .philosophy-copy-wrap > .eyebrow { margin-bottom: 20px; }
-  .philosophy-statement { font-size: clamp(1.7rem, 7.3vw, 2.45rem); line-height: 1.03; letter-spacing: -.045em; }
+  .philosophy-copy-wrap { padding: 14px 0 22px; }
+  .philosophy-copy-wrap > .eyebrow { margin-bottom: 17px; }
+  .philosophy-headline { font-size: clamp(3.65rem, 16.7vw, 5.8rem); line-height: .8; }
+  .philosophy-headline em { font-size: .78em; line-height: .92; }
+  .philosophy-statement { max-width: 520px; margin-top: 32px !important; font-size: clamp(1.05rem, 4.75vw, 1.35rem); line-height: 1.32; letter-spacing: -.025em; }
   .philosophy-footer { align-items: flex-start; flex-direction: column; gap: 18px; }
   .philosophy-footer p { max-width: 290px; font-size: 14px; }
   .philosophy-progress { width: 100%; }
