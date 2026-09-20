@@ -6,6 +6,21 @@ import { useEffect, useRef, useState } from "react";
 const philosophyStatement = "You do not need to be technical to take part in the conversation about AI. You do not even need to use it. But you do deserve to understand the technologies and systems shaping your work, your choices, and our collective future. Literacy creates agency: the ability to ask better questions, challenge the default, decide what should be automated, protect what should stay human, and help shape what comes next.";
 const philosophyWords = philosophyStatement.split(" ");
 
+const courseSteps = [
+  { title: "Understand", copy: "Know what AI is doing, what it is guessing, and where human judgment still matters." },
+  { title: "Choose", copy: "Decide which tools deserve a place in your work and which ones are more noise than help." },
+  { title: "Set up", copy: "Give the tool useful context, clear boundaries, and information you are comfortable sharing." },
+  { title: "Use", copy: "Ask better questions, check the answer, and keep your own voice and judgment in the process." },
+  { title: "Improve", copy: "Notice what works, remove what does not, and build a practice that gets more useful over time." },
+];
+
+const services = [
+  { title: "Team training", label: "Learn together", copy: "Clear, practical sessions that help your team use AI in everyday work and understand where to be careful.", fit: "Best when people need a shared language and a confident place to begin." },
+  { title: "Speaking", label: "Start the conversation", copy: "Keynotes and conversations about AI, the future of work, and what people should still control.", fit: "Best for events, leadership gatherings, and teams navigating change." },
+  { title: "AI advice", label: "Make better decisions", copy: "Ongoing help choosing tools, setting priorities, and making confident decisions as technology changes.", fit: "Best when the questions keep changing and you want a trusted thinking partner." },
+  { title: "Custom systems", label: "Build what is useful", copy: "Workflows, dashboards, and AI assistants designed around how your business really works.", fit: "Best when the problem is clear and the current process is costing too much time." },
+];
+
 const bookLeaves = [
   [
     { eyebrow: "GABRIELLE GREENBERG + RYAN WELTI", title: "FROM SCRATCH", copy: "Creating a life that feels like yours.", cover: true },
@@ -48,31 +63,98 @@ const caseStudies = [
   },
 ];
 
-const testimonials = [
-  {
-    quote: "Gabby integrated everything we needed. My clients now have a flawless experience from discovery call to payment. It’s like she built a magic backstage conveyor belt that handles every detail.",
-    name: "Olivia M.",
-    role: "Wellness Coach",
-  },
-  {
-    quote: "Implementing new systems is always overwhelming, but Gabby made it so smooth and simple. Now we have real-time visibility into every prospect, and our follow-up rates have skyrocketed.",
-    name: "Sarah L.",
-    role: "Director of Operations",
-  },
-  {
-    quote: "Our team loved working with Gabby. She was patient, explained everything clearly, and made sure we could confidently use the system ourselves.",
-    name: "Emily K.",
-    role: "Head of Client Success",
-  },
-];
-
 const navLinks = [
   ["The idea", "#explore"],
   ["Learn AI", "#course"],
   ["Work with me", "#work-with-me"],
   ["Case studies", "#selected-work"],
-  ["Client notes", "#testimonials"],
+  ["More to life", "#more"],
 ];
+
+function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const context = canvas.getContext("2d");
+    if (!context) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let frame = 0;
+    let running = true;
+    let lastScroll = window.scrollY;
+    let energy = 0;
+    let direction = 1;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(1, Math.round(rect.width * ratio));
+      canvas.height = Math.max(1, Math.round(rect.height * ratio));
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+    const onScroll = () => {
+      const delta = window.scrollY - lastScroll;
+      if (Math.abs(delta) > 1) direction = Math.sign(delta);
+      energy = Math.min(34, energy + Math.abs(delta) * .18);
+      lastScroll = window.scrollY;
+    };
+    const draw = (time = 0) => {
+      const { width, height } = canvas.getBoundingClientRect();
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = bottom;
+      context.fillRect(0, 0, width, height);
+
+      const amplitude = reducedMotion ? 4 : 7 + energy;
+      context.beginPath();
+      context.moveTo(0, 0);
+      context.lineTo(0, height * .48);
+      for (let x = 0; x <= width + 8; x += 8) {
+        const wave = Math.sin(x * .012 + time * .0011 * direction) * amplitude;
+        const ripple = Math.sin(x * .031 - time * .0018 * direction) * amplitude * .32;
+        context.lineTo(x, height * .48 + wave + ripple);
+      }
+      context.lineTo(width, 0);
+      context.closePath();
+      context.fillStyle = top;
+      context.fill();
+
+      context.beginPath();
+      for (let x = 0; x <= width + 8; x += 8) {
+        const y = height * .49 + Math.sin(x * .014 + time * .0013 * direction) * amplitude * .7;
+        if (x === 0) context.moveTo(x, y);
+        else context.lineTo(x, y);
+      }
+      context.strokeStyle = "rgba(182,58,36,.38)";
+      context.lineWidth = 2;
+      context.stroke();
+      energy *= .92;
+      if (running && !reducedMotion) frame = window.requestAnimationFrame(draw);
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      running = entry.isIntersecting;
+      if (running && !reducedMotion) {
+        window.cancelAnimationFrame(frame);
+        frame = window.requestAnimationFrame(draw);
+      }
+    });
+    resize();
+    draw();
+    observer.observe(canvas);
+    window.addEventListener("resize", resize);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      running = false;
+      observer.disconnect();
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [top, bottom]);
+
+  return <div className="liquid-divider" aria-hidden="true" style={{ background: bottom }}><canvas ref={canvasRef} /></div>;
+}
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -80,8 +162,27 @@ export default function Home() {
   const [activeCase, setActiveCase] = useState(0);
   const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
   const [bookPage, setBookPage] = useState(0);
+  const [activeCourseStep, setActiveCourseStep] = useState(0);
+  const [activeService, setActiveService] = useState(0);
+  const [moreIndex, setMoreIndex] = useState(0);
+  const [heroRevealActive, setHeroRevealActive] = useState(false);
+  const [curtainPhase, setCurtainPhase] = useState<"closed" | "open" | "done">("closed");
   const philosophyRef = useRef<HTMLElement>(null);
+  const moreTouchStart = useRef<number | null>(null);
   const selectedCase = caseStudies[activeCase];
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCurtainPhase("done");
+      return;
+    }
+    const openTimer = window.setTimeout(() => setCurtainPhase("open"), 80);
+    const doneTimer = window.setTimeout(() => setCurtainPhase("done"), 980);
+    return () => {
+      window.clearTimeout(openTimer);
+      window.clearTimeout(doneTimer);
+    };
+  }, []);
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -148,6 +249,11 @@ export default function Home() {
 
   return (
     <main className="ecosystem" id="top">
+      {curtainPhase !== "done" && (
+        <div className={`curtain-reveal ${curtainPhase === "open" ? "is-open" : ""}`} aria-hidden="true">
+          <div /><div /><span>Gab Real Inc.</span>
+        </div>
+      )}
       <a className="skip-link" href="#main-content">Skip to content</a>
 
       <div className={`nav-underlay nav-underlay-tan ${menuOpen ? "is-open" : ""}`} aria-hidden="true" />
@@ -187,8 +293,19 @@ export default function Home() {
           <p>Gab Real Inc. helps founders and teams understand AI, make smarter business decisions, and design better ways of working.</p>
           <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
-        <div className="hero-collage" aria-label="A warm editorial collage featuring a martini, a vintage telephone, a speedboat, and a tennis court">
+        <div
+          className={`hero-collage ${heroRevealActive ? "has-reveal" : ""}`}
+          aria-label="A warm editorial collage featuring a martini, a vintage telephone, a speedboat, and a tennis court"
+          onPointerEnter={() => setHeroRevealActive(true)}
+          onPointerLeave={() => setHeroRevealActive(false)}
+          onPointerMove={(event) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            event.currentTarget.style.setProperty("--reveal-x", `${event.clientX - rect.left}px`);
+            event.currentTarget.style.setProperty("--reveal-y", `${event.clientY - rect.top}px`);
+          }}
+        >
           <figure className="hero-main-image"><img src="/studio-martini.png" alt="Martini beside a vintage telephone and record player" width="816" height="960" fetchPriority="high" /></figure>
+          <figure className="hero-liquid-reveal" aria-hidden="true"><img src="/studio-record.png" alt="" width="816" height="960" /></figure>
           <figure className="hero-polaroid hero-boat"><img src="/studio-boat.png" alt="Woman looking through binoculars on a speedboat" width="816" height="960" /><figcaption>Perspective<br />changes things.</figcaption></figure>
           <figure className="hero-polaroid hero-tennis"><img src="/studio-tennis.png" alt="Martini glass resting on a tennis racket" width="816" height="960" /><figcaption>Aperitivo<br />is a valid KPI.</figcaption></figure>
           <div className="hero-card hero-confidence"><small>CONFIDENCE</small><strong>+ clarity</strong><span aria-hidden="true">⌁⌁⌁</span></div>
@@ -216,6 +333,8 @@ export default function Home() {
         </div>
       </section>
 
+      <LiquidDivider top="#f2eee2" bottom="#171714" />
+
       <section className="course-section" id="course" data-rise>
         <div className="section-label"><span>02</span><span>LEARN AI</span></div>
         <div className="course-grid">
@@ -228,8 +347,24 @@ export default function Home() {
             <a className="primary-link light" href="/learn">Explore the course <ArrowUpRight size={18} /></a>
           </div>
         </div>
-        <div className="course-path" aria-label="Course learning path"><span>Understand</span><span>Choose</span><span>Set up</span><span>Use</span><span>Improve</span></div>
+        <div className="course-flipper" role="tablist" aria-label="Course learning path">
+          {courseSteps.map((step, index) => (
+            <button
+              className={activeCourseStep === index ? "is-active" : ""}
+              type="button"
+              role="tab"
+              aria-selected={activeCourseStep === index}
+              onClick={() => setActiveCourseStep(index)}
+              onMouseEnter={() => setActiveCourseStep(index)}
+              key={step.title}
+            >
+              <span>0{index + 1}</span><strong>{step.title}</strong><p>{step.copy}</p>
+            </button>
+          ))}
+        </div>
       </section>
+
+      <LiquidDivider top="#171714" bottom="#f2eee2" />
 
       <section className="plain-section work-section" id="work-with-me" data-rise>
         <div className="section-label"><span>03</span><span>WORK WITH ME</span></div>
@@ -237,11 +372,30 @@ export default function Home() {
           <h2>Choose the help<br /><em>you actually need.</em></h2>
           <p>From one useful conversation to a complete system built around your business.</p>
         </div>
-        <div className="services">
-          <article><span>01</span><h3>Team training</h3><p>Clear, practical sessions that help your team use AI in everyday work and understand where to be careful.</p></article>
-          <article><span>02</span><h3>Speaking</h3><p>Keynotes and conversations about AI, the future of work, and what people should still control.</p></article>
-          <article><span>03</span><h3>AI advice</h3><p>Ongoing help choosing tools, setting priorities, and making confident decisions as technology changes.</p></article>
-          <article><span>04</span><h3>Custom systems</h3><p>Workflows, dashboards, and AI assistants designed around how your business really works.</p></article>
+        <div className="service-switcher">
+          <div className="service-tabs" role="tablist" aria-label="Ways to work together">
+            {services.map((service, index) => (
+              <button
+                className={activeService === index ? "is-active" : ""}
+                type="button"
+                role="tab"
+                aria-selected={activeService === index}
+                aria-controls="service-panel"
+                onMouseEnter={() => setActiveService(index)}
+                onFocus={() => setActiveService(index)}
+                onClick={() => setActiveService(index)}
+                key={service.title}
+              >
+                <span>0{index + 1}</span>{service.title}
+              </button>
+            ))}
+          </div>
+          <article className="service-panel" id="service-panel" role="tabpanel" aria-live="polite">
+            <span>{services[activeService].label}</span>
+            <h3>{services[activeService].title}</h3>
+            <p>{services[activeService].copy}</p>
+            <small>{services[activeService].fit}</small>
+          </article>
         </div>
         <a className="primary-link" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a>
       </section>
@@ -313,28 +467,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="plain-section testimonial-section" id="testimonials" data-rise>
-        <div className="section-label"><span>05</span><span>CLIENT NOTES</span></div>
-        <div className="section-heading testimonial-heading"><h2>Kind words from<br /><em>people I’ve helped.</em></h2></div>
-        <div className="testimonials">
-          {testimonials.map((item, index) => (
-            <blockquote key={item.name}>
-              <span>0{index + 1}</span>
-              <p>“{item.quote}”</p>
-              <footer><strong>{item.name}</strong><small>{item.role}</small></footer>
-            </blockquote>
-          ))}
-        </div>
-      </section>
-
       <section className="more-section" id="more" data-rise>
-        <div className="section-label"><span>06</span><span>MORE TO LIFE</span></div>
+        <div className="section-label"><span>05</span><span>MORE TO LIFE</span></div>
         <div className="section-heading">
           <h2>Work matters.<br /><em>It isn’t everything.</em></h2>
           <p>The other places I explore identity, creativity, technology, and how we choose to live.</p>
         </div>
-        <div className="more-links">
-          <article className="from-scratch-feature">
+        <div
+          className="more-carousel"
+          onTouchStart={(event) => { moreTouchStart.current = event.touches[0]?.clientX ?? null; }}
+          onTouchEnd={(event) => {
+            if (moreTouchStart.current === null) return;
+            const distance = (event.changedTouches[0]?.clientX ?? moreTouchStart.current) - moreTouchStart.current;
+            if (Math.abs(distance) > 45) setMoreIndex((index) => Math.max(0, Math.min(2, index + (distance < 0 ? 1 : -1))));
+            moreTouchStart.current = null;
+          }}
+        >
+          <div className="more-carousel-track">
+          <article className={`more-card from-scratch-feature ${moreIndex === 0 ? "is-active" : ""}`} data-position={0 - moreIndex} onClick={() => setMoreIndex(0)}>
             <span>THE BOOK</span>
             <div className={`interactive-book-stage ${bookPage > 0 ? "is-open" : ""}`}>
               <button
@@ -362,16 +512,26 @@ export default function Home() {
               <h3>From Scratch.</h3><p>Question the life you inherited and create one that feels like yours.</p><ArrowUpRight />
             </a>
           </article>
-          <a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer"><span>THE WRITING</span><h3>Grow with Gab.</h3><p>Essays about AI, identity, creativity, work, and whatever I cannot stop thinking about.</p><ArrowUpRight /></a>
-          <article><span>THE PODCAST</span><h3>Exploit.</h3><p>Honest conversations about technology, creativity, and what comes next.</p><small>COMING SOON</small></article>
+          <a className={`more-card more-writing ${moreIndex === 1 ? "is-active" : ""}`} data-position={1 - moreIndex} onClick={(event) => { if (moreIndex !== 1) { event.preventDefault(); setMoreIndex(1); } }} href="https://growithgab.substack.com/" target="_blank" rel="noreferrer" tabIndex={moreIndex === 1 ? 0 : -1}><span>THE WRITING</span><h3>Grow with Gab.</h3><p>Essays about AI, identity, creativity, work, and whatever I cannot stop thinking about.</p><ArrowUpRight /></a>
+          <article className={`more-card more-podcast ${moreIndex === 2 ? "is-active" : ""}`} data-position={2 - moreIndex} onClick={() => setMoreIndex(2)}><span>THE PODCAST</span><h3>Exploit.</h3><p>Honest conversations about technology, creativity, and what comes next.</p><small>COMING SOON</small></article>
+          </div>
+          <div className="more-carousel-controls">
+            <button type="button" onClick={() => setMoreIndex((index) => Math.max(0, index - 1))} disabled={moreIndex === 0} aria-label="Previous item">←</button>
+            <span>0{moreIndex + 1} / 03</span>
+            <button type="button" onClick={() => setMoreIndex((index) => Math.min(2, index + 1))} disabled={moreIndex === 2} aria-label="Next item">→</button>
+          </div>
         </div>
       </section>
+
+      <LiquidDivider top="#f2eee2" bottom="#b63a24" />
 
       <section className="final-cta" id="contact" data-rise>
         <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
         <h2>Let’s make it<br /><em>actually useful.</em></h2>
         <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
       </section>
+
+      <LiquidDivider top="#b63a24" bottom="#171714" />
 
       <footer className="ecosystem-footer">
         <a className="footer-wordmark" href="#top">Gab Real Inc.</a>
