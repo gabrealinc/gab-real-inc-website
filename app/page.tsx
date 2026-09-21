@@ -119,6 +119,7 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
 }
 
 export default function Home() {
+  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl">("portal");
   const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
   const [bookPage, setBookPage] = useState(0);
   const [activeService, setActiveService] = useState(0);
@@ -132,6 +133,11 @@ export default function Home() {
   const philosophyRef = useRef<HTMLElement>(null);
   const moreCarouselRef = useRef<HTMLDivElement>(null);
   const moreTouchStart = useRef<number | null>(null);
+
+  useEffect(() => {
+    const requestedVariant = new URLSearchParams(window.location.search).get("hero");
+    if (requestedVariant === "portal" || requestedVariant === "portal-editorial" || requestedVariant === "vinyl") setHeroVariant(requestedVariant);
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -238,6 +244,8 @@ export default function Home() {
     };
   }, []);
 
+  const isSimpleSunset = heroVariant === "portal";
+
   return (
     <main className="ecosystem home-page" id="top">
       {curtainPhase !== "done" && (
@@ -249,23 +257,34 @@ export default function Home() {
 
       <SiteNavigation />
 
-      <section className="editorial-hero" id="main-content" ref={heroRef}>
-        <div className="hero-collage" aria-label="A surreal retro scene about technology, imagination, and possibility">
-          <figure className="hero-main-image"><img src="/course-cosmic.png" alt="A retro illustration of a woman working on a laptop inside a glowing orange galaxy" width="864" height="1536" fetchPriority="high" /></figure>
-          <div className="hero-card hero-confidence"><small>CONFIDENCE</small><strong>+ clarity</strong><span aria-hidden="true">⌁⌁⌁</span></div>
-          <a className="hero-card hero-question" href="/learn" aria-label="Start with the AI course"><small>THE FIRST QUESTION</small><p>What problem<br />are we actually<br />solving?</p><em>start here ↗</em></a>
+      <section className={`editorial-hero solar-hero hero-concept-${heroVariant}`} id="main-content" ref={heroRef}>
+        <div className="solar-backdrop" aria-hidden="true">
+          {!isSimpleSunset && <>
+            <span className="solar-slice solar-slice-one" />
+            <span className="solar-slice solar-slice-two" />
+            <span className="solar-rays" />
+            <span className="solar-orb" />
+            <div className="solar-brand"><span>Gab Real</span><span>Inc.</span></div>
+            <div className="solar-caption"><span>CLARITY</span><i /> <span>AGENCY</span><i /> <span>HUMANITY</span></div>
+          </>}
         </div>
         <div className="hero-copy">
-          <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
-          <h1><span>Use AI to think</span><span>more clearly.</span><strong>Build what matters.</strong></h1>
-          <p>Gab Real Inc. helps founders and teams understand AI, make smarter business decisions, and design better ways of working.</p>
+          {isSimpleSunset ? <>
+            <span className="eyebrow">HUMAN-FIRST AI</span>
+            <h1><span>AI Made</span><span>Simple.</span><strong>No fluff. No bullshit.</strong></h1>
+            <p>Learn to make informed decisions around AI without having to become an engineer.</p>
+          </> : <>
+            <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
+            <h1><span>Use AI to think</span><span>more clearly.</span><strong>Build what matters.</strong></h1>
+            <p>Gab Real Inc. helps founders and teams understand AI, make smarter business decisions, and design better ways of working.</p>
+          </>}
           <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
-        <div className="hero-service-line" aria-label="Services: team training, speaking, AI advice, and custom systems">
+        {isSimpleSunset ? <p className="sunset-slogan">Touch more grass. Watch more sunsets.</p> : <div className="hero-service-line" aria-label="Services: team training, speaking, AI advice, and custom systems">
           <div className="hero-service-track" aria-hidden="true">
             {[...heroServices, ...heroServices].map((service, index) => <span key={`${service}-${index}`}>{service}<i /></span>)}
           </div>
-        </div>
+        </div>}
       </section>
 
       <section className="philosophy-section" id="explore" ref={philosophyRef}>
