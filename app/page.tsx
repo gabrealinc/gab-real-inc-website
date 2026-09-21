@@ -239,7 +239,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="ecosystem" id="top">
+    <main className="ecosystem home-page" id="top">
       {curtainPhase !== "done" && (
         <div className={`curtain-reveal ${curtainPhase === "open" ? "is-open" : ""}`} aria-hidden="true">
           <div /><div /><span>Gab Real Inc.</span>
