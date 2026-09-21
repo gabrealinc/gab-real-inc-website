@@ -195,7 +195,11 @@
 .hero-concept-portal .hero-copy h1 span { display: block; white-space: nowrap; }
 .hero-concept-portal .hero-copy h1 strong { margin-top: 28px; font-family: DM, Inter, Arial, sans-serif; font-size: .24em; font-style: normal; font-weight: 650; letter-spacing: -.035em; }
 .hero-concept-portal .hero-copy > p { max-width: none; margin-top: 26px; font-size: clamp(1.05rem, 1.3vw, 1.3rem); line-height: 1.45; white-space: nowrap; }
-.sunset-slogan { position: absolute; z-index: 7; right: 6%; bottom: 27px; margin: 0; color: var(--yellow); font: italic 400 clamp(1.2rem, 1.7vw, 1.65rem)/1.1 "Crimson Text", Georgia, serif; }
+.sunset-slogan { position: absolute; z-index: 7; left: 0; right: 0; bottom: 36px; overflow: hidden; color: var(--yellow); font: italic 400 clamp(1.55rem, 2.2vw, 2.15rem)/1.1 "Crimson Text", Georgia, serif; text-align: center; }
+.sunset-slogan-track { width: max-content; display: flex; align-items: center; position: relative; left: 50%; animation: sunset-slogan-marquee 22s linear infinite; }
+.sunset-slogan-track span { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; white-space: nowrap; }
+.sunset-slogan-track i { width: 5px; height: 5px; display: block; flex: 0 0 auto; border-radius: 50%; background: var(--orange-soft); }
+@keyframes sunset-slogan-marquee { from { transform: translateX(-37.5%); } to { transform: translateX(-62.5%); } }
 
 .hero-concept-portal-editorial .solar-backdrop { background: #2f0a04 url("/hero-portal.png") center / cover no-repeat; }
 .hero-concept-portal-editorial .solar-backdrop::before { background: linear-gradient(90deg, rgba(13, 43, 56, .72) 0%, rgba(13, 43, 56, .22) 54%, rgba(204, 51, 10, .2)), linear-gradient(180deg, rgba(35, 7, 4, .08), rgba(35, 7, 4, .54)); mix-blend-mode: normal; }
@@ -640,7 +644,7 @@
   .plain-section, .case-section, .more-section, .course-section { padding: 68px 6%; }
   .section-heading { grid-template-columns: 1fr; gap: 28px; padding: 48px 0 42px; }
   .section-heading h2, .course-grid h2, .final-cta h2 { font-size: clamp(3rem, 13vw, 4.8rem); }
-  .editorial-hero { min-height: 100svh; padding: 100px 6% 78px; align-items: flex-end; background: #230704; border-bottom-color: rgba(244, 239, 227, .14); }
+  .editorial-hero { min-height: 610px; height: 78svh; max-height: 680px; padding: 100px 6% 106px; align-items: flex-end; background: #230704; border-bottom-color: rgba(244, 239, 227, .14); }
   .editorial-hero::before { content: none; }
   .hero-copy { width: 100%; padding: 0 0 20px; color: var(--yellow); }
   .hero-copy > .eyebrow { font-size: 10px; color: var(--yellow); }
@@ -657,22 +661,28 @@
   .solar-brand { top: 13%; flex-direction: column; gap: 0; font-size: clamp(4.7rem, 20vw, 6.4rem); line-height: .68; white-space: normal; }
   .solar-caption { display: none; }
   .hero-concept-portal .solar-backdrop, .hero-concept-portal-editorial .solar-backdrop, .hero-concept-vinyl .solar-backdrop { background-size: auto 100%; animation: portrait-hero-drift 13s ease-in-out infinite alternate; }
-  .hero-concept-portal { align-items: center; padding: 92px 6% 86px; }
-  .hero-concept-portal .solar-backdrop { background-position: 50% 52%; background-size: auto 108%; animation: sunset-mobile-drift 16s ease-in-out infinite alternate; }
+  .hero-concept-portal { padding: 92px 6% 112px; }
+  .hero-concept-portal.hero-mobile-copy-top { align-items: flex-start; }
+  .hero-concept-portal.hero-mobile-copy-bottom { align-items: flex-end; }
+  .hero-concept-portal .solar-backdrop { background-position: 50% 50%; background-size: auto 126%; animation: sunset-mobile-drift 16s ease-in-out infinite alternate; }
   .hero-concept-portal .solar-slice, .hero-concept-portal-editorial .solar-slice, .hero-concept-vinyl .solar-slice { background-image: none; }
   .hero-concept-portal .solar-brand, .hero-concept-vinyl .solar-brand { top: 12%; justify-content: center; padding-left: 0; font-size: clamp(4.5rem, 19vw, 6.1rem); }
-  .hero-concept-portal .solar-backdrop::before { background: linear-gradient(180deg, rgba(24, 4, 2, .22) 0%, rgba(28, 4, 2, .12) 40%, rgba(24, 4, 2, .76) 100%); }
+  .hero-concept-portal .solar-backdrop::before { background: linear-gradient(180deg, rgba(18, 3, 2, .5) 0%, rgba(26, 4, 2, .16) 39%, rgba(20, 3, 2, .68) 100%); }
   .hero-concept-portal .solar-orb { top: 27%; width: 62vw; }
   .hero-concept-portal .solar-rays { top: 27%; width: 120vw; }
   .hero-concept-portal .hero-copy, .hero-concept-vinyl .hero-copy { padding-bottom: 12px; text-shadow: 0 2px 18px rgba(23, 7, 4, .5); }
-  .hero-concept-portal .hero-copy { width: 100%; padding-top: 18px; }
+  .hero-concept-portal .hero-copy { width: 100%; padding: 18px 0 16px; }
+  .hero-concept-portal.hero-mobile-copy-top .hero-copy { margin-top: 0; }
+  .hero-concept-portal.hero-mobile-copy-bottom .hero-copy { margin-bottom: 2px; }
   .hero-concept-portal .hero-copy h1 { margin-top: 17px; font-size: clamp(2.65rem, 11.7vw, 3.55rem); line-height: .79; }
   .hero-concept-portal .hero-copy h1 strong { margin-top: 22px; font-size: .25em; line-height: 1.05; }
   .hero-concept-vinyl .hero-copy h1 { font-size: clamp(2.22rem, 9.45vw, 2.9rem); }
   .hero-concept-portal .hero-copy > p { max-width: 340px; margin-top: 20px; font-size: .98rem; line-height: 1.43; white-space: normal; }
   .hero-concept-vinyl .hero-copy > p { margin-top: 16px; font-size: .87rem; line-height: 1.4; }
   .hero-concept-portal .hero-button, .hero-concept-vinyl .hero-button { margin-top: 16px; padding: 13px 18px; }
-  .sunset-slogan { right: auto; left: 6%; bottom: 23px; font-size: 1.15rem; }
+  .sunset-slogan { bottom: 38px; font-size: clamp(1.45rem, 6.7vw, 1.85rem); text-shadow: 0 2px 14px rgba(23, 7, 4, .68); }
+  .sunset-slogan-track { animation-duration: 18s; }
+  .sunset-slogan-track span { gap: 22px; padding-right: 22px; }
   .hero-concept-portal-editorial .solar-brand { top: 11%; justify-content: center; padding-left: 0; font-size: clamp(4.15rem, 17.5vw, 5.7rem); }
   .hero-concept-portal-editorial .hero-copy { width: 100%; margin-left: 0; padding: 19px 20px 20px; }
   .hero-concept-portal-editorial .hero-copy h1 { margin-top: 12px; font-size: clamp(1.95rem, 8.35vw, 2.55rem); }

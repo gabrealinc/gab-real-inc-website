@@ -67,7 +67,8 @@ function HeroWaterCanvas() {
       if (!image.naturalWidth || !image.naturalHeight) return;
       const width = source.width;
       const height = source.height;
-      const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
+      const mobileZoom = width <= 720 ? 1.18 : 1;
+      const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight) * mobileZoom;
       const drawWidth = image.naturalWidth * scale;
       const drawHeight = image.naturalHeight * scale;
       const x = (width - drawWidth) / 2;
@@ -238,6 +239,7 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
 
 export default function Home() {
   const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl">("portal");
+  const [mobileCopyPosition, setMobileCopyPosition] = useState<"top" | "bottom">("top");
   const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
   const [bookPage, setBookPage] = useState(0);
   const [activeService, setActiveService] = useState(0);
@@ -253,8 +255,11 @@ export default function Home() {
   const moreTouchStart = useRef<number | null>(null);
 
   useEffect(() => {
-    const requestedVariant = new URLSearchParams(window.location.search).get("hero");
+    const search = new URLSearchParams(window.location.search);
+    const requestedVariant = search.get("hero");
+    const requestedCopyPosition = search.get("copy");
     if (requestedVariant === "portal" || requestedVariant === "portal-editorial" || requestedVariant === "vinyl") setHeroVariant(requestedVariant);
+    if (requestedCopyPosition === "bottom") setMobileCopyPosition("bottom");
   }, []);
 
   useEffect(() => {
@@ -375,7 +380,7 @@ export default function Home() {
 
       <SiteNavigation />
 
-      <section className={`editorial-hero solar-hero hero-concept-${heroVariant}`} id="main-content" ref={heroRef}>
+      <section className={`editorial-hero solar-hero hero-concept-${heroVariant} hero-mobile-copy-${mobileCopyPosition}`} id="main-content" ref={heroRef}>
         <div className="solar-backdrop" aria-hidden="true">
           {isSimpleSunset && <HeroWaterCanvas />}
           {!isSimpleSunset && <>
@@ -399,7 +404,7 @@ export default function Home() {
           </>}
           <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
-        {isSimpleSunset ? <p className="sunset-slogan">Touch more grass. Watch more sunsets.</p> : <div className="hero-service-line" aria-label="Services: team training, speaking, AI advice, and custom systems">
+        {isSimpleSunset ? <div className="sunset-slogan" aria-label="Touch more grass. Watch more sunsets."><div className="sunset-slogan-track" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span key={index}>Touch more grass. Watch more sunsets.<i /></span>)}</div></div> : <div className="hero-service-line" aria-label="Services: team training, speaking, AI advice, and custom systems">
           <div className="hero-service-track" aria-hidden="true">
             {[...heroServices, ...heroServices].map((service, index) => <span key={`${service}-${index}`}>{service}<i /></span>)}
           </div>
