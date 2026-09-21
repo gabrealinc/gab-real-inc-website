@@ -238,7 +238,7 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
 }
 
 export default function Home() {
-  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl">("portal");
+  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl" | "studio">("portal");
   const [mobileCopyPosition, setMobileCopyPosition] = useState<"top" | "bottom">("top");
   const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
   const [bookPage, setBookPage] = useState(0);
@@ -258,7 +258,7 @@ export default function Home() {
     const search = new URLSearchParams(window.location.search);
     const requestedVariant = search.get("hero");
     const requestedCopyPosition = search.get("copy");
-    if (requestedVariant === "portal" || requestedVariant === "portal-editorial" || requestedVariant === "vinyl") setHeroVariant(requestedVariant);
+    if (requestedVariant === "portal" || requestedVariant === "portal-editorial" || requestedVariant === "vinyl" || requestedVariant === "studio") setHeroVariant(requestedVariant);
     if (requestedCopyPosition === "bottom") setMobileCopyPosition("bottom");
   }, []);
 
@@ -368,6 +368,7 @@ export default function Home() {
   }, []);
 
   const isSimpleSunset = heroVariant === "portal";
+  const isStudioHero = heroVariant === "studio";
 
   return (
     <main className="ecosystem home-page" id="top">
@@ -383,7 +384,8 @@ export default function Home() {
       <section className={`editorial-hero solar-hero hero-concept-${heroVariant} hero-mobile-copy-${mobileCopyPosition}`} id="main-content" ref={heroRef}>
         <div className="solar-backdrop" aria-hidden="true">
           {isSimpleSunset && <HeroWaterCanvas />}
-          {!isSimpleSunset && <>
+          {isStudioHero && <><span className="studio-aurora studio-aurora-one" /><span className="studio-aurora studio-aurora-two" /><span className="studio-horizon" /></>}
+          {!isSimpleSunset && !isStudioHero && <>
             <span className="solar-slice solar-slice-one" />
             <span className="solar-slice solar-slice-two" />
             <span className="solar-rays" />
@@ -393,7 +395,7 @@ export default function Home() {
           </>}
         </div>
         <div className="hero-copy">
-          {isSimpleSunset ? <>
+          {isSimpleSunset || isStudioHero ? <>
             <span className="eyebrow">HUMAN-FIRST AI</span>
             <h1><span>AI Made Simple.</span><strong>No fluff. No bullshit.</strong></h1>
             <p>Learn to make informed decisions around AI without having to become an engineer.</p>
@@ -404,7 +406,11 @@ export default function Home() {
           </>}
           <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
-        {isSimpleSunset ? <div className="sunset-slogan" aria-label="Touch more grass. Watch more sunsets."><div className="sunset-slogan-track" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span key={index}>Touch more grass. Watch more sunsets.<i /></span>)}</div></div> : <div className="hero-service-line" aria-label="Services: team training, speaking, AI advice, and custom systems">
+        {isStudioHero && <>
+          <div className="studio-giant-type" aria-hidden="true">AI</div>
+          <div className="studio-hero-footer"><span>Human-first AI</span><span>Touch more grass. Watch more sunsets.</span><span>Scroll to explore ↓</span></div>
+        </>}
+        {isSimpleSunset ? <div className="sunset-slogan" aria-label="Touch more grass. Watch more sunsets."><div className="sunset-slogan-track" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span key={index}>Touch more grass. Watch more sunsets.<i /></span>)}</div></div> : !isStudioHero && <div className="hero-service-line" aria-label="Services: team training, speaking, AI advice, and custom systems">
           <div className="hero-service-track" aria-hidden="true">
             {[...heroServices, ...heroServices].map((service, index) => <span key={`${service}-${index}`}>{service}<i /></span>)}
           </div>
