@@ -383,7 +383,6 @@ export default function Home() {
 
       <section className={`editorial-hero solar-hero hero-concept-${heroVariant} hero-mobile-copy-${mobileCopyPosition}`} id="main-content" ref={heroRef}>
         <div className="solar-backdrop" aria-hidden="true">
-          {isSimpleSunset && <HeroWaterCanvas />}
           {isStudioHero && <><span className="studio-aurora studio-aurora-one" /><span className="studio-aurora studio-aurora-two" /><span className="studio-horizon" /></>}
           {!isSimpleSunset && !isStudioHero && <>
             <span className="solar-slice solar-slice-one" />

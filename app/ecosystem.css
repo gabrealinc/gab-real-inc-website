@@ -186,7 +186,14 @@
 
 /* Hero concept previews */
 .hero-concept-portal { align-items: center; padding-block: 108px 94px; }
-.hero-concept-portal .solar-backdrop { background: #2b0703 url("/hero-sunset-simple.png") 50% 54% / cover no-repeat; animation: sunset-drift 16s ease-in-out infinite alternate; }
+.hero-concept-portal .solar-backdrop {
+  background:
+    radial-gradient(ellipse 58% 55% at 76% 70%, rgba(239, 107, 45, .92), transparent 78%),
+    radial-gradient(ellipse 55% 65% at 20% 85%, rgba(168, 48, 22, .72), transparent 78%),
+    linear-gradient(150deg, #2b0b08 8%, #58180e 52%, #ab4926 100%);
+  background-size: 140% 140%;
+  animation: warm-gradient-drift 18s ease-in-out infinite alternate;
+}
 .hero-water-canvas { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; display: block; filter: saturate(1.04) contrast(1.02); }
 .hero-concept-portal .solar-backdrop::before { background: linear-gradient(90deg, rgba(27, 4, 2, .8) 0%, rgba(38, 7, 3, .52) 44%, rgba(32, 5, 2, .16) 78%), linear-gradient(180deg, rgba(20, 3, 2, .12), rgba(30, 4, 2, .22) 55%, rgba(22, 3, 2, .68)); mix-blend-mode: normal; }
 .hero-concept-portal .solar-backdrop::after { opacity: .11; }
@@ -248,6 +255,7 @@
 .hero-concept-vinyl .solar-caption { top: 59%; }
 @keyframes portal-breathe { from { background-size: 100% auto; background-position: 50% 50%; } to { background-size: 108% auto; background-position: 50% 47%; } }
 @keyframes sunset-drift { from { background-size: 103% auto; background-position: 50% 54%; } to { background-size: 111% auto; background-position: 50% 49%; } }
+@keyframes warm-gradient-drift { from { background-position: 40% 42%; } to { background-position: 65% 62%; } }
 @keyframes sunset-mobile-drift { from { background-size: auto 108%; background-position: 50% 52%; } to { background-size: auto 115%; background-position: 50% 48%; } }
 @keyframes portal-editorial-drift { from { background-size: 100% auto; background-position: 28% 50%; } to { background-size: 108% auto; background-position: 31% 47%; } }
 @keyframes vinyl-sunset-drift { from { background-size: 100% auto; background-position: 50% 47%; } to { background-size: 108% auto; background-position: 50% 50%; } }
@@ -689,7 +697,7 @@
   .hero-concept-portal { padding: 92px 6% 112px; }
   .hero-concept-portal.hero-mobile-copy-top { align-items: flex-start; }
   .hero-concept-portal.hero-mobile-copy-bottom { align-items: flex-end; }
-  .hero-concept-portal .solar-backdrop { background-position: 50% 50%; background-size: auto 126%; animation: sunset-mobile-drift 16s ease-in-out infinite alternate; }
+  .hero-concept-portal .solar-backdrop { background-size: 160% 145%; animation: warm-gradient-drift 18s ease-in-out infinite alternate; }
   .hero-concept-portal .solar-slice, .hero-concept-portal-editorial .solar-slice, .hero-concept-vinyl .solar-slice { background-image: none; }
   .hero-concept-portal .solar-brand, .hero-concept-vinyl .solar-brand { top: 12%; justify-content: center; padding-left: 0; font-size: clamp(4.5rem, 19vw, 6.1rem); }
   .hero-concept-portal .solar-backdrop::before { background: linear-gradient(180deg, rgba(18, 3, 2, .5) 0%, rgba(26, 4, 2, .16) 39%, rgba(20, 3, 2, .68) 100%); }
