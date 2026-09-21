@@ -10,8 +10,7 @@ export default function TestimonialsPage() {
     const controller = new AbortController();
     fetch("/api/testimonials?scope=all", { signal: controller.signal })
       .then((response) => response.ok ? response.json() : Promise.reject())
-      .then((value) => {
-        const payload = value as { configured?: boolean; testimonials?: Testimonial[] };
+      .then((payload: { configured?: boolean; testimonials?: Testimonial[] }) => {
         if (payload.configured && payload.testimonials?.length) setTestimonials(payload.testimonials);
       })
       .catch(() => undefined);

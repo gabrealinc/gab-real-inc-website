@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { approvedTestimonialFallback, type Testimonial } from "./testimonial-data";
 import { SiteFooter } from "./site-footer";
 import { SiteNavigation } from "./site-navigation";
-import { ParallaxComponent } from "@/components/ui/parallax-scrolling";
 
 const philosophyStatement = "Ask harder questions. Challenge what’s normal. Have an actual say in the future we’re building.";
 const philosophySupport = "You don’t have to use AI, or even like it, to have a point of view.";
@@ -17,7 +16,7 @@ const services = [
   { title: "Custom systems", label: "Build what is useful", copy: "Workflows, dashboards, and AI assistants designed around how your business really works.", fit: "Best when the problem is clear and the current process is costing too much time." },
 ];
 
-const bookLeaves: { eyebrow: string; title: string; copy: string; cover?: boolean; back?: boolean }[][] = [
+const bookLeaves = [
   [
     { eyebrow: "GABRIELLE GREENBERG + RYAN WELTI", title: "FROM SCRATCH", copy: "Creating a life that feels like yours.", cover: true },
     { eyebrow: "START HERE", title: "Who decided what success should look like?", copy: "Turn the page to question the definitions you inherited." },
@@ -280,8 +279,7 @@ export default function Home() {
     const controller = new AbortController();
     fetch("/api/testimonials", { signal: controller.signal })
       .then((response) => response.ok ? response.json() : Promise.reject(new Error("Testimonials unavailable")))
-      .then((value) => {
-        const payload = value as { configured?: boolean; testimonials?: Testimonial[] };
+      .then((payload: { configured?: boolean; testimonials?: Testimonial[] }) => {
         if (payload.configured) {
           setTestimonials(payload.testimonials ?? []);
           setTestimonialIndex(0);
@@ -437,8 +435,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <ParallaxComponent />
 
       <LiquidDivider top="#f4efe3" bottom="#b6350b" />
 
