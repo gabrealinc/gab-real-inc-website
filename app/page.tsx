@@ -33,6 +33,124 @@ const bookLeaves = [
 
 const heroServices = ["Team training", "Speaking", "AI advice", "Custom systems"];
 
+function HeroWaterCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const context = canvas.getContext("2d", { alpha: true });
+    if (!context) return;
+
+    const source = document.createElement("canvas");
+    const sourceContext = source.getContext("2d");
+    if (!sourceContext) return;
+
+    const image = new Image();
+    image.src = "/hero-sunset-simple.png";
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let frame = 0;
+    let visible = true;
+    let lastFrame = 0;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const width = Math.max(1, Math.round(rect.width));
+      const height = Math.max(1, Math.round(rect.height));
+      canvas.width = width;
+      canvas.height = height;
+      source.width = width;
+      source.height = height;
+    };
+
+    const paintSource = () => {
+      if (!image.naturalWidth || !image.naturalHeight) return;
+      const width = source.width;
+      const height = source.height;
+      const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
+      const drawWidth = image.naturalWidth * scale;
+      const drawHeight = image.naturalHeight * scale;
+      const x = (width - drawWidth) / 2;
+      const y = (height - drawHeight) * .54;
+      sourceContext.clearRect(0, 0, width, height);
+      sourceContext.drawImage(image, x, y, drawWidth, drawHeight);
+    };
+
+    const draw = (time = 0) => {
+      if (!image.complete || !image.naturalWidth) return;
+      if (!reducedMotion && time - lastFrame < 32) {
+        frame = window.requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = time;
+      paintSource();
+
+      const width = canvas.width;
+      const height = canvas.height;
+      const waterline = Math.round(height * .55);
+      context.clearRect(0, 0, width, height);
+      context.drawImage(source, 0, 0, width, waterline, 0, 0, width, waterline);
+
+      for (let y = waterline; y < height; y += 2) {
+        const depth = (y - waterline) / Math.max(1, height - waterline);
+        const offset = Math.sin(y * .062 + time * .00115) * (1.2 + depth * 3.2)
+          + Math.sin(y * .021 - time * .00072) * (1 + depth * 2.2)
+          + Math.sin(y * .14 + time * .00038) * .75;
+        context.drawImage(source, 0, y, width, 2, offset, y, width, 2.35);
+      }
+
+      if (!reducedMotion) {
+        context.save();
+        context.globalCompositeOperation = "screen";
+        for (let index = 0; index < 14; index += 1) {
+          const travel = (time * (.008 + index * .00045) + index * 73) % Math.max(1, height - waterline);
+          const y = waterline + travel;
+          const pulse = .5 + .5 * Math.sin(time * .0011 + index * 1.7);
+          const reflectionWidth = width * (.08 + index % 4 * .035) * (1 + travel / height);
+          const center = width * .56 + Math.sin(time * .00042 + index) * width * .045;
+          const gradient = context.createLinearGradient(center - reflectionWidth, 0, center + reflectionWidth, 0);
+          gradient.addColorStop(0, "rgba(255,214,150,0)");
+          gradient.addColorStop(.5, `rgba(255,218,159,${.018 + pulse * .045})`);
+          gradient.addColorStop(1, "rgba(255,214,150,0)");
+          context.fillStyle = gradient;
+          context.fillRect(center - reflectionWidth, y, reflectionWidth * 2, 1.4 + pulse * 1.8);
+        }
+        context.restore();
+      }
+
+      if (visible && !reducedMotion) frame = window.requestAnimationFrame(draw);
+    };
+
+    const render = () => {
+      resize();
+      paintSource();
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(draw);
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && !reducedMotion) {
+        window.cancelAnimationFrame(frame);
+        frame = window.requestAnimationFrame(draw);
+      }
+    });
+
+    image.addEventListener("load", render);
+    observer.observe(canvas);
+    window.addEventListener("resize", render);
+    if (image.complete) render();
+    return () => {
+      visible = false;
+      observer.disconnect();
+      image.removeEventListener("load", render);
+      window.removeEventListener("resize", render);
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return <canvas className="hero-water-canvas" ref={canvasRef} aria-hidden="true" />;
+}
+
 function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -259,6 +377,7 @@ export default function Home() {
 
       <section className={`editorial-hero solar-hero hero-concept-${heroVariant}`} id="main-content" ref={heroRef}>
         <div className="solar-backdrop" aria-hidden="true">
+          {isSimpleSunset && <HeroWaterCanvas />}
           {!isSimpleSunset && <>
             <span className="solar-slice solar-slice-one" />
             <span className="solar-slice solar-slice-two" />
