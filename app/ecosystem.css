@@ -191,9 +191,9 @@
 .hero-concept-portal .solar-backdrop::after { opacity: .11; }
 .hero-concept-portal .hero-copy { width: min(1060px, 88vw); padding: 34px 0 52px; }
 .hero-concept-portal .hero-copy h1 { max-width: 1000px; margin-top: 18px; font-family: "Crimson Text", Georgia, serif; font-size: clamp(6rem, 10.6vw, 11.5rem); font-style: italic; font-weight: 400; line-height: .7; letter-spacing: -.065em; }
-.hero-concept-portal .hero-copy h1 span { display: block; }
+.hero-concept-portal .hero-copy h1 span { display: block; white-space: nowrap; }
 .hero-concept-portal .hero-copy h1 strong { margin-top: 28px; font-family: DM, Inter, Arial, sans-serif; font-size: .24em; font-style: normal; font-weight: 650; letter-spacing: -.035em; }
-.hero-concept-portal .hero-copy > p { max-width: 670px; margin-top: 26px; font-size: clamp(1.05rem, 1.3vw, 1.3rem); line-height: 1.45; }
+.hero-concept-portal .hero-copy > p { max-width: none; margin-top: 26px; font-size: clamp(1.05rem, 1.3vw, 1.3rem); line-height: 1.45; white-space: nowrap; }
 .sunset-slogan { position: absolute; z-index: 7; right: 6%; bottom: 27px; margin: 0; color: var(--yellow); font: italic 400 clamp(1.2rem, 1.7vw, 1.65rem)/1.1 "Crimson Text", Georgia, serif; }
 
 .hero-concept-portal-editorial .solar-backdrop { background: #2f0a04 url("/hero-portal.png") center / cover no-repeat; }
@@ -665,10 +665,10 @@
   .hero-concept-portal .solar-rays { top: 27%; width: 120vw; }
   .hero-concept-portal .hero-copy, .hero-concept-vinyl .hero-copy { padding-bottom: 12px; text-shadow: 0 2px 18px rgba(23, 7, 4, .5); }
   .hero-concept-portal .hero-copy { width: 100%; padding-top: 18px; }
-  .hero-concept-portal .hero-copy h1 { margin-top: 17px; font-size: clamp(4.55rem, 20vw, 6.15rem); line-height: .69; }
+  .hero-concept-portal .hero-copy h1 { margin-top: 17px; font-size: clamp(2.65rem, 11.7vw, 3.55rem); line-height: .79; }
   .hero-concept-portal .hero-copy h1 strong { margin-top: 22px; font-size: .25em; line-height: 1.05; }
   .hero-concept-vinyl .hero-copy h1 { font-size: clamp(2.22rem, 9.45vw, 2.9rem); }
-  .hero-concept-portal .hero-copy > p { max-width: 340px; margin-top: 20px; font-size: .98rem; line-height: 1.43; }
+  .hero-concept-portal .hero-copy > p { max-width: 340px; margin-top: 20px; font-size: .98rem; line-height: 1.43; white-space: normal; }
   .hero-concept-vinyl .hero-copy > p { margin-top: 16px; font-size: .87rem; line-height: 1.4; }
   .hero-concept-portal .hero-button, .hero-concept-vinyl .hero-button { margin-top: 16px; padding: 13px 18px; }
   .sunset-slogan { right: auto; left: 6%; bottom: 23px; font-size: 1.15rem; }

@@ -271,7 +271,7 @@ export default function Home() {
         <div className="hero-copy">
           {isSimpleSunset ? <>
             <span className="eyebrow">HUMAN-FIRST AI</span>
-            <h1><span>AI Made</span><span>Simple.</span><strong>No fluff. No bullshit.</strong></h1>
+            <h1><span>AI Made Simple.</span><strong>No fluff. No bullshit.</strong></h1>
             <p>Learn to make informed decisions around AI without having to become an engineer.</p>
           </> : <>
             <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
