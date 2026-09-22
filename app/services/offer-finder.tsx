@@ -51,7 +51,7 @@ export function OfferFinder() {
         <span className="eyebrow">THE OFFER FINDER</span>
         <h2 id="offer-finder-title">Let’s find the right way <em>to help.</em></h2>
         <p>Tell me what you want help with. I’ll suggest a way we could work together, then you can share the details with me.</p>
-        <a className="finder-course-link" href="/learn">Prefer to learn on your own? Explore the self-paced courses ↗</a>
+        <a className="finder-course-link" href="/learn">Prefer to learn on your own? Explore the self-paced course ↗</a>
       </div>
 
       <div className="finder-chat" aria-live="polite">

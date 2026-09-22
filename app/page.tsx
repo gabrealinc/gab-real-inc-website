@@ -326,15 +326,15 @@ export default function Home() {
       <LiquidDivider top="#f4efe3" bottom="#b6350b" />
 
       <section className="course-section" id="course" data-rise>
-        <div className="section-label"><span>02</span><span>SELF-PACED COURSES</span></div>
+        <div className="section-label"><span>02</span><span>SELF-PACED COURSE</span></div>
         <div className="course-grid">
           <div className="course-heading">
             <span className="eyebrow">AI WITHOUT THE BULLSHIT</span>
             <h2>Learn AI without having to <em>become an engineer.</em></h2>
           </div>
           <div className="course-summary">
-            <p>Most AI courses throw a million tools at you or try to sell you more. These learning paths help you decide what is actually worth using, what to leave alone, and how to build tools that work for your real life. Less stress. Better work. More time to touch grass.</p>
-            <a className="primary-link light" href="/learn">Explore the self-paced courses <ArrowUpRight size={18} /></a>
+            <p>Build Your AI OS is one course for learning to use AI intentionally and building a system around your own knowledge and work. Learn what deserves your time, what to leave alone, and how to keep your judgment in charge. Less stress. Better work. More time to touch grass.</p>
+            <a className="primary-link light" href="/learn">Explore Build Your AI OS <ArrowUpRight size={18} /></a>
             <figure className="course-visual">
               <img src="/course-work.png" alt="Hands typing on a retro keyboard beside a notebook and coffee" />
               <figcaption>More effective. More creative. More human.</figcaption>
@@ -345,7 +345,7 @@ export default function Home() {
           <span><strong>Use less, better</strong><small>Know which tools deserve your time and which do not.</small></span>
           <span><strong>Build for your real life</strong><small>Create useful workflows instead of collecting generic hacks.</small></span>
           <span><strong>Stay human</strong><small>Save time without giving up your judgment, voice, or creativity.</small></span>
-          <a href="/learn">Explore the courses <ArrowUpRight size={17} /></a>
+          <a href="/learn">Explore the course <ArrowUpRight size={17} /></a>
         </div>
       </section>
 
