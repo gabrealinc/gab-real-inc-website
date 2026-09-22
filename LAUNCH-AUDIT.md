@@ -1,6 +1,6 @@
 # Gab Real Inc website launch audit
 
-Updated September 21, 2026. This records local work only. The site has not been published from these changes.
+Updated September 21, 2026. This records work on the `codex/website-launch-infrastructure` GitHub branch. The site has not been published from these changes.
 
 ## Confirmed against the current Ways to Work brief
 
@@ -16,23 +16,23 @@ Source: [Gab Real Inc – The Menu (Ways to Work Copy)](https://docs.google.com/
 - Kept the editorial desk hero and its warm brand gradient. Updated the moving words to the requested service language, including AI blueprints.
 - Aligned the home, services, Offer Finder, and navigation copy with the two current learning paths and removed the incorrect $1,500 minimum shown beside the $1,250 Blueprint.
 - Routed general home and case study calls to action into Ways to Work.
-- Made the email draft limitation visible before and after the Offer Finder intake.
+- Replaced the Offer Finder's unsent email draft with the new GoHighLevel intake. Its result panel now embeds the form and offers a direct link if the embed is unavailable.
 - Added page titles for case studies and testimonials, a desk image for social sharing, and search engine discovery files for the confirmed gabrealinc.com domain.
 - Cleared all lint errors and TypeScript errors.
 
 ## Launch blockers
 
-1. **Intake delivery:** The Offer Finder does not send or save answers. It opens an email draft, which the visitor must send. It does not create a GoHighLevel contact or opportunity and cannot qualify or route the workshop, speaking, advisory, and systems calendars. Connect the existing GoHighLevel form or workflow, then verify a test lead end to end.
-2. **Visual and interaction verification:** An administrative browser security check blocked automated inspection of the local and live site. Desktop and mobile layout, every menu action, external destination, and real form delivery still need a browser pass.
+1. **GHL routing:** The new `Work With Me | Offer Finder Intake` form is live at [the intake URL](https://links.gabrealinc.com/widget/form/i1x5pHufXkhLxVxCgX0K). A public test submission created a contact and saved the selected AI blueprints service and all written answers. GHL showed it as `Form 3` until the builder's internal form name was corrected. The new workflow remains a draft because its `Form submitted` trigger initially did not list this form. Retest the trigger after the name change, then scope it to this form, create or update a Clients pipeline opportunity, and verify routing. Do not publish a trigger that catches every form.
+2. **Visual and interaction verification:** The local and live site still need a complete desktop and mobile browser pass, including the embedded GHL form, navigation, every external destination, and calendar links.
 3. **Course offer decision:** Confirm whether the two course names and planned prices on `/learn` replace the Build Your AI OS, Vault, and complete package in the September 20 brief.
-4. **Privacy information:** No privacy or terms page/link is present in the current site. Confirm the approved policy location before collecting leads through a live intake.
+4. **Privacy information:** No approved privacy or terms destination has been found on the current or new site. Confirm the approved policy location before launch with live lead collection.
 
 ## Checks completed
 
 - Production build succeeds and produces all seven site routes and the testimonials API.
 - TypeScript type check passes.
 - ESLint passes with five image optimization warnings and no errors.
-- Local page links and referenced local images resolve in the repository.
+- Local page links and referenced local images resolve in the repository. The new GHL intake URL returns HTTP 200, and its public form successfully saved a test lead.
 - No `human-first AI` phrase remains in site source.
 
-These checks do not prove that remote links, calendar routing, data delivery, or responsive rendering work in a browser.
+These checks do not prove that the new embed renders and submits in the site, that calendar and opportunity routing works, or that responsive rendering is correct.
