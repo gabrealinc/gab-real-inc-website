@@ -562,7 +562,10 @@
 .services-hero { background: var(--blue); color: var(--yellow); }
 .services-hero h1 { max-width: 1380px; }
 .services-hero h1 em { color: var(--orange-soft); }
+.services-hero-actions { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; }
 .services-hero-link { width: max-content; padding-bottom: 7px; border-bottom: 1px solid currentColor; font-weight: 700; }
+.course-crosslink, .finder-course-link { display: block; width: fit-content; margin: 24px 0; padding-bottom: 5px; border-bottom: 1px solid currentColor; font-size: 14px; font-weight: 700; line-height: 1.4; }
+.course-crosslink:hover, .finder-course-link:hover, .services-hero-link:hover { color: var(--orange-soft); }
 .service-path { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 25px 6%; overflow-x: auto; border-bottom: 1px solid var(--ink); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
 .service-path i { color: var(--blue); font-style: normal; font-size: 17px; }
 .offer-finder { display: grid; grid-template-columns: minmax(270px, .72fr) minmax(0, 1.28fr); gap: 8%; padding: 110px 6%; background: var(--yellow); border-bottom: 1px solid var(--ink); scroll-margin-top: 80px; }

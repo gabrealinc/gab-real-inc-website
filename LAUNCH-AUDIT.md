@@ -19,6 +19,7 @@ Source: [Gab Real Inc – The Menu (Ways to Work Copy)](https://docs.google.com/
 - Replaced the Offer Finder's unsent email draft with the new GoHighLevel intake. Its result panel now embeds the form and offers a direct link if the embed is unavailable.
 - Added page titles for case studies and testimonials, a desk image for social sharing, and search engine discovery files for the confirmed gabrealinc.com domain.
 - Updated the local testimonials preview to show all 26 current Notion testimonial records. Removed client names from the testimonials page and the homepage quote, including the quote selector labels. The public build still limits testimonials to records marked `On Website` in Notion.
+- Separated self-paced courses from direct work with Gabby in the menu, footer, homepage, and page introductions. The direct-work page now lists five services and its finder routes only to those services, with a clear link to the courses for people who prefer to learn independently.
 - Cleared all lint errors and TypeScript errors.
 
 ## Launch blockers

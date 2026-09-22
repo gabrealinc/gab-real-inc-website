@@ -8,8 +8,8 @@ const navLinks = [
   ["about gabby", "/about"],
   ["testimonials", "/testimonials"],
   ["case studies", "/case-studies"],
-  ["learn with gabby", "/learn"],
-  ["services", "/services"],
+  ["self-paced courses", "/learn"],
+  ["work with gabby", "/services"],
 ];
 
 export function SiteNavigation() {

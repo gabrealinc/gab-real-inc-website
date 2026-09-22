@@ -3,7 +3,7 @@
 import { ArrowRight, Check, RotateCcw } from "lucide-react";
 import { useState } from "react";
 
-type Goal = "course" | "blueprint" | "workshop" | "speaking" | "advisory" | "systems";
+type Goal = "blueprint" | "workshop" | "speaking" | "advisory" | "systems";
 
 type Route = {
   label: string;
@@ -14,11 +14,6 @@ type Route = {
 const intakeUrl = "https://links.gabrealinc.com/widget/form/i1x5pHufXkhLxVxCgX0K";
 
 const routes: Record<Goal, Route> = {
-  course: {
-    label: "I want to understand AI and build my own system",
-    result: "Self-paced learning",
-    reason: "You want the understanding and structure to build a useful AI system yourself, without becoming an engineer or chasing every new tool.",
-  },
   blueprint: {
     label: "I need clarity on what my business should build",
     result: "AI blueprints",
@@ -55,7 +50,8 @@ export function OfferFinder() {
       <div className="offer-finder-intro">
         <span className="eyebrow">THE OFFER FINDER</span>
         <h2 id="offer-finder-title">Let’s find the right way <em>to help.</em></h2>
-        <p>Pick what you are working toward. You’ll get a clear starting point and a way to tell me more.</p>
+        <p>Tell me what you want help with. I’ll suggest a way we could work together, then you can share the details with me.</p>
+        <a className="finder-course-link" href="/learn">Prefer to learn on your own? Explore the self-paced courses ↗</a>
       </div>
 
       <div className="finder-chat" aria-live="polite">
@@ -80,17 +76,9 @@ export function OfferFinder() {
             <span>YOUR RECOMMENDED STARTING POINT</span>
             <h3>{route.result}</h3>
             <p>{route.reason}</p>
-            {goal === "course" ? (
-              <div className="finder-result-actions">
-                <a href="/learn">Explore the learning paths <ArrowRight size={18} /></a>
-              </div>
-            ) : (
-              <>
-                <p className="finder-intake-intro">Share what you are working on in the form below. Your answers are saved in the Gab Real Inc intake system for Gabby to review.</p>
-                <iframe className="finder-intake-frame" title="Gab Real Inc work with me intake" src={intakeUrl} loading="lazy" />
-                <a className="finder-intake-fallback" href={intakeUrl} target="_blank" rel="noreferrer">Open the form in a new tab <ArrowRight size={16} /></a>
-              </>
-            )}
+            <p className="finder-intake-intro">Share what you are working on in the form below. Your answers are saved in the Gab Real Inc intake system for Gabby to review.</p>
+            <iframe className="finder-intake-frame" title="Gab Real Inc work with me intake" src={intakeUrl} loading="lazy" />
+            <a className="finder-intake-fallback" href={intakeUrl} target="_blank" rel="noreferrer">Open the form in a new tab <ArrowRight size={16} /></a>
             <button className="finder-reset" type="button" onClick={() => setGoal(null)}><RotateCcw size={15} /> Start over</button>
           </div>
         ) : null}
