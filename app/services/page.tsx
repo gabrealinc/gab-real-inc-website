@@ -10,11 +10,12 @@ export const metadata: Metadata = {
 const offers = [
   {
     number: "01",
-    title: "Build Your AI OS",
+    title: "Self-paced learning",
     lead: "Learn it yourself",
-    price: "$397",
-    copy: "Understand AI, make smarter choices, and build a useful system around your own work without becoming dependent on one tool or platform.",
-    note: "Add the AI OS Vault for $197, or get the complete package for $497.",
+    price: "In development · enrollment not open",
+    copy: "Start with AI Foundations, then build a more connected system when you are ready. Learn to make smarter choices without becoming dependent on one tool or platform.",
+    note: "Both courses are in development. Enrollment is not open yet.",
+    href: "/learn",
   },
   {
     number: "02",
@@ -79,7 +80,7 @@ export default function ServicesPage() {
             <strong className="service-price">{offer.price}</strong>
             <p>{offer.copy}</p>
             {offer.note ? <p className="service-note">{offer.note}</p> : null}
-            <a href="#offer-finder">Is this right for me? ↓</a>
+            <a href={offer.href ?? "#offer-finder"}>{offer.href ? "Explore the learning paths ↗" : "Is this right for me? ↓"}</a>
           </article>
         ))}
       </section>

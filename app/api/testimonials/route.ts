@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const dataSourceId = "23ca4fa7-7eaf-8158-baf3-000b5791e228";
 
@@ -19,9 +19,8 @@ const plainText = (property?: NotionProperty) =>
     .join("")
     .trim();
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const token = process.env.NOTION_API_KEY;
-  const showAll = request.nextUrl.searchParams.get("scope") === "all";
   if (!token) {
     return NextResponse.json({ configured: false, testimonials: [] }, {
       headers: { "Cache-Control": "no-store" },
@@ -37,7 +36,7 @@ export async function GET(request: NextRequest) {
     },
     body: JSON.stringify({
       page_size: 100,
-      ...(showAll ? {} : { filter: { property: "On Website", checkbox: { equals: true } } }),
+      filter: { property: "On Website", checkbox: { equals: true } },
       sorts: [{ timestamp: "created_time", direction: "descending" }],
     }),
     cache: "no-store",

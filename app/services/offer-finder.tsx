@@ -19,9 +19,9 @@ const routes: Record<Goal, Route> = {
   course: {
     label: "I want to understand AI and build my own system",
     short: "learn and build it myself",
-    result: "Build Your AI OS",
+    result: "Self-paced learning",
     reason: "You want the understanding and structure to build a useful AI system yourself, without becoming an engineer or chasing every new tool.",
-    action: "Explore Build Your AI OS",
+    action: "Explore the learning paths",
     href: "/learn",
     detailPrompt: "What would you most like AI to make easier?",
   },
@@ -39,7 +39,7 @@ const routes: Record<Goal, Route> = {
     short: "teach my team",
     result: "Practical AI Workshop",
     reason: "Your team needs shared language and useful practice grounded in the work they actually do, not a generic tour of AI tools.",
-    action: "Send my workshop intake",
+    action: "Open my workshop email draft",
     detailPrompt: "How large is the team, and what work should the session focus on?",
   },
   speaking: {
@@ -47,7 +47,7 @@ const routes: Record<Goal, Route> = {
     short: "bring Gabby to an event",
     result: "Speaking Engagement",
     reason: "You are looking for a smart, human conversation about AI, creativity, agency, systems, or the future of work.",
-    action: "Send my speaking intake",
+    action: "Open my speaking email draft",
     detailPrompt: "What is the event, audience, format, and proposed date?",
   },
   advisory: {
@@ -55,7 +55,7 @@ const routes: Record<Goal, Route> = {
     short: "get ongoing perspective",
     result: "Strategic Advisory",
     reason: "You want Gabby’s perspective available as decisions arise, without hiring for a full implementation engagement.",
-    action: "Send my advisory intake",
+    action: "Open my advisory email draft",
     detailPrompt: "Which decisions or areas would benefit most from ongoing strategic support?",
   },
   systems: {
@@ -63,18 +63,18 @@ const routes: Record<Goal, Route> = {
     short: "have the system built",
     result: "Custom AI Systems",
     reason: "You have a valuable use case and want selective strategy, design, and implementation that works with the rest of your business.",
-    action: "Send my systems intake",
+    action: "Open my systems email draft",
     detailPrompt: "What needs to be built, who will use it, and what must it connect with?",
   },
 };
 
-const timingOptions = ["As soon as possible", "Within 1–3 months", "Within 3–6 months", "I’m exploring"];
+const timingOptions = ["As soon as possible", "Within 1 to 3 months", "Within 3 to 6 months", "I’m exploring"];
 const budgetOptions = [
-  "$1,500–$5,000",
-  "$5,000–$15,000",
-  "$15,000–$30,000",
+  "$1,250 to $5,000",
+  "$5,000 to $15,000",
+  "$15,000 to $30,000",
   "$30,000+",
-  "I can invest at least $1,500 but need help scoping",
+  "I’m not sure yet and need help scoping",
 ];
 
 type Intake = {
@@ -185,9 +185,10 @@ export function OfferFinder() {
               <label className="finder-wide">What are you trying to change, build, teach, or decide?<textarea required rows={3} value={intake.change} onChange={(event) => update("change", event.target.value)} /></label>
               <label className="finder-wide">What would a meaningful win look like?<textarea required rows={3} value={intake.win} onChange={(event) => update("win", event.target.value)} /></label>
               <label>How soon do you want to move?<select required value={intake.timing} onChange={(event) => update("timing", event.target.value)}><option value="">Choose one</option>{timingOptions.map((item) => <option key={item}>{item}</option>)}</select></label>
-              <label>What investment range have you set aside?<small className="finder-field-note">Custom engagements begin at $1,500.</small><select required value={intake.budget} onChange={(event) => update("budget", event.target.value)}><option value="">Choose one</option>{budgetOptions.map((item) => <option key={item}>{item}</option>)}</select></label>
+              <label>What investment range feels realistic?<small className="finder-field-note">The Blueprint is $1,250. Other services are scoped individually.</small><select required value={intake.budget} onChange={(event) => update("budget", event.target.value)}><option value="">Choose one</option>{budgetOptions.map((item) => <option key={item}>{item}</option>)}</select></label>
               <label className="finder-wide">{route.detailPrompt}<textarea rows={3} value={intake.details} onChange={(event) => update("details", event.target.value)} /></label>
             </div>
+            <p className="finder-delivery-note">This preview does not submit your answers automatically. After the recommendation, you can open an email draft and send it yourself.</p>
             <div className="finder-actions">
               <button className="finder-back" type="button" onClick={() => setStep(1)}><ArrowLeft size={17} /> Back</button>
               <button className="finder-next" type="submit">Show me my best fit <ArrowRight size={18} /></button>
@@ -203,8 +204,9 @@ export function OfferFinder() {
             <p>{route.reason}</p>
             <div className="finder-result-actions">
               <a href={route.href ?? emailHref} target={route.href?.startsWith("http") || !route.href ? "_blank" : undefined} rel={route.href?.startsWith("http") || !route.href ? "noreferrer" : undefined}>{route.action} <ArrowRight size={18} /></a>
-              {route.href && goal !== "course" ? <a className="finder-email" href={emailHref}>Send Gabby my answers</a> : null}
+              {route.href && goal !== "course" ? <a className="finder-email" href={emailHref}>Open an email draft with my answers</a> : null}
             </div>
+            {goal !== "course" ? <p className="finder-delivery-note">Your answers have not been sent yet. If you open an email draft, please send it from your email app. Booking a session does not send these answers.</p> : null}
             <button className="finder-reset" type="button" onClick={reset}><RotateCcw size={15} /> Start over</button>
           </div>
         ) : null}

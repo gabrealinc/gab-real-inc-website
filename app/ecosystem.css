@@ -185,6 +185,27 @@
 @keyframes hero-rise { to { opacity: 1; transform: none; } }
 
 /* Hero concept previews */
+.hero-concept-desk { align-items: center; padding-block: 110px 100px; background: #24160e; }
+.hero-concept-desk .solar-backdrop { background: #24160e url("/hero-editorial-desk-desktop.png") 50% 50% / cover no-repeat; animation: none; }
+.hero-concept-desk .solar-backdrop::before { background: linear-gradient(145deg, rgba(43, 11, 8, .78) 0%, rgba(88, 24, 14, .62) 54%, rgba(171, 73, 38, .49) 100%), linear-gradient(0deg, rgba(35, 7, 4, .34), transparent 46%); mix-blend-mode: normal; }
+.hero-concept-desk .solar-backdrop::after { opacity: .05; }
+.hero-concept-desk .solar-slice, .hero-concept-desk .solar-rays, .hero-concept-desk .solar-orb, .hero-concept-desk .solar-brand, .hero-concept-desk .solar-caption { display: none; }
+.hero-concept-desk .hero-copy { width: min(760px, 54vw); padding: 26px 0 36px; text-shadow: 0 2px 22px rgba(16, 9, 6, .3); }
+.hero-concept-desk .hero-copy h1 { font-family: "Crimson Text", Georgia, serif; font-size: clamp(4.6rem, 7.5vw, 8.3rem); font-style: italic; font-weight: 400; line-height: .82; letter-spacing: -.065em; }
+.hero-concept-desk .hero-copy h1 span { white-space: normal; }
+.hero-concept-desk .hero-copy h1 strong { margin-top: 25px; color: #f7c18c; font-family: Inter, Arial, sans-serif; font-size: .25em; font-style: normal; font-weight: 650; letter-spacing: -.035em; }
+.hero-concept-desk .hero-copy > p { max-width: 610px; margin-top: 24px; font-size: clamp(1rem, 1.22vw, 1.25rem); line-height: 1.48; white-space: normal; }
+.hero-concept-desk-editorial .hero-copy { width: min(760px, 56vw); }
+.hero-concept-desk-editorial .hero-copy h1 { font-size: clamp(5.2rem, 8vw, 9rem); }
+.hero-concept-desk-editorial .hero-copy h1 strong { color: var(--orange-soft); }
+.hero-editorial-issue { position: absolute; z-index: 8; top: 98px; left: 6%; right: 6%; display: flex; justify-content: space-between; gap: 18px; padding-top: 12px; border-top: 1px solid rgba(244, 239, 227, .62); color: var(--yellow); font-size: 10px; font-weight: 700; letter-spacing: .16em; }
+.hero-editorial-portrait { position: absolute; z-index: 8; top: 23%; right: 5%; width: clamp(205px, 21vw, 300px); padding: 8px 8px 0; background: var(--yellow); box-shadow: 0 24px 55px rgba(18, 8, 5, .38); transform: rotate(3deg); }
+.hero-editorial-portrait::before { content: ""; position: absolute; z-index: 2; top: -10px; left: 42%; width: 54px; height: 22px; background: rgba(252, 183, 114, .82); transform: rotate(-5deg); }
+.hero-editorial-portrait img { display: block; width: 100%; aspect-ratio: 4 / 4.5; height: auto; object-fit: cover; object-position: center 45%; }
+.hero-editorial-portrait figcaption { display: flex; flex-direction: column; gap: 3px; padding: 12px 6px 15px; color: var(--ink); }
+.hero-editorial-portrait figcaption span { font: 700 8px/1.2 Inter, Arial, sans-serif; letter-spacing: .12em; }
+.hero-editorial-portrait figcaption strong { font: italic 400 1.65rem/.95 "Crimson Text", Georgia, serif; }
+.hero-editorial-stamp { position: absolute; z-index: 9; right: 6%; bottom: 11%; width: 128px; height: 128px; display: grid; place-items: center; border: 1px solid rgba(244, 239, 227, .78); border-radius: 50%; background: var(--blue); box-shadow: 0 12px 30px rgba(18, 8, 5, .26); color: var(--yellow); font: italic 400 1.35rem/.91 "Crimson Text", Georgia, serif; text-align: center; transform: rotate(-11deg); }
 .hero-concept-portal { align-items: center; padding-block: 108px 94px; }
 .hero-concept-portal .solar-backdrop {
   background:
@@ -198,7 +219,7 @@
 .hero-concept-portal .solar-backdrop::before { background: linear-gradient(90deg, rgba(27, 4, 2, .8) 0%, rgba(38, 7, 3, .52) 44%, rgba(32, 5, 2, .16) 78%), linear-gradient(180deg, rgba(20, 3, 2, .12), rgba(30, 4, 2, .22) 55%, rgba(22, 3, 2, .68)); mix-blend-mode: normal; }
 .hero-concept-portal .solar-backdrop::after { opacity: .11; }
 .hero-concept-portal .hero-copy { width: min(1060px, 88vw); padding: 34px 0 52px; }
-.hero-concept-portal .hero-copy h1 { max-width: 1000px; margin-top: 18px; font-family: "Crimson Text", Georgia, serif; font-size: clamp(6rem, 10.6vw, 11.5rem); font-style: italic; font-weight: 400; line-height: .7; letter-spacing: -.065em; }
+.hero-concept-portal .hero-copy h1 { max-width: 1100px; margin-top: 18px; font-family: "Crimson Text", Georgia, serif; font-size: clamp(5.5rem, 9vw, 10rem); font-style: italic; font-weight: 400; line-height: .78; letter-spacing: -.065em; }
 .hero-concept-portal .hero-copy h1 span { display: block; white-space: nowrap; }
 .hero-concept-portal .hero-copy h1 strong { margin-top: 28px; font-family: DM, Inter, Arial, sans-serif; font-size: .24em; font-style: normal; font-weight: 650; letter-spacing: -.035em; }
 .hero-concept-portal .hero-copy > p { max-width: none; margin-top: 26px; font-size: clamp(1.05rem, 1.3vw, 1.3rem); line-height: 1.45; white-space: nowrap; }
@@ -271,6 +292,10 @@
 .hero-service-track { width: max-content; display: flex; align-items: center; animation: service-marquee 24s linear infinite; }
 .hero-service-track span { display: inline-flex; align-items: center; gap: 22px; padding-right: 22px; white-space: nowrap; }
 .hero-service-line i { width: 5px; height: 5px; display: block; flex: 0 0 auto; border-radius: 50%; background: var(--orange-soft); }
+.hero-concept-desk .hero-service-line { bottom: 22px; font: italic 400 clamp(1.55rem, 2.4vw, 2.45rem)/1.1 "Crimson Text", Georgia, serif; letter-spacing: -.025em; text-transform: none; text-shadow: 0 2px 12px rgba(35, 7, 4, .4); }
+.hero-concept-desk .hero-service-track { animation-duration: 34s; }
+.hero-concept-desk .hero-service-track span { gap: 28px; padding-right: 28px; }
+.hero-concept-desk .hero-service-line i { width: 6px; height: 6px; }
 @keyframes service-marquee { to { transform: translateX(-50%); } }
 
 .liquid-divider { height: 118px; position: relative; z-index: 2; margin: -1px 0; overflow: hidden; }
@@ -576,6 +601,8 @@
 .finder-result > span { font-size: 10px; font-weight: 700; letter-spacing: .12em; }
 .finder-result h3 { max-width: 720px; margin-top: 17px; color: var(--orange-soft); font: 400 clamp(3.5rem, 6.5vw, 7.5rem)/.83 "Crimson Text", Georgia, serif; letter-spacing: -.055em; }
 .finder-result > p { max-width: 660px; margin-top: 28px; font-size: 17px; line-height: 1.55; }
+.finder-result > .finder-delivery-note { margin-top: 18px; color: color-mix(in srgb, var(--yellow) 78%, transparent); font-size: 13px; line-height: 1.5; }
+.finder-form > .finder-delivery-note { margin-top: 24px; color: color-mix(in srgb, var(--yellow) 78%, transparent); font-size: 13px; line-height: 1.5; }
 .finder-result-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; margin-top: 32px; }
 .finder-result-actions a:first-child { display: inline-flex; align-items: center; gap: 22px; padding: 15px 18px; background: var(--yellow); color: var(--ink); font-weight: 700; }
 .finder-result-actions .finder-email { padding-bottom: 5px; border-bottom: 1px solid currentColor; font-size: 13px; }
@@ -713,6 +740,28 @@
   .hero-concept-portal .hero-copy > p { max-width: 340px; margin-top: 20px; font-size: .98rem; line-height: 1.43; white-space: normal; }
   .hero-concept-vinyl .hero-copy > p { margin-top: 16px; font-size: .87rem; line-height: 1.4; }
   .hero-concept-portal .hero-button, .hero-concept-vinyl .hero-button { margin-top: 16px; padding: 13px 18px; }
+  .hero-concept-desk { min-height: 670px; height: 86svh; max-height: 850px; align-items: flex-start; padding: 112px 6% 84px; }
+  .hero-concept-desk .solar-backdrop { background-image: url("/hero-editorial-desk-mobile.png"); background-position: 62% 50%; background-size: cover; animation: none; }
+  .hero-concept-desk .solar-backdrop::before { background: linear-gradient(165deg, rgba(43, 11, 8, .8) 0%, rgba(88, 24, 14, .64) 52%, rgba(171, 73, 38, .48) 100%); }
+  .hero-concept-desk .hero-copy { width: 100%; max-width: 440px; padding: 0; }
+  .hero-concept-desk .hero-copy h1 { margin-top: 18px; font-size: clamp(3.1rem, 13.3vw, 4.3rem); line-height: .83; }
+  .hero-concept-desk .hero-copy h1 strong { margin-top: 19px; font-size: .27em; line-height: 1.12; }
+  .hero-concept-desk .hero-copy > p { max-width: 335px; margin-top: 18px; font-size: .95rem; line-height: 1.42; }
+  .hero-concept-desk .hero-button { margin-top: 18px; padding: 13px 18px; }
+  .hero-concept-desk-editorial { min-height: 720px; padding-top: 130px; }
+  .hero-concept-desk-editorial .hero-copy { width: 100%; }
+  .hero-concept-desk-editorial .hero-copy h1 { font-size: clamp(3.25rem, 13.5vw, 4.45rem); }
+  .hero-concept-desk-editorial .hero-copy > p { max-width: min(225px, 60vw); font-size: .88rem; line-height: 1.4; }
+  .hero-concept-desk-editorial .hero-button { gap: 13px; font-size: 10px; }
+  .hero-editorial-issue { top: 80px; font-size: 8px; letter-spacing: .09em; }
+  .hero-editorial-issue span:nth-child(2) { display: none; }
+  .hero-editorial-portrait { top: auto; right: 5%; bottom: 70px; width: clamp(108px, 27vw, 138px); padding: 4px 4px 0; transform: rotate(5deg); }
+  .hero-editorial-portrait::before { top: -6px; width: 28px; height: 12px; }
+  .hero-editorial-portrait img { aspect-ratio: 4 / 4.5; }
+  .hero-editorial-portrait figcaption { padding: 6px 3px 8px; }
+  .hero-editorial-portrait figcaption span { font-size: 5px; }
+  .hero-editorial-portrait figcaption strong { font-size: .9rem; }
+  .hero-editorial-stamp { display: none; }
   .sunset-slogan { bottom: 38px; font-size: clamp(1.45rem, 6.7vw, 1.85rem); text-shadow: 0 2px 14px rgba(23, 7, 4, .68); }
   .sunset-slogan-track { animation-duration: 18s; }
   .sunset-slogan-track span { gap: 22px; padding-right: 22px; }
@@ -740,6 +789,8 @@
   .hero-concept-vinyl .solar-rays { top: 29%; width: 124vw; }
   .hero-service-line { bottom: 19px; color: var(--yellow); font-size: 10px; }
   .hero-service-track { animation-duration: 20s; }
+  .hero-concept-desk .hero-service-line { bottom: 19px; font-size: clamp(1.35rem, 6vw, 1.7rem); }
+  .hero-concept-desk .hero-service-track { animation-duration: 29s; }
   .philosophy-section { height: 155svh; }
   .philosophy-sticky { min-height: 100svh; padding: 92px 6% 34px; }
   .philosophy-copy-wrap { padding: 14px 0 22px; }

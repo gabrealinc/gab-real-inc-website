@@ -92,7 +92,7 @@ export default function CaseStudiesPage() {
 
       <section className="case-page-footer">
         <p>Have a complicated process of your own?</p>
-        <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me about it <ArrowUpRight size={20} /></a>
+        <a href="/services#offer-finder">Find your best next step <ArrowUpRight size={20} /></a>
       </section>
       <SiteFooter />
     </main>

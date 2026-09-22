@@ -16,7 +16,8 @@ const services = [
   { title: "Custom systems", label: "Build what is useful", copy: "Workflows, dashboards, and AI assistants designed around how your business really works.", fit: "Best when the problem is clear and the current process is costing too much time." },
 ];
 
-const bookLeaves = [
+type BookLeaf = { eyebrow: string; title: string; copy: string; cover?: boolean; back?: boolean };
+const bookLeaves: BookLeaf[][] = [
   [
     { eyebrow: "GABRIELLE GREENBERG + RYAN WELTI", title: "FROM SCRATCH", copy: "Creating a life that feels like yours.", cover: true },
     { eyebrow: "START HERE", title: "Who decided what success should look like?", copy: "Turn the page to question the definitions you inherited." },
@@ -31,126 +32,7 @@ const bookLeaves = [
   ],
 ];
 
-const heroServices = ["Team training", "Speaking", "AI advice", "Custom systems"];
-
-function HeroWaterCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext("2d", { alpha: true });
-    if (!context) return;
-
-    const source = document.createElement("canvas");
-    const sourceContext = source.getContext("2d");
-    if (!sourceContext) return;
-
-    const image = new Image();
-    image.src = "/hero-sunset-simple.png";
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let frame = 0;
-    let visible = true;
-    let lastFrame = 0;
-
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      const width = Math.max(1, Math.round(rect.width));
-      const height = Math.max(1, Math.round(rect.height));
-      canvas.width = width;
-      canvas.height = height;
-      source.width = width;
-      source.height = height;
-    };
-
-    const paintSource = () => {
-      if (!image.naturalWidth || !image.naturalHeight) return;
-      const width = source.width;
-      const height = source.height;
-      const mobileZoom = width <= 720 ? 1.18 : 1;
-      const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight) * mobileZoom;
-      const drawWidth = image.naturalWidth * scale;
-      const drawHeight = image.naturalHeight * scale;
-      const x = (width - drawWidth) / 2;
-      const y = (height - drawHeight) * .54;
-      sourceContext.clearRect(0, 0, width, height);
-      sourceContext.drawImage(image, x, y, drawWidth, drawHeight);
-    };
-
-    const draw = (time = 0) => {
-      if (!image.complete || !image.naturalWidth) return;
-      if (!reducedMotion && time - lastFrame < 32) {
-        frame = window.requestAnimationFrame(draw);
-        return;
-      }
-      lastFrame = time;
-      paintSource();
-
-      const width = canvas.width;
-      const height = canvas.height;
-      const waterline = Math.round(height * .55);
-      context.clearRect(0, 0, width, height);
-      context.drawImage(source, 0, 0, width, waterline, 0, 0, width, waterline);
-
-      for (let y = waterline; y < height; y += 2) {
-        const depth = (y - waterline) / Math.max(1, height - waterline);
-        const offset = Math.sin(y * .062 + time * .00115) * (1.2 + depth * 3.2)
-          + Math.sin(y * .021 - time * .00072) * (1 + depth * 2.2)
-          + Math.sin(y * .14 + time * .00038) * .75;
-        context.drawImage(source, 0, y, width, 2, offset, y, width, 2.35);
-      }
-
-      if (!reducedMotion) {
-        context.save();
-        context.globalCompositeOperation = "screen";
-        for (let index = 0; index < 14; index += 1) {
-          const travel = (time * (.008 + index * .00045) + index * 73) % Math.max(1, height - waterline);
-          const y = waterline + travel;
-          const pulse = .5 + .5 * Math.sin(time * .0011 + index * 1.7);
-          const reflectionWidth = width * (.08 + index % 4 * .035) * (1 + travel / height);
-          const center = width * .56 + Math.sin(time * .00042 + index) * width * .045;
-          const gradient = context.createLinearGradient(center - reflectionWidth, 0, center + reflectionWidth, 0);
-          gradient.addColorStop(0, "rgba(255,214,150,0)");
-          gradient.addColorStop(.5, `rgba(255,218,159,${.018 + pulse * .045})`);
-          gradient.addColorStop(1, "rgba(255,214,150,0)");
-          context.fillStyle = gradient;
-          context.fillRect(center - reflectionWidth, y, reflectionWidth * 2, 1.4 + pulse * 1.8);
-        }
-        context.restore();
-      }
-
-      if (visible && !reducedMotion) frame = window.requestAnimationFrame(draw);
-    };
-
-    const render = () => {
-      resize();
-      paintSource();
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(draw);
-    };
-    const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      if (visible && !reducedMotion) {
-        window.cancelAnimationFrame(frame);
-        frame = window.requestAnimationFrame(draw);
-      }
-    });
-
-    image.addEventListener("load", render);
-    observer.observe(canvas);
-    window.addEventListener("resize", render);
-    if (image.complete) render();
-    return () => {
-      visible = false;
-      observer.disconnect();
-      image.removeEventListener("load", render);
-      window.removeEventListener("resize", render);
-      window.cancelAnimationFrame(frame);
-    };
-  }, []);
-
-  return <canvas className="hero-water-canvas" ref={canvasRef} aria-hidden="true" />;
-}
+const heroMarqueeWords = ["Self-paced learning", "Advisory", "AI blueprints", "Custom builds", "Build together", "Built for you"];
 
 function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -238,7 +120,7 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
 }
 
 export default function Home() {
-  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl" | "studio">("portal");
+  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl" | "studio" | "desk" | "desk-editorial">("desk");
   const [mobileCopyPosition, setMobileCopyPosition] = useState<"top" | "bottom">("top");
   const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
   const [bookPage, setBookPage] = useState(0);
@@ -258,14 +140,17 @@ export default function Home() {
     const search = new URLSearchParams(window.location.search);
     const requestedVariant = search.get("hero");
     const requestedCopyPosition = search.get("copy");
-    if (requestedVariant === "portal" || requestedVariant === "portal-editorial" || requestedVariant === "vinyl" || requestedVariant === "studio") setHeroVariant(requestedVariant);
-    if (requestedCopyPosition === "bottom") setMobileCopyPosition("bottom");
+    const timer = window.setTimeout(() => {
+      if (requestedVariant === "portal" || requestedVariant === "portal-editorial" || requestedVariant === "vinyl" || requestedVariant === "studio" || requestedVariant === "desk" || requestedVariant === "desk-editorial") setHeroVariant(requestedVariant);
+      if (requestedCopyPosition === "bottom") setMobileCopyPosition("bottom");
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setCurtainPhase("done");
-      return;
+      const reducedMotionTimer = window.setTimeout(() => setCurtainPhase("done"), 0);
+      return () => window.clearTimeout(reducedMotionTimer);
     }
     const openTimer = window.setTimeout(() => setCurtainPhase("open"), 80);
     const doneTimer = window.setTimeout(() => setCurtainPhase("done"), 980);
@@ -278,7 +163,7 @@ export default function Home() {
   useEffect(() => {
     const controller = new AbortController();
     fetch("/api/testimonials", { signal: controller.signal })
-      .then((response) => response.ok ? response.json() : Promise.reject(new Error("Testimonials unavailable")))
+      .then((response): Promise<{ configured?: boolean; testimonials?: Testimonial[] }> => response.ok ? response.json() : Promise.reject(new Error("Testimonials unavailable")))
       .then((payload: { configured?: boolean; testimonials?: Testimonial[] }) => {
         if (payload.configured) {
           setTestimonials(payload.testimonials ?? []);
@@ -336,8 +221,8 @@ export default function Home() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!section) return;
     if (reducedMotion) {
-      setPhilosophyLitCount(philosophyWords.length);
-      return;
+      const reducedMotionTimer = window.setTimeout(() => setPhilosophyLitCount(philosophyWords.length), 0);
+      return () => window.clearTimeout(reducedMotionTimer);
     }
 
     let animationFrame = 0;
@@ -381,7 +266,7 @@ export default function Home() {
 
       <SiteNavigation />
 
-      <section className={`editorial-hero solar-hero hero-concept-${heroVariant} hero-mobile-copy-${mobileCopyPosition}`} id="main-content" ref={heroRef}>
+      <section className={`editorial-hero solar-hero hero-concept-${heroVariant} ${heroVariant === "desk-editorial" ? "hero-concept-desk" : ""} hero-mobile-copy-${mobileCopyPosition}`} id="main-content" ref={heroRef}>
         <div className="solar-backdrop" aria-hidden="true">
           {isStudioHero && <><span className="studio-aurora studio-aurora-one" /><span className="studio-aurora studio-aurora-two" /><span className="studio-horizon" /></>}
           {!isSimpleSunset && !isStudioHero && <>
@@ -394,24 +279,26 @@ export default function Home() {
           </>}
         </div>
         <div className="hero-copy">
-          {isSimpleSunset || isStudioHero ? <>
-            <span className="eyebrow">HUMAN-FIRST AI</span>
-            <h1><span>AI Made Simple.</span><strong>No fluff. No bullshit.</strong></h1>
-            <p>Learn to make informed decisions around AI without having to become an engineer.</p>
-          </> : <>
-            <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
-            <h1><span>Use AI to think</span><span>more clearly.</span><strong>Build what matters.</strong></h1>
-            <p>Gab Real Inc. helps founders and teams understand AI, make smarter business decisions, and design better ways of working.</p>
-          </>}
+          <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
+          <h1><span>AI Made Simple.</span><strong>Start wherever you are.</strong></h1>
+          <p>Learn to make informed decisions around AI without having to become an engineer.</p>
           <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
+        {heroVariant === "desk-editorial" && <>
+          <div className="hero-editorial-issue" aria-hidden="true"><span>GAB REAL INC.</span><span>TOUCH MORE GRASS. WATCH MORE SUNSETS.</span><span>01 / AI MADE SIMPLE</span></div>
+          <figure className="hero-editorial-portrait">
+            <img src="/about-gabby-portrait.jpg" alt="Gabby Greenberg smiling at the camera" width="2400" height="1600" />
+            <figcaption><span>THE HUMAN BEHIND THE WORK</span><strong>Gabby Greenberg</strong></figcaption>
+          </figure>
+          <div className="hero-editorial-stamp" aria-label="No fluff. No bullshit."><span>No fluff.<br />No bullshit.</span></div>
+        </>}
         {isStudioHero && <>
           <div className="studio-giant-type" aria-hidden="true">AI</div>
-          <div className="studio-hero-footer"><span>Human-first AI</span><span>Touch more grass. Watch more sunsets.</span><span>Scroll to explore ↓</span></div>
+          <div className="studio-hero-footer"><span>AI made simple</span><span>Touch more grass. Watch more sunsets.</span><span>Scroll to explore ↓</span></div>
         </>}
-        {isSimpleSunset ? <div className="sunset-slogan" aria-label="Touch more grass. Watch more sunsets."><div className="sunset-slogan-track" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span key={index}>Touch more grass. Watch more sunsets.<i /></span>)}</div></div> : !isStudioHero && <div className="hero-service-line" aria-label="Services: team training, speaking, AI advice, and custom systems">
+        {isSimpleSunset ? <div className="sunset-slogan" aria-label="Touch more grass. Watch more sunsets."><div className="sunset-slogan-track" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span key={index}>Touch more grass. Watch more sunsets.<i /></span>)}</div></div> : !isStudioHero && <div className="hero-service-line" aria-label="Self-paced learning, advisory, AI blueprints, custom builds, build together, and built for you">
           <div className="hero-service-track" aria-hidden="true">
-            {[...heroServices, ...heroServices].map((service, index) => <span key={`${service}-${index}`}>{service}<i /></span>)}
+            {[...heroMarqueeWords, ...heroMarqueeWords].map((word, index) => <span key={`${word}-${index}`}>{word}<i /></span>)}
           </div>
         </div>}
       </section>
@@ -420,7 +307,7 @@ export default function Home() {
         <div className="philosophy-sticky">
           <div className="section-label"><span>01</span><span>THE PHILOSOPHY</span></div>
           <div className="philosophy-copy-wrap">
-            <span className="eyebrow">A HUMAN-FIRST POINT OF VIEW</span>
+            <span className="eyebrow">A CLEARER POINT OF VIEW</span>
             <h2 className="philosophy-headline"><span>It’s time to</span><em>think bigger.</em></h2>
             <p className="philosophy-statement" aria-label={philosophyStatement}>
               {philosophyWords.map((word, index) => (
@@ -446,7 +333,7 @@ export default function Home() {
             <h2>Learn AI without having to <em>become an engineer.</em></h2>
           </div>
           <div className="course-summary">
-            <p>Most AI courses throw a million tools at you or try to sell you more. This one teaches you how to decide what is actually worth using, what to leave alone, and how to build tools that work for your real life. Less stress. Better work. More time to touch grass.</p>
+            <p>Most AI courses throw a million tools at you or try to sell you more. These learning paths help you decide what is actually worth using, what to leave alone, and how to build tools that work for your real life. Less stress. Better work. More time to touch grass.</p>
             <a className="primary-link light" href="/learn">See what changes <ArrowUpRight size={18} /></a>
             <figure className="course-visual">
               <img src="/course-work.png" alt="Hands typing on a retro keyboard beside a notebook and coffee" />
@@ -495,7 +382,7 @@ export default function Home() {
             <small>{services[activeService].fit}</small>
           </article>
         </div>
-        <a className="primary-link" href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Tell me what you’re working on <ArrowUpRight size={18} /></a>
+        <a className="primary-link" href="/services#offer-finder">Find your best next step <ArrowUpRight size={18} /></a>
       </section>
 
       <LiquidDivider top="#f4efe3" bottom="#171714" />
@@ -588,7 +475,7 @@ export default function Home() {
       <section className="final-cta" id="contact" data-rise>
         <span>HAVE A PROJECT, A TEAM, OR A VERY MESSY SYSTEM?</span>
         <h2>Let’s make AI <em>actually useful</em><br />and create a better future, <em>together.</em></h2>
-        <a href="https://links.gabrealinc.com/widget/bookings/1-on-1-with-gabby" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={24} /></a>
+        <a href="/services#offer-finder">Find a way to work together <ArrowUpRight size={24} /></a>
       </section>
 
       <LiquidDivider top="#b6350b" bottom="#171714" />

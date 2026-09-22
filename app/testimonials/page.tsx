@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { InteriorShell } from "../interior-shell";
-import { allTestimonialFallback, type Testimonial } from "../testimonial-data";
+import { approvedTestimonialFallback, type Testimonial } from "../testimonial-data";
 
 export default function TestimonialsPage() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(allTestimonialFallback);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(approvedTestimonialFallback);
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/api/testimonials?scope=all", { signal: controller.signal })
-      .then((response) => response.ok ? response.json() : Promise.reject())
+    fetch("/api/testimonials", { signal: controller.signal })
+      .then((response): Promise<{ configured?: boolean; testimonials?: Testimonial[] }> => response.ok ? response.json() : Promise.reject(new Error("Testimonials unavailable")))
       .then((payload: { configured?: boolean; testimonials?: Testimonial[] }) => {
         if (payload.configured && payload.testimonials?.length) setTestimonials(payload.testimonials);
       })
