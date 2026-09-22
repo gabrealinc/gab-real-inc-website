@@ -18,6 +18,7 @@ Source: [Gab Real Inc – The Menu (Ways to Work Copy)](https://docs.google.com/
 - Routed general home and case study calls to action into Ways to Work.
 - Replaced the Offer Finder's unsent email draft with the new GoHighLevel intake. Its result panel now embeds the form and offers a direct link if the embed is unavailable.
 - Added page titles for case studies and testimonials, a desk image for social sharing, and search engine discovery files for the confirmed gabrealinc.com domain.
+- Updated the local testimonials preview to show all 26 current Notion testimonial records. Removed client names from the testimonials page and the homepage quote, including the quote selector labels. The public build still limits testimonials to records marked `On Website` in Notion.
 - Cleared all lint errors and TypeScript errors.
 
 ## Launch blockers
@@ -26,6 +27,7 @@ Source: [Gab Real Inc – The Menu (Ways to Work Copy)](https://docs.google.com/
 2. **Visual and interaction verification:** The local and live site still need a complete desktop and mobile browser pass, including the embedded GHL form, navigation, every external destination, and calendar links.
 3. **Course offer decision:** Confirm whether the two course names and planned prices on `/learn` replace the Build Your AI OS, Vault, and complete package in the September 20 brief.
 4. **Privacy information:** No approved privacy or terms destination has been found on the current or new site. Confirm the approved policy location before launch with live lead collection.
+5. **Testimonial publication:** Only 1 of the 26 Notion testimonial records is marked `On Website`. The other 25 now appear in the local review preview but remain gated from the public build. One LACES testimonial record explicitly says its final wording and attribution need confirmation before public use. Review and approve the intended public quotes in Notion before launch.
 
 ## Checks completed
 
@@ -34,5 +36,6 @@ Source: [Gab Real Inc – The Menu (Ways to Work Copy)](https://docs.google.com/
 - ESLint passes with five image optimization warnings and no errors.
 - Local page links and referenced local images resolve in the repository. The new GHL intake URL returns HTTP 200, and its public form successfully saved a test lead.
 - No `human-first AI` phrase remains in site source.
+- The local `/testimonials` response contains 26 quote cards and no displayed client names.
 
 These checks do not prove that the new embed renders and submits in the site, that calendar and opportunity routing works, or that responsive rendering is correct.

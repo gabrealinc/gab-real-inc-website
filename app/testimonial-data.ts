@@ -36,3 +36,9 @@ export const allTestimonialFallback: Testimonial[] = [
 ];
 
 export const approvedTestimonialFallback = allTestimonialFallback.filter((testimonial) => testimonial.id === "katie-k");
+
+// The local review shows the full Notion collection. The public build only uses
+// records explicitly marked "On Website" until the remaining quotes are cleared.
+export const visibleTestimonialFallback = process.env.NODE_ENV === "development"
+  ? allTestimonialFallback
+  : approvedTestimonialFallback;

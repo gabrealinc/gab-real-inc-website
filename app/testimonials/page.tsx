@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { InteriorShell } from "../interior-shell";
-import { approvedTestimonialFallback, type Testimonial } from "../testimonial-data";
+import { visibleTestimonialFallback, type Testimonial } from "../testimonial-data";
 
 export default function TestimonialsPage() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(approvedTestimonialFallback);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(visibleTestimonialFallback);
   useEffect(() => {
     const controller = new AbortController();
     fetch("/api/testimonials", { signal: controller.signal })
@@ -28,7 +28,7 @@ export default function TestimonialsPage() {
         {testimonials.map((testimonial, index) => (
           <figure key={testimonial.id}>
             <span>“</span><blockquote><p>{testimonial.quote}</p></blockquote>
-            <figcaption><strong>{testimonial.name}</strong><small>{testimonial.title || testimonial.service}</small><i>{String(index + 1).padStart(2, "0")}</i></figcaption>
+            <figcaption><small>{testimonial.title || testimonial.service || "Client note"}</small><i>{String(index + 1).padStart(2, "0")}</i></figcaption>
           </figure>
         ))}
       </section>

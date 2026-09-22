@@ -2,7 +2,7 @@
 
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { approvedTestimonialFallback, type Testimonial } from "./testimonial-data";
+import { visibleTestimonialFallback, type Testimonial } from "./testimonial-data";
 import { SiteFooter } from "./site-footer";
 import { SiteNavigation } from "./site-navigation";
 
@@ -128,7 +128,7 @@ export default function Home() {
   const [moreIndex, setMoreIndex] = useState(0);
   const [morePaused, setMorePaused] = useState(false);
   const [moreInView, setMoreInView] = useState(false);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(approvedTestimonialFallback);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(visibleTestimonialFallback);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [curtainPhase, setCurtainPhase] = useState<"closed" | "open" | "done">("closed");
   const heroRef = useRef<HTMLElement>(null);
@@ -394,9 +394,9 @@ export default function Home() {
           <blockquote>
             <p>{testimonials[testimonialIndex]?.quote}</p>
             <figcaption>
-              <span><strong>{testimonials[testimonialIndex]?.name}</strong><small>{testimonials[testimonialIndex]?.title || testimonials[testimonialIndex]?.service}</small></span>
+              <span><small>{testimonials[testimonialIndex]?.title || testimonials[testimonialIndex]?.service || "Client note"}</small></span>
               {testimonials.length > 1 && <span className="testimonial-controls" aria-label="Choose a testimonial">
-                {testimonials.map((testimonial, index) => <button className={index === testimonialIndex ? "is-active" : ""} type="button" aria-label={`Show testimonial from ${testimonial.name}`} onClick={() => setTestimonialIndex(index)} key={testimonial.id}>{String(index + 1).padStart(2, "0")}</button>)}
+                {testimonials.map((testimonial, index) => <button className={index === testimonialIndex ? "is-active" : ""} type="button" aria-label={`Show client note ${index + 1}`} onClick={() => setTestimonialIndex(index)} key={testimonial.id}>{String(index + 1).padStart(2, "0")}</button>)}
               </span>}
             </figcaption>
           </blockquote>

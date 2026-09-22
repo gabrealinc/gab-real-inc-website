@@ -36,7 +36,7 @@ export async function GET() {
     },
     body: JSON.stringify({
       page_size: 100,
-      filter: { property: "On Website", checkbox: { equals: true } },
+      ...(process.env.NODE_ENV === "production" ? { filter: { property: "On Website", checkbox: { equals: true } } } : {}),
       sorts: [{ timestamp: "created_time", direction: "descending" }],
     }),
     cache: "no-store",
