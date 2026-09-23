@@ -1,17 +1,17 @@
 export const caseStudies = [
   {
     number: "01",
-    label: "Client onboarding",
-    title: "A faster welcome for every new partner.",
-    problem: "A growing company was welcoming hundreds of partners by hand. Every person needed a web page, instructions, files, and follow-up.",
-    built: "One connected process that creates the right materials and guides each person from approval to launch.",
-    result: "The team spends less time copying information and more time helping people succeed.",
+    label: "LACES Roster Agent",
+    title: "From approved athlete to live roster page.",
+    problem: "At peak volume, hundreds of athletes were joining in a month. Each one needed review, a roster page, accurate records, and a useful welcome.",
+    built: "A connected workflow across Growi, Notion, Webflow, and Klaviyo. The team approves athletes and reviews pages; the agent prepares records, publishes approved pages, and supports the athlete notification.",
+    result: "Athletes get a public profile and clear next steps, while the team keeps its quality checks without building each page by hand.",
     metrics: [
       { value: "~500", label: "hours returned each month" },
       { value: "~6,000", label: "hours returned annually" },
-      { value: "250+", label: "partners processed per month" },
+      { value: "250+", label: "athletes at peak monthly volume" },
     ],
-    metricBasis: "Estimated from approximately two hours returned per partner at documented peak monthly volume.",
+    metricBasis: "Estimated from approximately two hours returned per athlete at documented peak monthly volume.",
     financialImpact: "6,000 recovered hours × the client’s verified loaded labor rate. Revenue created from that added capacity has not yet been isolated, so it is not presented as a result.",
   },
   {

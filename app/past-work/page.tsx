@@ -41,6 +41,25 @@ export default function PastWorkPage() {
                 <div><h3>What I built</h3><p>{item.built}</p></div>
                 <div><h3>What changed</h3><p>{item.result}</p></div>
               </div>
+              {item.number === "01" && (
+                <figure className="past-work-feature">
+                  <div className="past-work-feature-heading">
+                    <span className="eyebrow">WORK FEATURE / LACES</span>
+                    <h3>Inside the Roster Agent</h3>
+                  </div>
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster="/laces-roster-preview.webp"
+                    aria-label="Silent walkthrough of the LACES Roster Agent process"
+                  >
+                    <source src="/laces-roster-walkthrough.mp4" type="video/mp4" />
+                    Your browser does not support video playback.
+                  </video>
+                  <figcaption>From human approval in Growi to roster pages and athlete onboarding. Private application details and identifiable profile text are obscured.</figcaption>
+                </figure>
+              )}
               {item.number === "02" && (
                 <figure className="past-work-feature">
                   <div className="past-work-feature-heading">
