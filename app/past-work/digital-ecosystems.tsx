@@ -50,7 +50,7 @@ export function DigitalEcosystems() {
   }
 
   return (
-    <section className="ecosystem-gallery" aria-labelledby="ecosystem-gallery-title">
+    <section className="ecosystem-gallery" id="ecosystem-gallery" aria-labelledby="ecosystem-gallery-title">
       <div className="ecosystem-gallery-heading">
         <div>
           <span className="eyebrow">MORE WORK / DIGITAL ECOSYSTEMS</span>
