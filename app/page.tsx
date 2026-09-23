@@ -120,7 +120,7 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
 }
 
 export default function Home() {
-  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl" | "studio" | "desk" | "desk-editorial">("desk");
+  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl" | "studio" | "desk" | "desk-editorial" | "orbit-desk" | "orbit-collage">("desk");
   const [mobileCopyPosition, setMobileCopyPosition] = useState<"top" | "bottom">("top");
   const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
   const [bookPage, setBookPage] = useState(0);
@@ -129,7 +129,6 @@ export default function Home() {
   const [morePaused, setMorePaused] = useState(false);
   const [moreInView, setMoreInView] = useState(false);
   const [testimonials, setTestimonials] = useState<Testimonial[]>(visibleTestimonialFallback);
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [curtainPhase, setCurtainPhase] = useState<"closed" | "open" | "done">("closed");
   const heroRef = useRef<HTMLElement>(null);
   const philosophyRef = useRef<HTMLElement>(null);
@@ -141,7 +140,7 @@ export default function Home() {
     const requestedVariant = search.get("hero");
     const requestedCopyPosition = search.get("copy");
     const timer = window.setTimeout(() => {
-      if (requestedVariant === "portal" || requestedVariant === "portal-editorial" || requestedVariant === "vinyl" || requestedVariant === "studio" || requestedVariant === "desk" || requestedVariant === "desk-editorial") setHeroVariant(requestedVariant);
+      if (requestedVariant === "portal" || requestedVariant === "portal-editorial" || requestedVariant === "vinyl" || requestedVariant === "studio" || requestedVariant === "desk" || requestedVariant === "desk-editorial" || requestedVariant === "orbit-desk" || requestedVariant === "orbit-collage") setHeroVariant(requestedVariant);
       if (requestedCopyPosition === "bottom") setMobileCopyPosition("bottom");
     }, 0);
     return () => window.clearTimeout(timer);
@@ -162,16 +161,23 @@ export default function Home() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/api/testimonials", { signal: controller.signal })
-      .then((response): Promise<{ configured?: boolean; testimonials?: Testimonial[] }> => response.ok ? response.json() : Promise.reject(new Error("Testimonials unavailable")))
-      .then((payload: { configured?: boolean; testimonials?: Testimonial[] }) => {
-        if (payload.configured) {
-          setTestimonials(payload.testimonials ?? []);
-          setTestimonialIndex(0);
-        }
-      })
-      .catch(() => undefined);
-    return () => controller.abort();
+    const refresh = () => {
+      fetch("/api/testimonials", { signal: controller.signal, cache: "no-store" })
+        .then((response): Promise<{ configured?: boolean; testimonials?: Testimonial[] }> => response.ok ? response.json() : Promise.reject(new Error("Testimonials unavailable")))
+        .then((payload: { configured?: boolean; testimonials?: Testimonial[] }) => {
+          if (payload.configured) setTestimonials(payload.testimonials ?? []);
+        })
+        .catch(() => undefined);
+    };
+    const refreshWhenVisible = () => { if (!document.hidden) refresh(); };
+    refresh();
+    window.addEventListener("focus", refresh);
+    document.addEventListener("visibilitychange", refreshWhenVisible);
+    return () => {
+      controller.abort();
+      window.removeEventListener("focus", refresh);
+      document.removeEventListener("visibilitychange", refreshWhenVisible);
+    };
   }, []);
 
   useEffect(() => {
@@ -254,6 +260,7 @@ export default function Home() {
 
   const isSimpleSunset = heroVariant === "portal";
   const isStudioHero = heroVariant === "studio";
+  const katieTestimonial = testimonials.find((testimonial) => testimonial.name === "Katie K");
 
   return (
     <main className="ecosystem home-page" id="top">
@@ -266,7 +273,7 @@ export default function Home() {
 
       <SiteNavigation />
 
-      <section className={`editorial-hero solar-hero hero-concept-${heroVariant} ${heroVariant === "desk-editorial" ? "hero-concept-desk" : ""} hero-mobile-copy-${mobileCopyPosition}`} id="main-content" ref={heroRef}>
+      <section className={`editorial-hero solar-hero hero-concept-${heroVariant} ${heroVariant === "desk-editorial" || heroVariant === "orbit-desk" || heroVariant === "orbit-collage" ? "hero-concept-desk" : ""} hero-mobile-copy-${mobileCopyPosition}`} id="main-content" ref={heroRef}>
         <div className="solar-backdrop" aria-hidden="true">
           {isStudioHero && <><span className="studio-aurora studio-aurora-one" /><span className="studio-aurora studio-aurora-two" /><span className="studio-horizon" /></>}
           {!isSimpleSunset && !isStudioHero && <>
@@ -387,21 +394,18 @@ export default function Home() {
 
       <LiquidDivider top="#f4efe3" bottom="#171714" />
 
-      {testimonials.length > 0 && <section className="featured-testimonial" id="testimonial" data-rise>
+      {katieTestimonial && <section className="featured-testimonial" id="testimonial" data-rise>
         <div className="section-label"><span>04</span><span>CLIENT NOTES</span></div>
         <figure className="featured-quote">
           <span aria-hidden="true">“</span>
           <blockquote>
-            <p>{testimonials[testimonialIndex]?.quote}</p>
+            <p>{katieTestimonial.quote}</p>
             <figcaption>
-              <span><small>{testimonials[testimonialIndex]?.title || testimonials[testimonialIndex]?.service || "Client note"}</small></span>
-              {testimonials.length > 1 && <span className="testimonial-controls" aria-label="Choose a testimonial">
-                {testimonials.map((testimonial, index) => <button className={index === testimonialIndex ? "is-active" : ""} type="button" aria-label={`Show client note ${index + 1}`} onClick={() => setTestimonialIndex(index)} key={testimonial.id}>{String(index + 1).padStart(2, "0")}</button>)}
-              </span>}
+              <span><small>{katieTestimonial.title || katieTestimonial.service || "Client note"}</small></span>
             </figcaption>
           </blockquote>
         </figure>
-        <a className="testimonial-more" href="/testimonials">See more client notes <ArrowUpRight size={18} /></a>
+        <a className="testimonial-more" href="/testimonials">See more <ArrowUpRight size={18} /></a>
       </section>}
 
       <LiquidDivider top="#171714" bottom="#f4efe3" />

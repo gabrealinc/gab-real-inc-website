@@ -5,7 +5,7 @@ const footerLinks = [
   { href: "/services", label: "Work with Gabby" },
   { href: "/testimonials", label: "Testimonials" },
   { href: "/learn", label: "Self-paced course" },
-  { href: "/case-studies", label: "Case studies" },
+  { href: "/past-work", label: "Past Work" },
 ];
 
 export function SiteFooter() {

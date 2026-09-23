@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 const navLinks = [
   ["about gabby", "/about"],
   ["testimonials", "/testimonials"],
-  ["case studies", "/case-studies"],
+  ["past work", "/past-work"],
   ["self-paced course", "/learn"],
   ["work with gabby", "/services"],
 ];
