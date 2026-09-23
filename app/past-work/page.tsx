@@ -41,6 +41,25 @@ export default function PastWorkPage() {
                 <div><h3>What I built</h3><p>{item.built}</p></div>
                 <div><h3>What changed</h3><p>{item.result}</p></div>
               </div>
+              {item.number === "02" && (
+                <figure className="past-work-feature">
+                  <div className="past-work-feature-heading">
+                    <span className="eyebrow">WORK FEATURE / LUXX WELLNESS & BEAUTY</span>
+                    <h3>Inside the Peptide Patient Portal</h3>
+                  </div>
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster="/luxx-portal-preview.webp"
+                    aria-label="Silent walkthrough of the LUXX Peptide Patient Portal"
+                  >
+                    <source src="/luxx-portal-walkthrough.mp4" type="video/mp4" />
+                    Your browser does not support video playback.
+                  </video>
+                  <figcaption>Seven moments from the practitioner workflow. Patient names, contact details, and health information are obscured.</figcaption>
+                </figure>
+              )}
               <div className="past-work-outcomes" aria-label="Documented outcomes">
                 <span className="eyebrow">THE OUTCOMES</span>
                 <div className="past-work-metrics">

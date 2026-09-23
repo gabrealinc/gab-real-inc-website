@@ -16,11 +16,11 @@ export const caseStudies = [
   },
   {
     number: "02",
-    label: "Client experience",
-    title: "One calm home for the whole client journey.",
-    problem: "Intake forms, payments, plans, and weekly check-ins lived in different places. The founder had to chase every update.",
-    built: "A private client portal that brings each step together, from the first form to ongoing progress.",
-    result: "Clients know what happens next, and the team can support them without the constant manual follow-up.",
+    label: "Peptide Patient Portal",
+    title: "One calm home for the whole patient journey.",
+    problem: "Intake forms, protocols, weekly check-ins, and progress reports lived in different places. The practitioner had to piece together each patient's story.",
+    built: "A private practitioner portal that brings patient profiles, recorded progress, report previews, and protocol drafts into one review flow.",
+    result: "The practitioner can follow progress, review the source information, and check protocol drafts before they are sent.",
     metrics: [
       { value: "~5", label: "hours returned per new client" },
       { value: "~10", label: "hours returned each week" },
