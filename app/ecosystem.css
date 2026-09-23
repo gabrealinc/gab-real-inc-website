@@ -647,7 +647,7 @@
 .course-waitlist h2 em { color: var(--blue); }
 .course-waitlist p { max-width: 560px; font-size: 18px; line-height: 1.6; }
 .course-waitlist-form { min-width: 0; }
-.course-waitlist-form iframe { display: block; width: 100%; min-height: 345px; border: 0; background: #fff; }
+.course-waitlist-form iframe { display: block; width: 100%; min-height: 345px; border: 0; background: var(--yellow); }
 .course-waitlist-form a { display: inline-block; margin-top: 12px; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 700; }
 @media (max-width: 760px) { .course-waitlist { grid-template-columns: 1fr; padding: 65px 6%; } .course-waitlist-form iframe { min-height: 365px; } }
 .service-path { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 25px 6%; overflow-x: auto; border-bottom: 1px solid var(--ink); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
