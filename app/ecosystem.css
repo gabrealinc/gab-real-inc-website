@@ -484,6 +484,32 @@
 .past-work-outcomes > p { max-width: 750px; font-size: 12px; line-height: 1.5; opacity: .8; }
 .past-work-impact { margin-top: 40px; }
 .past-work-impact p { max-width: 760px; }
+.ecosystem-gallery { padding: 100px 0 86px; overflow: hidden; background: #23120c; color: var(--yellow); }
+.ecosystem-gallery-heading { display: flex; justify-content: space-between; align-items: end; gap: 40px; padding: 0 6% 48px; }
+.ecosystem-gallery-heading h2 { max-width: 900px; margin-top: 25px; font: 400 clamp(4rem, 7.5vw, 8.5rem)/.85 "Crimson Text", Georgia, serif; letter-spacing: -.065em; }
+.ecosystem-gallery-heading h2 em { color: var(--orange-soft); }
+.ecosystem-gallery-heading p { max-width: 650px; margin-top: 28px; font-size: 17px; line-height: 1.5; color: #e3d1c3; }
+.ecosystem-gallery-controls { display: flex; flex: 0 0 auto; gap: 10px; padding-bottom: 7px; }
+.ecosystem-gallery-controls button { display: grid; place-items: center; width: 54px; height: 54px; border: 1px solid #f4efe380; border-radius: 50%; background: transparent; color: var(--yellow); cursor: pointer; transition: background .2s, color .2s; }
+.ecosystem-gallery-controls button:hover { background: var(--yellow); color: #23120c; }
+.ecosystem-gallery-controls button:focus-visible, .ecosystem-card a:focus-visible { outline: 3px solid var(--orange-soft); outline-offset: 4px; }
+.ecosystem-gallery-rail { display: flex; gap: 26px; padding: 0 6% 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 6%; scrollbar-width: thin; scrollbar-color: var(--orange-soft) transparent; }
+.ecosystem-card { flex: 0 0 min(750px, 60vw); min-width: 0; scroll-snap-align: start; }
+.ecosystem-card-image { position: relative; display: block; overflow: hidden; border: 1px solid #f4efe34d; background: #f4efe3; }
+.ecosystem-card-browser { height: 37px; display: flex; align-items: center; gap: 6px; padding: 0 14px; background: #f4efe3; color: #171714; }
+.ecosystem-card-browser i { display: block; width: 7px; height: 7px; border-radius: 50%; background: #bb9a87; }
+.ecosystem-card-browser span { overflow: hidden; margin: 0 auto; padding-right: 35px; font-size: 10px; white-space: nowrap; text-overflow: ellipsis; opacity: .7; }
+.ecosystem-card-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform .35s; }
+.ecosystem-card-image:hover img { transform: scale(1.025); }
+.ecosystem-card-visit { position: absolute; display: grid; place-items: center; right: 20px; bottom: 20px; width: 51px; height: 51px; border-radius: 50%; background: var(--yellow); color: #23120c; }
+.ecosystem-card-copy { padding: 23px 3px 0; }
+.ecosystem-card-meta { display: flex; justify-content: space-between; gap: 15px; padding-top: 15px; border-top: 1px solid #f4efe380; color: var(--orange-soft); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.ecosystem-card-copy h3 { margin-top: 20px; font: italic 400 clamp(2.5rem, 4vw, 4.6rem)/.98 "Crimson Text", Georgia, serif; letter-spacing: -.045em; }
+.ecosystem-card-copy > p { max-width: 620px; margin-top: 12px; color: #e3d1c3; font-size: 15px; line-height: 1.55; }
+.ecosystem-card-bottom { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-top: 24px; }
+.ecosystem-card-bottom > span { color: #f4efe3ac; font-size: 12px; line-height: 1.5; }
+.ecosystem-card-bottom a { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 7px; padding-bottom: 6px; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 700; }
+.ecosystem-gallery-hint { margin: 25px 6% 0; color: #f4efe399; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; }
 .past-work-closing { min-height: 460px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 30px; padding: 85px 6%; background: var(--blue); color: var(--yellow); }
 .past-work-closing h2 { max-width: 1000px; font: 400 clamp(3.5rem, 7vw, 8rem)/.9 "Crimson Text", Georgia, serif; letter-spacing: -.06em; }
 .past-work-closing a { display: inline-flex; align-items: center; gap: 35px; padding-bottom: 8px; border-bottom: 1px solid currentColor; font-size: 14px; font-weight: 700; }
@@ -951,6 +977,17 @@
   .past-work-metrics { grid-template-columns: 1fr; gap: 18px; }
   .past-work-metrics > div { flex-direction: row; align-items: baseline; gap: 15px; }
   .past-work-metrics strong { flex: 0 0 100px; font-size: 3.1rem; }
+  .ecosystem-gallery { padding: 72px 0 62px; }
+  .ecosystem-gallery-heading { align-items: flex-start; flex-direction: column; gap: 28px; padding-bottom: 33px; }
+  .ecosystem-gallery-heading h2 { font-size: clamp(3.6rem, 12vw, 5.8rem); }
+  .ecosystem-gallery-heading p { font-size: 15px; }
+  .ecosystem-gallery-controls button { width: 46px; height: 46px; }
+  .ecosystem-gallery-rail { gap: 14px; }
+  .ecosystem-card { flex-basis: 88vw; }
+  .ecosystem-card-browser { height: 29px; }
+  .ecosystem-card-visit { right: 12px; bottom: 12px; width: 42px; height: 42px; }
+  .ecosystem-card-copy h3 { font-size: 2.7rem; }
+  .ecosystem-card-bottom { align-items: flex-start; flex-direction: column; gap: 14px; }
   .past-work-closing { min-height: 420px; padding: 75px 6%; }
   .past-work-closing h2 { font-size: clamp(3.6rem, 12vw, 5.3rem); }
   .featured-testimonial { padding: 68px 6% 52px; }

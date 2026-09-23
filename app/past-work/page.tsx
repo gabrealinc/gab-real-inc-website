@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { SiteFooter } from "../site-footer";
 import { SiteNavigation } from "../site-navigation";
 import { caseStudies } from "../case-studies/data";
+import { DigitalEcosystems } from "./digital-ecosystems";
 
 export default function PastWorkPage() {
   return (
@@ -93,6 +94,8 @@ export default function PastWorkPage() {
           ))}
         </div>
       </section>
+
+      <DigitalEcosystems />
 
       <section className="past-work-closing">
         <span className="eyebrow">YOUR WORK COULD BE NEXT</span>
