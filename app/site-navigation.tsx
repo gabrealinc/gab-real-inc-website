@@ -8,7 +8,7 @@ const navLinks = [
   ["about gabby", "/about"],
   ["testimonials", "/testimonials"],
   ["past work", "/past-work"],
-  ["self-paced course", "/learn"],
+  ["the AI course", "/learn"],
   ["work with gabby", "/services"],
 ];
 

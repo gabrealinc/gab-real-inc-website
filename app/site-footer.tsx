@@ -4,7 +4,7 @@ const footerLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Work with Gabby" },
   { href: "/testimonials", label: "Testimonials" },
-  { href: "/learn", label: "Self-paced course" },
+  { href: "/learn", label: "Build Your AI OS" },
   { href: "/past-work", label: "Past Work" },
 ];
 

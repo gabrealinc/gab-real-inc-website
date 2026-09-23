@@ -1,6 +1,6 @@
 # Gab Real Inc website launch audit
 
-Updated September 21, 2026. This records work on the `codex/website-launch-infrastructure` GitHub branch. The site has not been published from these changes.
+Updated September 22, 2026. This records work on the `codex/website-launch-infrastructure` GitHub branch. The site has not been published from these changes.
 
 ## Confirmed against the current Ways to Work brief
 
@@ -27,9 +27,10 @@ Source: [Gab Real Inc – The Menu (Ways to Work Copy)](https://docs.google.com/
 
 1. **GHL routing:** The new `Work With Me | Offer Finder Intake` form is live at [the intake URL](https://links.gabrealinc.com/widget/form/i1x5pHufXkhLxVxCgX0K). A public test submission created a contact and saved the selected AI blueprints service and all written answers. GHL showed it as `Form 3` until the builder's internal form name was corrected. The new workflow remains a draft because its `Form submitted` trigger initially did not list this form. Retest the trigger after the name change, then scope it to this form, create or update a Clients pipeline opportunity, and verify routing. Do not publish a trigger that catches every form.
 2. **Visual and interaction verification:** The local and live site still need a complete desktop and mobile browser pass, including the embedded GHL form, navigation, every external destination, and calendar links.
-3. **Course checkout:** Build Your AI OS and the optional Vault are in development. Confirm the final course, Vault, and complete-package checkout presentation and test purchase and delivery before opening enrollment.
-4. **Privacy information:** No approved privacy or terms destination has been found on the current or new site. Confirm the approved policy location before launch with live lead collection.
-5. **Testimonial publication:** Only 1 of the 26 Notion testimonial records is marked `On Website`. The other 25 now appear in the local review preview but remain gated from the public build. One LACES testimonial record explicitly says its final wording and attribution need confirmation before public use. Review and approve the intended public quotes in Notion before launch.
+3. **Course waitlist:** The Build Your AI OS form is saved in GHL and visibly renders in the local website preview. It collects first name and email, and the on-screen confirmation names the course. Before public launch, add a dedicated GHL waitlist tag or workflow, verify a test submission lands on the right contact and list, and confirm the intended email confirmation and launch messaging. The form is intentionally not a checkout.
+4. **Course format and checkout:** Decide whether to organize the existing $397 course as 30 small daily actions. The 30-day structure can be completed on the learner's schedule and does not imply a live cohort. Do not market it as a finished 30-day program until the curriculum exists. The course and optional Vault checkout and delivery still need to be built and tested before enrollment opens, but they do not block a waitlist-only website launch.
+5. **Privacy information:** No approved Gab Real Inc privacy or terms destination has been found on the current or new site. The new waitlist form's default example.com legal links were removed. Confirm and publish the approved policy location before collecting live leads.
+6. **Testimonial publication:** Only 1 of the 26 Notion testimonial records is marked `On Website`. The other 25 now appear in the local review preview but remain gated from the public build. One LACES testimonial record explicitly says its final wording and attribution need confirmation before public use. Review and approve the intended public quotes in Notion before launch.
 
 ## Checks completed
 
@@ -39,5 +40,6 @@ Source: [Gab Real Inc – The Menu (Ways to Work Copy)](https://docs.google.com/
 - Local page links and referenced local images resolve in the repository. The new GHL intake URL returns HTTP 200, and its public form successfully saved a test lead.
 - No `human-first AI` phrase remains in site source.
 - The local `/testimonials` response contains 26 quote cards and no displayed client names.
+- The public GHL Build Your AI OS waitlist renders with first name, email, and the correct call to action. The embedded form also renders inside the local `/learn#waitlist` preview on desktop. No submission has been made yet.
 
 These checks do not prove that the new embed renders and submits in the site, that calendar and opportunity routing works, or that responsive rendering is correct.

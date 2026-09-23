@@ -32,7 +32,7 @@ const bookLeaves: BookLeaf[][] = [
   ],
 ];
 
-const heroMarqueeWords = ["Self-paced learning", "Advisory", "AI blueprints", "Custom builds", "Build together", "Built for you"];
+const heroMarqueeWords = ["Learn AI with Gabby", "Advisory", "AI blueprints", "Custom builds", "Build together", "Built for you"];
 
 function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -303,7 +303,7 @@ export default function Home() {
           <div className="studio-giant-type" aria-hidden="true">AI</div>
           <div className="studio-hero-footer"><span>AI made simple</span><span>Touch more grass. Watch more sunsets.</span><span>Scroll to explore ↓</span></div>
         </>}
-        {isSimpleSunset ? <div className="sunset-slogan" aria-label="Touch more grass. Watch more sunsets."><div className="sunset-slogan-track" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span key={index}>Touch more grass. Watch more sunsets.<i /></span>)}</div></div> : !isStudioHero && <div className="hero-service-line" aria-label="Self-paced learning, advisory, AI blueprints, custom builds, build together, and built for you">
+        {isSimpleSunset ? <div className="sunset-slogan" aria-label="Touch more grass. Watch more sunsets."><div className="sunset-slogan-track" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span key={index}>Touch more grass. Watch more sunsets.<i /></span>)}</div></div> : !isStudioHero && <div className="hero-service-line" aria-label="Learn AI with Gabby, advisory, AI blueprints, custom builds, build together, and built for you">
           <div className="hero-service-track" aria-hidden="true">
             {[...heroMarqueeWords, ...heroMarqueeWords].map((word, index) => <span key={`${word}-${index}`}>{word}<i /></span>)}
           </div>
@@ -333,7 +333,7 @@ export default function Home() {
       <LiquidDivider top="#f4efe3" bottom="#b6350b" />
 
       <section className="course-section" id="course" data-rise>
-        <div className="section-label"><span>02</span><span>SELF-PACED COURSE</span></div>
+        <div className="section-label"><span>02</span><span>THE AI COURSE</span></div>
         <div className="course-grid">
           <div className="course-heading">
             <span className="eyebrow">AI WITHOUT THE BULLSHIT</span>
@@ -341,7 +341,7 @@ export default function Home() {
           </div>
           <div className="course-summary">
             <p>Build Your AI OS is one course for learning to use AI intentionally and building a system around your own knowledge and work. Learn what deserves your time, what to leave alone, and how to keep your judgment in charge. Less stress. Better work. More time to touch grass.</p>
-            <a className="primary-link light" href="/learn">Explore Build Your AI OS <ArrowUpRight size={18} /></a>
+            <a className="primary-link light" href="/learn#waitlist">Join the course waitlist <ArrowUpRight size={18} /></a>
             <figure className="course-visual">
               <img src="/course-work.png" alt="Hands typing on a retro keyboard beside a notebook and coffee" />
               <figcaption>More effective. More creative. More human.</figcaption>
@@ -352,7 +352,7 @@ export default function Home() {
           <span><strong>Use less, better</strong><small>Know which tools deserve your time and which do not.</small></span>
           <span><strong>Build for your real life</strong><small>Create useful workflows instead of collecting generic hacks.</small></span>
           <span><strong>Stay human</strong><small>Save time without giving up your judgment, voice, or creativity.</small></span>
-          <a href="/learn">Explore the course <ArrowUpRight size={17} /></a>
+          <a href="/learn#waitlist">Join the waitlist <ArrowUpRight size={17} /></a>
         </div>
       </section>
 
