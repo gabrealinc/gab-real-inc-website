@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Gab Real Inc. | AI Made Simple",
     description: "Learn to make informed decisions around AI without having to become an engineer.",
-    images: [{ url: "/hero-editorial-desk-desktop.png", width: 1672, height: 941, alt: "A warm editorial desk scene at sunset" }],
+    images: [{ url: "/hero-option-orbit-collage.png", width: 1536, height: 1024, alt: "Gabby at a creative desk beneath a collage of cosmic ideas" }],
   },
   twitter: { card: "summary_large_image" },
   icons: {

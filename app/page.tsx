@@ -120,7 +120,7 @@ function LiquidDivider({ top, bottom }: { top: string; bottom: string }) {
 }
 
 export default function Home() {
-  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl" | "studio" | "desk" | "desk-editorial" | "orbit-desk" | "orbit-collage">("desk");
+  const [heroVariant, setHeroVariant] = useState<"solar" | "portal" | "portal-editorial" | "vinyl" | "studio" | "desk" | "desk-editorial" | "orbit-desk" | "orbit-collage">("orbit-collage");
   const [mobileCopyPosition, setMobileCopyPosition] = useState<"top" | "bottom">("top");
   const [philosophyLitCount, setPhilosophyLitCount] = useState(0);
   const [bookPage, setBookPage] = useState(0);
