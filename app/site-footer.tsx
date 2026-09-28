@@ -6,6 +6,7 @@ const footerLinks = [
   { href: "/testimonials", label: "Testimonials" },
   { href: "/learn", label: "Build Your AI OS" },
   { href: "/past-work", label: "What I’ve Built" },
+  { href: "/privacy", label: "Privacy" },
 ];
 
 export function SiteFooter() {

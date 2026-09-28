@@ -1,6 +1,6 @@
 # Gab Real Inc website launch audit
 
-Updated September 27, 2026. This is a readiness record for the `codex/website-launch-infrastructure` branch. The site is still private and has not been launched on gabrealinc.com.
+Updated September 28, 2026. This is a readiness record for the `codex/website-launch-infrastructure` branch. The site is still private and has not been launched on gabrealinc.com. See [GHL-WORKFLOW-MAP.md](./GHL-WORKFLOW-MAP.md) for the verified automation and calendar inventory.
 
 ## Current positioning and offers
 
@@ -16,12 +16,14 @@ The services page and Offer Finder now include the Strategy Session and use the 
 - The current Notion Client Testimonials database has 15 records checked `On Website`. The site's approved fallback snapshot has the same 15 record IDs. Client names are not displayed in the testimonial page design. The live Notion API integration is not connected, so future changes will not appear automatically.
 - Sampled frames and the poster from the LUXX portal walkthrough show the patient interface heavily blurred. This is a visual spot check, not a frame-by-frame or client-permission review.
 - The managed Site remains private with no custom domain attached. Its current live URL is `https://gab-real-inc.gabrealinc.chatgpt.site` and only the owner is allowed access.
+- The course page now uses a visual build-as-you-learn presentation, one course price, an optional 30-day path, and a waitlist. The homepage leads its service selector with AI advice. The book preview uses the four parts and chapter titles from the current ebook manuscript. The services photo story moved below the offers with a plain-English heading.
+- A plain-English privacy page is linked in the footer and beside the site's two embedded lead forms. The site build succeeds. The current course hero was checked at desktop and mobile viewport sizes.
 
 ## Required before a public, lead-collecting launch
 
-1. **Privacy destination and form language.** No approved Gab Real Inc privacy policy was found. Add a policy covering the actual site, GHL forms, follow-up, analytics/cookies if used, and a visible link beside both forms and in the footer. Review whether a terms page is needed for the site or later checkout. Do not use another client's policy.
+1. **Privacy review.** The new policy covers the known site and GHL form uses. Confirm the contact email, actual provider list, retention practice, cookies/analytics, and embedded form consent match production before making the site public. A posted policy cannot guarantee legal compliance by itself. Review checkout terms when payment opens.
 2. **GHL lead handling.** The Work With Me draft now creates a `New Lead` opportunity in `Clients`, adds the `new lead` tag, and alerts Gabby in-app. Review the calendar handoff and test the full route before activating it. Create and test a separate course waitlist tag/workflow and confirmation. Keep each workflow scoped to its own form. Do a real test submission with disposable contact details, then check contact fields, list/tag, opportunity, notifications, and confirmation. Avoid publishing an untested broad trigger.
-3. **Public work approval.** Confirm LUXX and LACES allow the featured video, names, logos, screenshots, and any backend process detail to be shown. Spot-check all video frames and posters for readable patient/athlete details before public release. The LUXX sample frames inspected here were blurred.
+3. **Public work media.** Gabby confirmed LUXX and LACES permit public project display. The walkthrough files are heavily compressed, and the original screenshots are no longer available at their temporary paths. Obtain sharp, redacted exports or new recordings before replacing them; project permission alone does not establish permission to show individual patient or athlete details. Review every frame and poster before public release.
 4. **Final QA.** Review homepage, About, Services, Learn, Testimonials, and Past Work on desktop and mobile; test navigation, forms, external links, and calendar destinations in the deployed build. Confirm the selected cosmic collage hero and mobile crop.
 5. **Deployment and domain.** Publish the approved build, connect and verify `gabrealinc.com`, check SSL and redirects, then repeat the form smoke test on the real domain. The current hosted Site is private and has no custom domain.
 

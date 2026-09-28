@@ -72,18 +72,6 @@ export default function ServicesPage() {
 
       <OfferFinder />
 
-      <section className="service-photo-story" aria-label="Working with Gabby in different settings">
-        <div className="service-photo-story-heading">
-          <span className="eyebrow">HOW WE CAN WORK TOGETHER</span>
-          <h2>From the first conversation to <em>the room you want to move.</em></h2>
-        </div>
-        <div className="service-photo-story-grid">
-          <figure><img src="/images/gabby/Presentation.jpg" alt="Gabby giving a presentation" width="2000" height="2000" loading="lazy" /><figcaption>Workshops</figcaption></figure>
-          <figure><img src="/images/gabby/Speaking.jpg" alt="Gabby speaking into a microphone" width="1669" height="2000" loading="lazy" /><figcaption>Speaking</figcaption></figure>
-          <figure><img src="/images/gabby/On-Stage.jpg" alt="Gabby addressing a room from the stage" width="2000" height="1847" loading="lazy" /><figcaption>Conversations</figcaption></figure>
-        </div>
-      </section>
-
       <section className="service-page-grid" aria-label="Current offers">
         {offers.map((offer) => (
           <article key={offer.number}>
@@ -96,6 +84,18 @@ export default function ServicesPage() {
             <a href="#offer-finder">Is this right for me? ↓</a>
           </article>
         ))}
+      </section>
+
+      <section className="service-photo-story" aria-label="Working with Gabby in different settings">
+        <div className="service-photo-story-heading">
+          <span className="eyebrow">WORKSHOPS / SPEAKING / CONVERSATIONS</span>
+          <h2>Change starts with <em>real conversations.</em></h2>
+        </div>
+        <div className="service-photo-story-grid">
+          <figure><img src="/images/gabby/Presentation.jpg" alt="Gabby giving a presentation" width="2000" height="2000" loading="lazy" /><figcaption>Workshops</figcaption></figure>
+          <figure><img src="/images/gabby/Speaking.jpg" alt="Gabby speaking into a microphone" width="1669" height="2000" loading="lazy" /><figcaption>Speaking</figcaption></figure>
+          <figure><img src="/images/gabby/On-Stage.jpg" alt="Gabby addressing a room from the stage" width="2000" height="1847" loading="lazy" /><figcaption>Conversations</figcaption></figure>
+        </div>
       </section>
     </InteriorShell>
   );

@@ -3,6 +3,7 @@ import "./globals.css";
 import "./studio.css";
 import "./depth.css";
 import "./ecosystem.css";
+import "./refresh.css";
 import { ScrollReveal } from "./scroll-reveal";
 
 export const metadata: Metadata = {

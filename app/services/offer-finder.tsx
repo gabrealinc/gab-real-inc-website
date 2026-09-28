@@ -135,6 +135,7 @@ export function OfferFinder() {
                 {showIntake ? <div className="finder-intake" id="finder-intake">
                   <p>Share a little about your project. The quiz result is just a starting point, and Gabby will review your inquiry personally.</p>
                   <iframe className="finder-intake-frame" title="Gab Real Inc work with me inquiry" src={intakeUrl} loading="lazy" />
+                  <p className="form-privacy-note">By sending an inquiry, you ask Gab Real Inc. to contact you about working together. See the <a href="/privacy">Privacy Policy</a>.</p>
                   <a className="finder-intake-fallback" href={intakeUrl} target="_blank" rel="noreferrer">Open the form in a new tab <ArrowRight size={16} /></a>
                 </div> : null}
               </>

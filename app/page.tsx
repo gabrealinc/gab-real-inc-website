@@ -10,25 +10,25 @@ const philosophyStatement = "Ask harder questions. Challenge what’s normal. Ha
 const philosophySupport = "You don’t have to use AI, or even like it, to have a point of view.";
 const philosophyWords = philosophyStatement.split(" ");
 const services = [
-  { title: "Team training", label: "Learn together", copy: "Clear, practical sessions that help your team use AI in everyday work and understand where to be careful.", fit: "Best when people need a shared language and a confident place to begin." },
-  { title: "Speaking", label: "Start the conversation", copy: "Keynotes and conversations about AI, the future of work, and what people should still control.", fit: "Best for events, leadership gatherings, and teams navigating change." },
   { title: "AI advice", label: "Make better decisions", copy: "Ongoing help choosing tools, setting priorities, and making confident decisions as technology changes.", fit: "Best when the questions keep changing and you want a trusted thinking partner." },
+  { title: "Team training", label: "Learn together", copy: "Clear, practical sessions that help your team use AI in everyday work and understand where to be careful.", fit: "Best when people need a shared language and a confident place to begin." },
   { title: "Custom systems", label: "Build what is useful", copy: "Workflows, dashboards, and AI assistants designed around how your business really works.", fit: "Best when the problem is clear and the current process is costing too much time." },
+  { title: "Speaking", label: "Start the conversation", copy: "Keynotes and conversations about AI, the future of work, and what people should still control.", fit: "Best for events, leadership gatherings, and teams navigating change." },
 ];
 
 type BookLeaf = { eyebrow: string; title: string; copy: string; cover?: boolean; back?: boolean };
 const bookLeaves: BookLeaf[][] = [
   [
     { eyebrow: "GABRIELLE GREENBERG + RYAN WELTI", title: "FROM SCRATCH", copy: "Creating a life that feels like yours.", cover: true },
-    { eyebrow: "START HERE", title: "Who decided what success should look like?", copy: "Turn the page to question the definitions you inherited." },
+    { eyebrow: "CONTENTS", title: "Recognize · Explore · Align · Live", copy: "Four parts, twelve chapters, and room to define success for yourself." },
   ],
   [
-    { eyebrow: "PART ONE", title: "Question the default.", copy: "Notice the rules, expectations, and identities you accepted without choosing." },
-    { eyebrow: "PART TWO", title: "Define success for yourself.", copy: "Build a definition that belongs to your actual life, not somebody else’s." },
+    { eyebrow: "PART I · RECOGNIZE", title: "Notice the Friction", copy: "Release the Weight · Pull the Thread" },
+    { eyebrow: "PART II · EXPLORE", title: "Move Through Fear", copy: "Adjust Your Lens · Build the Blueprint" },
   ],
   [
-    { eyebrow: "THE SCENIC ROUTE", title: "Your nonlinear path still counts.", copy: "You are allowed to evolve, change your mind, and begin again." },
-    { eyebrow: "FROM SCRATCH", title: "A place honest enough to begin.", copy: "239 pages · 12 chapters · 4 parts", back: true },
+    { eyebrow: "PART III · ALIGN", title: "Take the Scenic Route", copy: "Cultivate Your Natural Edge · Get Paid to Be You · Expand Your Ecosystem" },
+    { eyebrow: "PART IV · LIVE", title: "Define Success", copy: "Become the Blueprint · 12 chapters across 4 parts", back: true },
   ],
 ];
 
@@ -463,8 +463,8 @@ export default function Home() {
               <h3>From Scratch.</h3><p>Question the life you inherited and create one that feels like yours.</p><ArrowUpRight />
             </a>
           </article>
-          <a className={`more-card more-writing ${moreIndex === 1 ? "is-active" : ""}`} data-position={1 - moreIndex} onClick={(event) => { if (moreIndex !== 1) { event.preventDefault(); setMoreIndex(1); } }} href="https://growithgab.substack.com/" target="_blank" rel="noreferrer" tabIndex={moreIndex === 1 ? 0 : -1}><span>THE WRITING</span><h3>Grow with Gab.</h3><p>Essays about AI, identity, creativity, work, and whatever I cannot stop thinking about.</p><ArrowUpRight /></a>
-          <article className={`more-card more-podcast ${moreIndex === 2 ? "is-active" : ""}`} data-position={2 - moreIndex} onClick={() => setMoreIndex(2)}><span>THE PODCAST</span><h3>Exploit.</h3><p>Honest conversations about technology, creativity, and what comes next.</p><small>COMING SOON</small></article>
+          <a className={`more-card more-writing ${moreIndex === 1 ? "is-active" : ""}`} data-position={1 - moreIndex} onClick={(event) => { if (moreIndex !== 1) { event.preventDefault(); setMoreIndex(1); } }} href="https://growithgab.substack.com/" target="_blank" rel="noreferrer" tabIndex={moreIndex === 1 ? 0 : -1}><span>THE WRITING</span><div className="grow-graphic" aria-hidden="true"><b>g</b><i>GROW / QUESTION / REPEAT</i></div><h3>Grow with Gab.</h3><p>Essays about AI, identity, creativity, work, and whatever I cannot stop thinking about.</p><ArrowUpRight /></a>
+          <article className={`more-card more-podcast ${moreIndex === 2 ? "is-active" : ""}`} data-position={2 - moreIndex} onClick={() => setMoreIndex(2)}><span>THE PODCAST</span><div className="exploit-graphic" aria-hidden="true" /><h3>Exploit.</h3><p>Honest conversations about technology, creativity, and what comes next.</p><small>COMING SOON</small></article>
           </div>
           <div className="more-carousel-controls">
             <button type="button" onClick={() => setMoreIndex((index) => Math.max(0, index - 1))} disabled={moreIndex === 0} aria-label="Previous item">←</button>
