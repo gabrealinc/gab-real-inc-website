@@ -60,9 +60,9 @@ export function SiteNavigation() {
       <div className={`nav-underlay nav-underlay-yellow ${menuOpen ? "is-open" : ""}`} aria-hidden="true" />
       <header className={`layer-nav ${menuOpen ? "is-open" : ""} ${navScrolled ? "is-scrolled" : ""} ${!navVisible && !menuOpen ? "is-hidden" : ""}`}>
         <div className="layer-nav-bar">
-          <Link className="layer-wordmark brand-wordmark" href="/" onClick={closeMenu} aria-label="Gab Real Inc. home">
+          <a className="layer-wordmark brand-wordmark" href="/" onClick={closeMenu} aria-label="Gab Real Inc. home">
             <span>GAB REAL INC</span><sup>®</sup>
-          </Link>
+          </a>
           <button className="layer-toggle" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="layer-menu" onClick={() => setMenuOpen((open) => !open)}>
             <span>{menuOpen ? "Close" : "Menu"}</span>
             {menuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={25} strokeWidth={1.5} />}
