@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { InteriorShell } from "../interior-shell";
 import { OfferFinder } from "./offer-finder";
 
+const buildDiscoveryUrl = "https://links.gabrealinc.com/widget/bookings/build-with-gabby";
+
 export const metadata: Metadata = {
   title: "Work Directly with Gabby | Gab Real Inc.",
   description: "Work directly with Gabby on a strategy session, AI and Systems Blueprint, team workshop, speaking engagement, advisory, or custom system.",
@@ -61,7 +63,7 @@ export default function ServicesPage() {
           <span className="eyebrow">MAP IT / TEACH IT / BUILD IT</span>
           <h1>You probably don’t need more AI tools.<br /><em>You need clarity.</em></h1>
           <p>Bring me a decision, a team that needs to learn, or a system that needs to work better. We can think it through, map it, teach it, or build it together.</p>
-          <div className="services-hero-actions"><a className="services-hero-link" href="#offer-finder">Find your best next step ↓</a><a className="services-hero-link" href="/learn">Looking for a course you can take on your own? ↗</a></div>
+          <div className="services-hero-actions"><a className="services-hero-link" href="#offer-finder">Find your best next step ↓</a><a className="services-hero-link" href={buildDiscoveryUrl} target="_blank" rel="noreferrer">Book a custom build discovery call ↗</a><a className="services-hero-link" href="/learn">Looking for a course you can take on your own? ↗</a></div>
         </div>
         <figure className="services-hero-image"><img src="/images/gabby/Airport.jpg" alt="Gabby working at a cafe table" width="1333" height="2000" fetchPriority="high" /></figure>
       </section>
@@ -81,7 +83,7 @@ export default function ServicesPage() {
             <strong className="service-price">{offer.price}</strong>
             <p>{offer.copy}</p>
             {offer.note ? <p className="service-note">{offer.note}</p> : null}
-            <a href="#offer-finder">Is this right for me? ↓</a>
+            {offer.number === "06" ? <a href={buildDiscoveryUrl} target="_blank" rel="noreferrer">Book a discovery call ↗</a> : <a href="#offer-finder">Is this right for me? ↓</a>}
           </article>
         ))}
       </section>
