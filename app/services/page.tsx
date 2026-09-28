@@ -4,12 +4,19 @@ import { OfferFinder } from "./offer-finder";
 
 export const metadata: Metadata = {
   title: "Work Directly with Gabby | Gab Real Inc.",
-  description: "Work directly with Gabby on an AI blueprint, team workshop, speaking engagement, strategic advisory, or custom AI system.",
+  description: "Work directly with Gabby on a strategy session, AI and Systems Blueprint, team workshop, speaking engagement, advisory, or custom system.",
 };
 
 const offers = [
   {
     number: "01",
+    title: "Strategy Session",
+    lead: "Think it through together",
+    price: "$350 / 90 minutes",
+    copy: "One focused conversation for a transition, opportunity, business decision, positioning question, or AI idea. Leave with clearer thinking and next steps, without a formal roadmap.",
+  },
+  {
+    number: "02",
     title: "AI and Systems Blueprint",
     lead: "Get a clear plan",
     price: "$1,250",
@@ -17,28 +24,28 @@ const offers = [
     note: "Keep the plan and implement it yourself, with your team, or with any provider. There is no obligation to continue.",
   },
   {
-    number: "02",
+    number: "03",
     title: "Practical AI Workshops",
     lead: "Teach your team",
     price: "Custom · application required",
     copy: "Practical AI education designed around your team’s actual work, current experience, and goals. No generic tool parade.",
   },
   {
-    number: "03",
+    number: "04",
     title: "Speaking Engagements",
     lead: "Start a useful conversation",
     price: "Custom · application required",
     copy: "Keynotes, panels, fireside conversations, and interactive sessions about AI, creativity, agency, systems, and the future of work.",
   },
   {
-    number: "04",
+    number: "05",
     title: "Strategic Advisory",
     lead: "Keep Gabby in the room",
     price: "Custom · application required",
     copy: "Ongoing strategic access for founders and leaders navigating AI, business systems, products, operations, creative direction, or implementation decisions.",
   },
   {
-    number: "05",
+    number: "06",
     title: "Custom AI Systems",
     lead: "Have Gabby build it",
     price: "Custom · application required",
@@ -51,16 +58,16 @@ export default function ServicesPage() {
     <InteriorShell>
       <section className="interior-hero services-hero">
         <div className="services-hero-copy">
-          <span className="eyebrow">WORK DIRECTLY WITH GABBY</span>
+          <span className="eyebrow">MAP IT / TEACH IT / BUILD IT</span>
           <h1>You probably don’t need more AI tools.<br /><em>You need clarity.</em></h1>
-          <p>Bring me into your business for a focused plan, team education, ongoing advice, or a system built around your work. We’ll figure out what is worth doing together.</p>
+          <p>Bring me a decision, a team that needs to learn, or a system that needs to work better. We can think it through, map it, teach it, or build it together.</p>
           <div className="services-hero-actions"><a className="services-hero-link" href="#offer-finder">Find your best next step ↓</a><a className="services-hero-link" href="/learn">Looking for a course you can take on your own? ↗</a></div>
         </div>
         <figure className="services-hero-image"><img src="/images/gabby/Airport.jpg" alt="Gabby working at a cafe table" width="1333" height="2000" fetchPriority="high" /></figure>
       </section>
 
       <section className="service-path" aria-label="Ways to work together">
-        <span>Get a Blueprint</span><i>→</i><span>Teach your team</span><i>→</i><span>Bring Gabby to your event</span><i>→</i><span>Keep Gabby in the room</span><i>→</i><span>Have Gabby build it</span>
+        <span>Think it through</span><i>→</i><span>Get a Blueprint</span><i>→</i><span>Teach your team</span><i>→</i><span>Build it together</span>
       </section>
 
       <OfferFinder />

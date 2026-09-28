@@ -3,7 +3,7 @@
 import { ArrowRight, Check, RotateCcw } from "lucide-react";
 import { useState } from "react";
 
-type Goal = "blueprint" | "workshop" | "speaking" | "advisory" | "systems";
+type Goal = "session" | "blueprint" | "workshop" | "speaking" | "advisory" | "systems";
 
 type Route = {
   label: string;
@@ -14,6 +14,11 @@ type Route = {
 const intakeUrl = "https://links.gabrealinc.com/widget/form/i1x5pHufXkhLxVxCgX0K";
 
 const routes: Record<Goal, Route> = {
+  session: {
+    label: "I want to think through a decision with Gabby",
+    result: "Strategy session",
+    reason: "A focused conversation can help you sort through the opportunity, challenge assumptions, and choose a next step without commissioning a formal roadmap.",
+  },
   blueprint: {
     label: "I need clarity on what my business should build",
     result: "AI blueprints",

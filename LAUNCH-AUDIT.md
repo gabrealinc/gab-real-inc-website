@@ -1,46 +1,32 @@
 # Gab Real Inc website launch audit
 
-Updated September 22, 2026. This records work on the `codex/website-launch-infrastructure` GitHub branch. The site has not been published from these changes.
+Updated September 27, 2026. This is a readiness record for the `codex/website-launch-infrastructure` branch. The site is still private and has not been launched on gabrealinc.com.
 
-## Confirmed against the current Ways to Work brief
+## Current positioning and offers
 
-- Six service paths: self-paced learning, AI and Systems Blueprint, practical workshops, speaking, strategic advisory, and custom AI systems.
-- Blueprint price: $1,250. Custom service prices depend on scope.
-- The intended inquiry flow is one GoHighLevel intake. Answers should be saved to contact fields, qualified opportunities should be created or updated, and the relevant calendar should appear after intake and qualification.
-- The September 20 [Release AI Courses task](https://app.notion.com/p/3dba4fa77eaf8107a469caacf37d8938) explicitly supersedes its earlier two-course architecture: the current plan is one Build Your AI OS course at $397, with an optional AI OS Vault implementation library. The September 22 briefing confirms this is the current direction. Enrollment is closed.
+The current [About Gab Real Inc](https://app.notion.com/p/374a4fa77eaf81f1967bd7b999e5cbd7), [Founder Freedom & Revenue System](https://app.notion.com/p/3cfa4fa77eaf811da721d1fef4f6aeda), and [Build Your AI OS](https://app.notion.com/p/3dda4fa77eaf80b3a905efcba3558e84) pages describe one clear offer ladder: LEARN IT, MAP IT, TEACH IT, BUILD IT. The direct-work entry offer is a $350, 90-minute Strategy Session; the independent AI and Systems Blueprint is $1,250. Workshops, speaking, advisory, and custom systems are scoped separately. Build Your AI OS is one $397 course with an optional $197 Vault and a planned $497 bundle. The course remains in development and the website offers a waitlist, not checkout. A 30-day build path is an optional curriculum structure, not a committed daily challenge.
 
-Source: [Gab Real Inc – The Menu (Ways to Work Copy)](https://docs.google.com/document/d/1upA2qYEUmnepTcDz_INZ8g28L0rB_WmgurPmCHLD9qY?tab=t.0#heading=h.0).
+The services page and Offer Finder now include the Strategy Session and use the current offer language. The course page shows one course price and describes the Vault as an add-on. The public GHL Work With Me form now lists Strategy Session instead of self-paced learning. The user's preference to avoid the phrase “human-first AI” takes precedence over the newer Notion draft; it does not appear in site copy.
 
-## Local fixes made
+## Verified this review
 
-- Kept the editorial desk hero and its warm brand gradient. Updated the moving words to the requested service language, including AI blueprints.
-- Aligned the home, services, Offer Finder, and navigation copy with the current learning and direct-work paths and removed the incorrect $1,500 minimum shown beside the $1,250 Blueprint.
-- Routed general home and case study calls to action into Ways to Work.
-- Replaced the Offer Finder's unsent email draft with the new GoHighLevel intake. Its result panel now embeds the form and offers a direct link if the embed is unavailable.
-- Added page titles for case studies and testimonials, a desk image for social sharing, and search engine discovery files for the confirmed gabrealinc.com domain.
-- Updated the local testimonials preview to show all 26 current Notion testimonial records. Removed client names from the testimonials page and the homepage quote, including the quote selector labels. The public build still limits testimonials to records marked `On Website` in Notion.
-- Separated the self-paced course from direct work with Gabby in the menu, footer, homepage, and page introductions. The direct-work page now lists five services and its finder routes only to those services, with a clear link to the course for people who prefer to learn independently.
-- Replaced the obsolete $297 Foundations and $497 advanced-course layout with one Build Your AI OS course at $397 and an optional Vault section. The page displays one course price while enrollment is closed.
-- Cleared all lint errors and TypeScript errors.
+- `npm run build` succeeded after the offer edits.
+- The Work With Me and Build Your AI OS waitlist GHL forms rendered inside their local site pages in Chrome. The intake form's service picker was updated and its GHL builder name is `Work With Me | Offer Finder Intake`.
+- The GHL `Website | Work With Me Intake` workflow has a form-specific `Form Submitted` trigger, a `Clients` pipeline opportunity action at `New Lead`, a `new lead` tag action, and an in-app notification to Gabrielle Greenberg. It is saved as a draft and has not been activated or tested end to end.
+- The current Notion Client Testimonials database has 15 records checked `On Website`. The site's approved fallback snapshot has the same 15 record IDs. Client names are not displayed in the testimonial page design. The live Notion API integration is not connected, so future changes will not appear automatically.
+- Sampled frames and the poster from the LUXX portal walkthrough show the patient interface heavily blurred. This is a visual spot check, not a frame-by-frame or client-permission review.
+- The managed Site remains private with no custom domain attached. Its current live URL is `https://gab-real-inc.gabrealinc.chatgpt.site` and only the owner is allowed access.
 
-## Launch blockers
+## Required before a public, lead-collecting launch
 
-1. **GHL routing:** The new `Work With Me | Offer Finder Intake` form is live at [the intake URL](https://links.gabrealinc.com/widget/form/i1x5pHufXkhLxVxCgX0K). A public test submission created a contact and saved the selected AI blueprints service and all written answers. GHL showed it as `Form 3` until the builder's internal form name was corrected. The new workflow remains a draft because its `Form submitted` trigger initially did not list this form. Retest the trigger after the name change, then scope it to this form, create or update a Clients pipeline opportunity, and verify routing. Do not publish a trigger that catches every form.
-2. **Visual and interaction verification:** The local and live site still need a complete desktop and mobile browser pass, including the embedded GHL form, navigation, every external destination, and calendar links.
-3. **Course waitlist:** The Build Your AI OS form is saved in GHL and visibly renders in the local website preview. It collects first name and email, and the on-screen confirmation names the course. Before public launch, add a dedicated GHL waitlist tag or workflow, verify a test submission lands on the right contact and list, and confirm the intended email confirmation and launch messaging. The form is intentionally not a checkout.
-4. **Course format and checkout:** Decide whether to organize the existing $397 course as 30 small daily actions. The 30-day structure can be completed on the learner's schedule and does not imply a live cohort. Do not market it as a finished 30-day program until the curriculum exists. The course and optional Vault checkout and delivery still need to be built and tested before enrollment opens, but they do not block a waitlist-only website launch.
-5. **Privacy information:** No approved Gab Real Inc privacy or terms destination has been found on the current or new site. The new waitlist form's default example.com legal links were removed. Confirm and publish the approved policy location before collecting live leads.
-6. **Testimonial publication:** Only 1 of the 26 Notion testimonial records is marked `On Website`. The other 25 now appear in the local review preview but remain gated from the public build. One LACES testimonial record explicitly says its final wording and attribution need confirmation before public use. Review and approve the intended public quotes in Notion before launch.
-7. **Past work media review:** The LUXX portal walkthrough was assembled from screenshots that show patient names and health-related details. Replace these with synthetic or fully redacted examples and confirm client permission before publishing the video. Review the LACES and other client examples for permission to show names, faces, and proprietary backend screens.
+1. **Privacy destination and form language.** No approved Gab Real Inc privacy policy was found. Add a policy covering the actual site, GHL forms, follow-up, analytics/cookies if used, and a visible link beside both forms and in the footer. Review whether a terms page is needed for the site or later checkout. Do not use another client's policy.
+2. **GHL lead handling.** The Work With Me draft now creates a `New Lead` opportunity in `Clients`, adds the `new lead` tag, and alerts Gabby in-app. Review the calendar handoff and test the full route before activating it. Create and test a separate course waitlist tag/workflow and confirmation. Keep each workflow scoped to its own form. Do a real test submission with disposable contact details, then check contact fields, list/tag, opportunity, notifications, and confirmation. Avoid publishing an untested broad trigger.
+3. **Public work approval.** Confirm LUXX and LACES allow the featured video, names, logos, screenshots, and any backend process detail to be shown. Spot-check all video frames and posters for readable patient/athlete details before public release. The LUXX sample frames inspected here were blurred.
+4. **Final QA.** Review homepage, About, Services, Learn, Testimonials, and Past Work on desktop and mobile; test navigation, forms, external links, and calendar destinations in the deployed build. Confirm the selected cosmic collage hero and mobile crop.
+5. **Deployment and domain.** Publish the approved build, connect and verify `gabrealinc.com`, check SSL and redirects, then repeat the form smoke test on the real domain. The current hosted Site is private and has no custom domain.
 
-## Checks completed
+## Can follow the initial launch
 
-- Production build succeeds and produces all seven site routes and the testimonials API.
-- TypeScript type check passes.
-- ESLint passes with five image optimization warnings and no errors.
-- Local page links and referenced local images resolve in the repository. The new GHL intake URL returns HTTP 200, and its public form successfully saved a test lead.
-- No `human-first AI` phrase remains in site source.
-- The local `/testimonials` response contains 26 quote cards and no displayed client names.
-- The public GHL Build Your AI OS waitlist renders with first name, email, and the correct call to action. The embedded form also renders inside the local `/learn#waitlist` preview on desktop. No submission has been made yet.
-
-These checks do not prove that the new embed renders and submits in the site, that calendar and opportunity routing works, or that responsive rendering is correct.
+- Connect a read-only Notion integration so checked testimonials refresh automatically; until then the 15 approved quotes are a manual snapshot.
+- Finish course lessons, the optional Vault, $497 bundle checkout, access delivery, and purchase automation before opening enrollment. These do not block a waitlist-only launch.
+- Refine a 30-day build path after the curriculum is real. Avoid promising 30 daily lessons before they exist.
