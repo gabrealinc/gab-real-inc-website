@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Gab Real Inc.",
-  description: "Selected AI systems and strategy work by Gabby Greenberg, with the problem, the build, and the outcomes explained clearly.",
+  title: "What I’ve Built | Gab Real Inc.",
+  description: "Explore websites, systems, and workflows Gabby Greenberg has built with clients.",
 };
 
 export default function CaseStudiesLayout({ children }: Readonly<{ children: React.ReactNode }>) {

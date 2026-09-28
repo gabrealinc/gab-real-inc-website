@@ -31,8 +31,8 @@ export const caseStudies = [
   },
   {
     number: "03",
-    label: "Business overview",
-    title: "The numbers leaders need, all in one place.",
+    label: "Business operating hub",
+    title: "One shared view of the business.",
     problem: "Important information was spread across different tools, so reports were slow to build and hard to trust.",
     built: "A central workspace that brings the company’s data together and gives each team a clear view of its work.",
     result: "Leaders can see what is happening sooner, make decisions with confidence, and catch problems before they grow.",

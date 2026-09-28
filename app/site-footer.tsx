@@ -5,7 +5,7 @@ const footerLinks = [
   { href: "/services", label: "Work with Gabby" },
   { href: "/testimonials", label: "Testimonials" },
   { href: "/learn", label: "Build Your AI OS" },
-  { href: "/past-work", label: "Past Work" },
+  { href: "/past-work", label: "What I’ve Built" },
 ];
 
 export function SiteFooter() {

@@ -10,10 +10,10 @@ export default function PastWorkPage() {
       <SiteNavigation />
 
       <section className="past-work-hero">
-        <span className="eyebrow">PAST WORK / SELECTED PROJECTS</span>
-        <h1>Things I’ve <em>built.</em></h1>
+        <span className="eyebrow">WHAT I’VE BUILT / SELECTED PROJECTS</span>
+        <h1>What I’ve <em>built.</em></h1>
         <div className="past-work-hero-bottom">
-          <p>A few examples of making complicated work clearer, calmer, and easier to move forward. Each one started with understanding the real problem.</p>
+          <p>Real websites, systems, and workflows I’ve built with clients. See the problem, the work, and what changed.</p>
           <a href="#selected-work">Explore the work <span aria-hidden="true">↓</span></a>
         </div>
       </section>
@@ -89,7 +89,6 @@ export default function PastWorkPage() {
                 </div>
                 <p>{item.metricBasis}</p>
               </div>
-              <div className="past-work-impact"><h3>Financial impact</h3><p>{item.financialImpact}</p></div>
             </article>
           ))}
         </div>

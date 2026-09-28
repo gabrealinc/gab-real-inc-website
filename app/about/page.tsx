@@ -3,7 +3,7 @@ import { InteriorShell } from "../interior-shell";
 
 export const metadata: Metadata = {
   title: "About Gabby | Gab Real Inc.",
-  description: "Meet Gabby Greenberg, founder of Gab Real Inc. and a strategist working across brand, AI systems, and creative direction.",
+  description: "Meet Gabby Greenberg, founder of Gab Real Inc. She helps people and teams make clearer decisions and build useful business systems.",
 };
 
 export default function AboutPage() {
@@ -16,7 +16,7 @@ export default function AboutPage() {
         <div className="about-hero-copy">
           <span className="eyebrow">ABOUT GABBY</span>
           <h1>Hi, I’m <em>Gabby!</em></h1>
-          <p>Founder of Gab Real Inc. I work at the intersection of brand strategy, AI systems, and creative direction.</p>
+          <p>I help people and teams make clearer decisions, design better ways to work, and use AI where it actually helps.</p>
         </div>
       </section>
       <section className="about-story">
@@ -27,9 +27,9 @@ export default function AboutPage() {
           <figcaption>Your business should be an asset that provides you with a life you love, not another job that burns you out.</figcaption>
         </figure>
         <div className="about-story-copy">
-          <p className="about-story-lead">I started Gab Real Inc because I kept seeing the same thing: brilliant people quietly burning themselves out trying to keep up.</p>
-          <p>My specialty is building AI the right way, from the ground up. Solid infrastructure and architecture for scalable systems that can actually grow with you. Anyone can create individual tools. The real craft is making sure they all work together, freeing you from the tasks that drain your energy and giving you more time for the work you love. That is the difference between adding more noise and building something that lasts.</p>
-          <p>What drives me most is keeping our humanity intact as AI evolves. I want to empower as many people to understand this technology well enough to have smart conversations about it, to use it with intention, and to help shape a future where technology serves people instead of replacing them.</p>
+          <p className="about-story-lead">I started Gab Real Inc to help people make sense of complicated work and decide what is actually worth building.</p>
+          <p>Some people need a conversation. Some need a clear plan, a team workshop, or a system that connects the pieces behind the scenes. I teach, advise, design, and build depending on what the problem calls for.</p>
+          <p>I care about making technology understandable and useful. The goal is better decisions and more room for the work and life that matter to you.</p>
         </div>
       </section>
       <section className="about-moments" aria-label="Gabby in conversation">

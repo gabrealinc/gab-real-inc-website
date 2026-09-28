@@ -53,9 +53,9 @@ export function DigitalEcosystems() {
     <section className="ecosystem-gallery" id="ecosystem-gallery" aria-labelledby="ecosystem-gallery-title">
       <div className="ecosystem-gallery-heading">
         <div>
-          <span className="eyebrow">MORE WORK / DIGITAL ECOSYSTEMS</span>
-          <h2 id="ecosystem-gallery-title">The site is just the <em>front door.</em></h2>
-          <p>Websites built to look good and connect visitors to the right next step. Explore the live work.</p>
+          <span className="eyebrow">MORE WORK / WEBSITES</span>
+          <h2 id="ecosystem-gallery-title">Websites that <em>work harder.</em></h2>
+          <p>Each site helps people understand what’s offered and take the next step. Explore the live work.</p>
         </div>
         <div className="ecosystem-gallery-controls" aria-label="Browse websites">
           <button type="button" onClick={() => move(-1)} aria-label="Previous websites"><ArrowLeft size={21} /></button>
