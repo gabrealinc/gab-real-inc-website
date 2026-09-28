@@ -708,6 +708,30 @@
 .finder-intake-frame { width: 100%; height: 1010px; margin-top: 22px; border: 0; background: #fff; }
 .finder-intake-fallback { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; border-bottom: 1px solid currentColor; font-size: 13px; }
 .finder-reset { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 0; border: 0; background: transparent; color: color-mix(in srgb, var(--yellow) 64%, transparent); font-size: 12px; }
+.finder-step-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 22px; border-bottom: 1px solid color-mix(in srgb, var(--yellow) 28%, transparent); font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+.finder-step-bars { display: flex; gap: 5px; }
+.finder-step-bars i { display: block; width: 36px; height: 3px; background: color-mix(in srgb, var(--yellow) 30%, transparent); }
+.finder-step-bars i.is-active { background: var(--orange-soft); }
+.finder-question { padding: 42px 0 12px; }
+.finder-kicker { color: var(--orange-soft); font-size: 11px; font-weight: 700; letter-spacing: .13em; }
+.finder-question h3 { max-width: 650px; margin: 18px 0 28px; font: 400 clamp(2.7rem, 4vw, 4.8rem)/.98 "Crimson Text", Georgia, serif; letter-spacing: -.045em; }
+.finder-question .finder-choices { margin: 0; }
+.finder-question .finder-choices button { min-height: 80px; }
+.finder-question .finder-choices strong, .finder-question .finder-choices small { display: block; }
+.finder-question .finder-choices strong { font-size: 16px; }
+.finder-question .finder-choices small { margin-top: 3px; color: color-mix(in srgb, var(--yellow) 65%, transparent); font-size: 13px; line-height: 1.4; }
+.finder-question .finder-choices button:hover small, .finder-question .finder-choices button:focus-visible small { color: color-mix(in srgb, var(--ink) 70%, transparent); }
+.finder-question .finder-back { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; border: 0; cursor: pointer; }
+.finder-result { min-height: 0; margin: 0; padding: 45px 0 8px; }
+.finder-result h3 { font-size: clamp(3.7rem, 6vw, 6rem); }
+.finder-result-next { width: 100%; margin-top: 27px; padding: 20px 0; border-top: 1px solid color-mix(in srgb, var(--yellow) 28%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--yellow) 28%, transparent); }
+.finder-result-next span { color: var(--orange-soft); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+.finder-result-next p { margin-top: 9px; font-size: 15px; line-height: 1.5; }
+.finder-result-cta { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 56px; margin-top: 28px; padding: 14px 18px; border: 0; background: var(--yellow); color: var(--ink); font-size: 14px; font-weight: 700; text-align: left; cursor: pointer; }
+.finder-result-cta:hover, .finder-result-cta:focus-visible { background: var(--orange-soft); }
+.finder-intake { width: 100%; margin-top: 24px; }
+.finder-intake > p { max-width: 560px; font-size: 14px; line-height: 1.5; }
+.finder-reset { cursor: pointer; }
 .service-photo-story { padding: 100px 6% 110px; border-bottom: 1px solid var(--ink); }
 .service-photo-story-heading { display: grid; grid-template-columns: .4fr 1fr; gap: 7%; align-items: start; margin-bottom: 42px; }
 .service-photo-story h2 { max-width: 920px; font-size: clamp(3rem, 5.8vw, 6.5rem); line-height: .92; letter-spacing: -.06em; }
@@ -1082,14 +1106,16 @@
   .chat-message { grid-template-columns: 36px 1fr; gap: 11px; }
   .chat-message > span { width: 36px; height: 36px; font-size: 21px; }
   .chat-message p { padding: 14px; font-size: 15px; }
-  .finder-choices, .finder-form, .finder-result { margin-left: 47px; }
+  .finder-form { margin-left: 0; }
   .finder-choices button { min-height: 58px; font-size: 14px; }
   .finder-form-grid { grid-template-columns: 1fr; }
   .finder-wide { grid-column: auto; }
   .finder-actions { align-items: stretch; flex-direction: column-reverse; }
   .finder-actions button { justify-content: center; }
-  .finder-result { min-height: 480px; }
+  .finder-result { min-height: 0; margin-left: 0; }
   .finder-result h3 { font-size: clamp(3.4rem, 15vw, 5rem); }
+  .finder-question h3 { font-size: clamp(2.8rem, 12vw, 4rem); }
+  .finder-question .finder-choices button { min-height: 72px; }
   .finder-result-actions { align-items: flex-start; flex-direction: column; }
   .finder-intake-frame { height: 1110px; }
   .service-page-grid { grid-template-columns: 1fr; }
