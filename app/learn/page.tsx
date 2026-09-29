@@ -2,24 +2,106 @@ import { ArrowUpRight, Asterisk } from "lucide-react";
 import type { Metadata } from "next";
 import { SiteFooter } from "../site-footer";
 import { SiteNavigation } from "../site-navigation";
-import { LearningStepCards } from "./learning-step-cards";
-export const metadata: Metadata = {title:"Learn with Gabby | Gab Real Inc.",description:"Self-guided AI courses for everyday people and small business owners. Understand your tools, build useful workflows, and keep control. Coming soon."};
-export default function Learn(){
-return <main className="course-page" id="top">
- <a className="skip-link" href="#course-content">Skip to courses</a>
- <SiteNavigation />
- <section className="course-hero" id="course-content"><span className="eyebrow">LEARN WITH GABBY / SELF-GUIDED AI EDUCATION</span><h1>You have a life to live.<br/><em>Not every tool to learn.</em></h1><p>AI for everyday people and small business owners. Learn enough to make good decisions. Build something useful. Understand what it’s doing, what it needs from you, and when to leave it alone.</p><span className="status-pill"><span/>BOTH COURSES ARE IN DEVELOPMENT · ENROLLMENT IS NOT OPEN</span></section>
- <LearningStepCards />
- <section className="course-detail" id="foundations"><div><span className="eyebrow">01 / START HERE</span><h2>AI <em>Foundations.</em></h2><p>No more rebuilding the same prompt from memory. No more wondering what AI knows about your business, or whether that confident answer is actually right.</p><div className="price-line"><strong>$297</strong><span>PLANNED PRICE · COMING SOON</span></div><p>A practical starting point for everyday people and small business owners who want to put AI to use in real life. No coding background required.</p></div><div className="course-deliverables"><h3>What you’re working toward</h3><ol><li><strong>Know what you’re using.</strong>Understand where AI helps, where it guesses, and how to check consequential work.</li><li><strong>Stop explaining from scratch.</strong>Create reusable business context and instructions that reflect your work and voice.</li><li><strong>Give the work a clear home.</strong>Set up a small set of useful AI roles, with defined responsibilities and boundaries.</li><li><strong>Make it part of your actual week.</strong>Test repeatable workflows for research, meeting preparation, follow-ups, or planning.</li><li><strong>Keep control of your information.</strong>Know what to share, what to protect, and what should stay outside the tools.</li></ol></div></section>
- <section className="course-detail" id="advanced"><div><span className="eyebrow">02 / CONNECT THE PIECES</span><h2>Build Your<br/><em>AI System.</em></h2><p>You already use AI. Now make the context, tools, and workflows work together without building a second business just to maintain them.</p><div className="price-line"><strong>$497</strong><span>PLANNED PRICE · COMING SOON</span></div><p>For people with Foundations-level knowledge who are ready for more connected work. Start with a real need, not a collection of agents.</p></div><div className="course-deliverables"><h3>What you’re working toward</h3><ol><li><strong>Map the work before building.</strong>Understand where information enters, moves, waits, and gets lost.</li><li><strong>Build context you can take with you.</strong>Keep durable knowledge and instructions in a documented structure you control.</li><li><strong>Connect deliberately.</strong>Decide which tools need access to what, with permissions you can review and revoke.</li><li><strong>Make handoffs visible.</strong>Define roles, approval steps, error handling, and what happens when something doesn’t work.</li><li><strong>Keep the system useful.</strong>Test it against real work, document it, and simplify anything that costs more effort than it saves.</li></ol></div></section>
- <section className="course-faq"><span className="eyebrow">BEFORE YOU PLAN YOUR NEXT STEP</span><h2 style={{marginTop:20}}>A few good questions.</h2><div className="course-questions">
- <details><summary>Do I need to be technical?</summary><p>No. Foundations is designed for everyday people and small business owners. You don’t need a coding background or a technical job. The advanced course builds on that foundation with more involved setup and testing.</p></details>
- <details><summary>Will this work with my existing tools?</summary><p>The approach is tool-agnostic, but integrations are not interchangeable. Your email, file storage, browser, account plan, and permissions can affect what works. The courses are being designed to help you assess your setup before connecting things.</p></details>
- <details><summary>Are calls or community participation required?</summary><p>No. The planned courses are self-guided. They do not include recurring calls, a managed community, or ongoing one-to-one access to Gabby.</p></details>
- <details><summary>Are software subscriptions included?</summary><p>No software subscriptions are included in the planned course prices. Final tool requirements and potential additional costs will be clearly listed before enrollment opens.</p></details>
- <details><summary>When can I enroll?</summary><p>The courses are in development. There is no confirmed launch date or active checkout yet. Follow Gabby’s writing for updates, or return here for availability.</p></details>
- </div></section>
- <section className="course-closing"><div><Asterisk size={30}/><h2 style={{marginTop:20}}>The system should serve you.</h2><p>Not the other way around. Follow the ideas behind the courses while they’re taking shape.</p></div><a className="inline-link" href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Read Grow With Gab <ArrowUpRight size={18}/></a></section>
- <SiteFooter />
-</main>
+
+const waitlistUrl = "https://links.gabrealinc.com/widget/form/7MXragO1jKZmny3oNFkt";
+
+export const metadata: Metadata = {
+  title: "Build Your AI OS | Learn with Gabby | Gab Real Inc.",
+  description: "Build Your AI OS is a course to help you use AI intentionally and build a useful system around your own knowledge and work. Join the waitlist for launch updates.",
+};
+
+export default function Learn() {
+  return (
+    <main className="course-page" id="top">
+      <a className="skip-link" href="#course-content">Skip to the course</a>
+      <SiteNavigation />
+
+      <section className="course-hero course-hero-new" id="course-content">
+        <div className="course-hero-copy">
+          <span className="eyebrow">ONE COURSE / YOUR OWN WAY THROUGH AI</span>
+          <h1>Understand AI. <em>Build on your terms.</em></h1>
+          <p>Learn where AI belongs in your work and life, where it does not, and how to build a useful system without handing over your judgment.</p>
+          <div className="course-hero-actions"><a className="course-hero-cta" href="#waitlist">Join the waitlist ↗</a><a href="#course" className="course-hero-secondary">See what you’ll build ↓</a></div>
+          <span className="course-hero-status">SELF-GUIDED COURSE · BUILT AROUND YOUR LIFE · IN DEVELOPMENT</span>
+        </div>
+        <figure className="course-hero-art"><img src="/course-cosmic.png" alt="Retro futuristic scene exploring ideas and technology" width="1200" height="900" fetchPriority="high" /><figcaption>Tools change. Your judgment travels with you.</figcaption></figure>
+      </section>
+
+      <section className="course-shift" aria-labelledby="course-shift-title">
+        <span className="eyebrow">WHY THIS EXISTS</span>
+        <h2 id="course-shift-title">Know the technology. <em>Keep the choice.</em></h2>
+        <div className="course-shift-grid"><p>You can use AI every day and still have questions about what it knows, what it gets wrong, and what information you should share with it.</p><p>This course helps you answer those questions, decide which work is worth changing, and put a system together around your own goals and boundaries.</p></div>
+      </section>
+
+      <section className="course-detail" id="course">
+        <div>
+          <span className="eyebrow">THE COURSE / BUILD YOUR AI OS</span>
+          <h2>Understand. <em>Decide.</em><br />Build what matters.</h2>
+          <p>Each stage ends with a choice, an exercise, or one piece of your own AI OS. Work through the lessons on your schedule and use current tools to practice ideas that will still matter when the tools change.</p>
+          <div className="price-line"><strong>$397</strong><span>COURSE PRICE · COMING SOON</span></div>
+          <p>One complete course. The optional Vault adds templates and examples that can speed up implementation; it does not hold lessons you need to finish.</p>
+        </div>
+        <div className="course-deliverables">
+          <h3>What you’ll make along the way</h3>
+          <ol>
+            <li><strong>Your AI use map.</strong>Identify where AI could help and where it does not belong.</li>
+            <li><strong>Your decision rules.</strong>Choose what stays human, what needs review, and which data to protect.</li>
+            <li><strong>Your reusable context.</strong>Give your tools the right information about your work, priorities, and voice.</li>
+            <li><strong>Your first useful workflow.</strong>Build one process around a real problem, then connect only what helps.</li>
+            <li><strong>Your tool compass.</strong>Compare cloud, business, API, open, and local options without becoming attached to one company.</li>
+            <li><strong>Your first AI OS.</strong>Document what you built so you can improve it as your needs and tools change.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section className="course-detail course-addon" id="vault">
+        <div>
+          <span className="eyebrow">OPTIONAL ADD-ON / AI OS VAULT</span>
+          <h2>Good ideas need<br /><em>a place to start.</em></h2>
+          <p>The AI OS Vault is Gabby’s implementation library. It gives you templates and examples to help put the course into practice faster. It is an add-on to the course, not a second course.</p>
+        </div>
+        <div className="course-deliverables">
+          <h3>Planned resources</h3>
+          <ol>
+            <li><strong>Context and knowledge templates.</strong>Starting structures for your second brain, source of truth, and reusable instructions.</li>
+            <li><strong>Role and workflow builders.</strong>Examples and checklists for defining useful AI roles, permissions, reviews, and handoffs.</li>
+            <li><strong>Decision tools.</strong>Ways to evaluate tools, protect information, and keep your system useful as AI changes.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section className="course-faq">
+        <span className="eyebrow">BEFORE YOU PLAN YOUR NEXT STEP</span>
+        <h2 style={{ marginTop: 20 }}>A few good questions.</h2>
+        <div className="course-questions">
+          <details><summary>Do I need to be technical?</summary><p>No. The course explains the concepts in everyday language. You’ll build around your real work and learn to evaluate what is useful before connecting tools.</p></details>
+          <details><summary>Do I need the Vault?</summary><p>No. Build Your AI OS is a complete course on its own. The Vault is an optional library of templates and examples if you want more starting points for implementation.</p></details>
+          <details><summary>Will this work with my existing tools?</summary><p>The approach is designed to travel with you. Your email, files, accounts, and permissions still affect which connections are possible, so the course teaches you how to assess your setup.</p></details>
+          <details><summary>Are calls or community participation required?</summary><p>No. You can work through the course on your schedule. It does not require calls, a cohort, or a managed community. If you want Gabby’s direct help, explore the Work with Gabby page.</p></details>
+          <details><summary>Are software subscriptions included?</summary><p>No software subscriptions are included in the course price. Tool requirements and any additional costs will be listed before enrollment opens.</p></details>
+          <details><summary>When can I enroll?</summary><p>The course is in development. There is no active checkout or confirmed launch date yet. Join the waitlist for launch updates.</p></details>
+        </div>
+      </section>
+
+      <section className="course-waitlist" id="waitlist" aria-labelledby="course-waitlist-title">
+        <div>
+          <span className="eyebrow">BUILD YOUR AI OS / WAITLIST</span>
+          <h2 id="course-waitlist-title">Get first word <em>when it’s ready.</em></h2>
+          <p>The course is still being built. Leave your first name and email and I’ll let you know when enrollment opens. No launch date has been set yet.</p>
+        </div>
+        <div className="course-waitlist-form">
+          <span className="course-form-label">FIRST TO KNOW / BUILD YOUR AI OS</span>
+          <iframe title="Build Your AI OS course waitlist" src={waitlistUrl} loading="lazy" />
+          <p className="form-privacy-note">By joining, you ask Gab Real Inc. to email you about this course. See the <a href="/privacy">Privacy Policy</a> for how your information is handled.</p>
+          <a href={waitlistUrl} target="_blank" rel="noreferrer">Open the waitlist form in a new tab ↗</a>
+        </div>
+      </section>
+
+      <section className="course-closing">
+        <div><Asterisk size={30} /><h2 style={{ marginTop: 20 }}>The system should serve you.</h2><p>Join the waitlist for course updates, and follow Gabby’s writing while it takes shape.</p></div>
+        <a className="inline-link" href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Read Grow With Gab <ArrowUpRight size={18} /></a>
+      </section>
+      <SiteFooter />
+    </main>
+  );
 }

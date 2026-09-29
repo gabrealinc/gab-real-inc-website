@@ -6,7 +6,8 @@ export default function MobilePreview() {
   const [previewSource, setPreviewSource] = useState("/");
 
   useEffect(() => {
-    setPreviewSource(`/${window.location.search}`);
+    const timer = window.setTimeout(() => setPreviewSource(`/${window.location.search}`), 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (

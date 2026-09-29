@@ -3,11 +3,19 @@ import "./globals.css";
 import "./studio.css";
 import "./depth.css";
 import "./ecosystem.css";
+import "./refresh.css";
 import { ScrollReveal } from "./scroll-reveal";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gabrealinc.com"),
   title: "Gab Real Inc. | Useful AI for Real Life",
   description: "AI education, advice, and useful systems that give people more time for the work and life that matter.",
+  openGraph: {
+    title: "Gab Real Inc. | AI Made Simple",
+    description: "Understand what AI can do, where it falls short, and what belongs in your hands.",
+    images: [{ url: "/hero-option-orbit-collage.png", width: 1536, height: 1024, alt: "Gabby at a creative desk beneath a collage of cosmic ideas" }],
+  },
+  twitter: { card: "summary_large_image" },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

@@ -1,14 +1,15 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const navLinks = [
   ["about gabby", "/about"],
   ["testimonials", "/testimonials"],
-  ["case studies", "/case-studies"],
-  ["about the course", "/learn"],
-  ["services", "/services"],
+  ["what I’ve built", "/past-work"],
+  ["the AI course", "/learn"],
+  ["work with gabby", "/services"],
 ];
 
 export function SiteNavigation() {
@@ -69,7 +70,7 @@ export function SiteNavigation() {
         </div>
         <div className="layer-menu" id="layer-menu" aria-hidden={!menuOpen}>
           <div className="layer-contact">
-            <p>Use AI to think more clearly. Build what matters.</p>
+            <p>AI made simple. Start wherever you are.</p>
             <a href="mailto:hello@gabrealinc.com">hello@gabrealinc.com</a>
             <span>San Diego · working everywhere</span>
           </div>
@@ -77,8 +78,8 @@ export function SiteNavigation() {
             {navLinks.map(([label, href]) => <a key={href} href={href} onClick={closeMenu}>{label}</a>)}
           </nav>
           <div className="layer-secondary">
-            <a href="/#more" onClick={closeMenu}>More to life</a>
-            <a href="/#contact" onClick={closeMenu}>Let’s talk</a>
+            <Link href="/#more" onClick={closeMenu}>More to life</Link>
+            <Link href="/#contact" onClick={closeMenu}>Let’s talk</Link>
             <a href="https://growithgab.substack.com/" target="_blank" rel="noreferrer">Writing ↗</a>
             <a href="https://www.instagram.com/aiwithgab/" target="_blank" rel="noreferrer">Instagram ↗</a>
           </div>
