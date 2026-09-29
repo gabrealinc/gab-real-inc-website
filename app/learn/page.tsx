@@ -20,18 +20,18 @@ export default function Learn() {
       <section className="course-hero course-hero-new" id="course-content">
         <div className="course-hero-copy">
           <span className="eyebrow">ONE COURSE / YOUR OWN WAY THROUGH AI</span>
-          <h1>Build an AI system that <em>actually works for you.</em></h1>
-          <p>Understand how AI works, choose what belongs in your life or business, and build a useful first version of your own AI OS. No engineering degree or endless tool chasing required.</p>
+          <h1>Understand AI. <em>Build on your terms.</em></h1>
+          <p>Learn where AI belongs in your work and life, where it does not, and how to build a useful system without handing over your judgment.</p>
           <div className="course-hero-actions"><a className="course-hero-cta" href="#waitlist">Join the waitlist ↗</a><a href="#course" className="course-hero-secondary">See what you’ll build ↓</a></div>
-          <span className="course-hero-status">SELF-GUIDED COURSE · OPTIONAL 30-DAY BUILD PATH · IN DEVELOPMENT</span>
+          <span className="course-hero-status">SELF-GUIDED COURSE · BUILT AROUND YOUR LIFE · IN DEVELOPMENT</span>
         </div>
         <figure className="course-hero-art"><img src="/course-cosmic.png" alt="Retro futuristic scene exploring ideas and technology" width="1200" height="900" fetchPriority="high" /><figcaption>Tools change. Your judgment travels with you.</figcaption></figure>
       </section>
 
       <section className="course-shift" aria-labelledby="course-shift-title">
         <span className="eyebrow">WHY THIS EXISTS</span>
-        <h2 id="course-shift-title">You don’t need another list of tools. <em>You need to know what to do with them.</em></h2>
-        <div className="course-shift-grid"><p>AI advice can feel like an endless stream of prompts, launches, and opinions. It is easy to use a chatbot every day and still feel unsure what is useful, safe, or worth building.</p><p>This course gives you a way to make those decisions for yourself. You’ll learn the ideas, test them in current tools, and build a system around your own goals and information.</p></div>
+        <h2 id="course-shift-title">Know the technology. <em>Keep the choice.</em></h2>
+        <div className="course-shift-grid"><p>You can use AI every day and still have questions about what it knows, what it gets wrong, and what information you should share with it.</p><p>This course helps you answer those questions, decide which work is worth changing, and put a system together around your own goals and boundaries.</p></div>
       </section>
 
       <LearningStepCards />
@@ -39,8 +39,8 @@ export default function Learn() {
       <section className="course-detail" id="course">
         <div>
           <span className="eyebrow">THE COURSE / BUILD YOUR AI OS</span>
-          <h2>Learn it. <em>Build it.</em><br />Keep making it yours.</h2>
-          <p>Every stage ends with a decision, exercise, or small build. Follow the optional 30-day path for momentum or move through the lessons on your own schedule. Your access does not expire after 30 days.</p>
+          <h2>Understand. <em>Decide.</em><br />Build what matters.</h2>
+          <p>Each stage ends with a choice, an exercise, or one piece of your own AI OS. Work through the lessons on your schedule and use current tools to practice ideas that will still matter when the tools change.</p>
           <div className="price-line"><strong>$397</strong><span>COURSE PRICE · COMING SOON</span></div>
           <p>One complete course. The optional Vault adds templates and examples that can speed up implementation; it does not hold lessons you need to finish.</p>
         </div>
@@ -93,6 +93,7 @@ export default function Learn() {
           <p>The course is still being built. Leave your first name and email and I’ll let you know when enrollment opens. No launch date has been set yet.</p>
         </div>
         <div className="course-waitlist-form">
+          <span className="course-form-label">FIRST TO KNOW / BUILD YOUR AI OS</span>
           <iframe title="Build Your AI OS course waitlist" src={waitlistUrl} loading="lazy" />
           <p className="form-privacy-note">By joining, you ask Gab Real Inc. to email you about this course. See the <a href="/privacy">Privacy Policy</a> for how your information is handled.</p>
           <a href={waitlistUrl} target="_blank" rel="noreferrer">Open the waitlist form in a new tab ↗</a>
