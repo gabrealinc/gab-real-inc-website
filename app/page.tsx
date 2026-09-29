@@ -288,7 +288,7 @@ export default function Home() {
         <div className="hero-copy">
           <span className="eyebrow">AI ADVISORY · EDUCATION · CUSTOM BUILDS</span>
           <h1><span>AI Made Simple.</span><strong>Start wherever you are.</strong></h1>
-          <p>Learn to make informed decisions around AI without having to become an engineer.</p>
+          <p>Understand what AI can do, where it falls short, and what belongs in your hands.</p>
           <a className="hero-button" href="#work-with-me">Explore ways to work <ArrowDown size={17} /></a>
         </div>
         {heroVariant === "desk-editorial" && <>
@@ -336,8 +336,8 @@ export default function Home() {
         <div className="section-label"><span>02</span><span>THE AI COURSE</span></div>
         <div className="course-grid">
           <div className="course-heading">
-            <span className="eyebrow">AI WITHOUT THE BULLSHIT</span>
-            <h2>Learn AI without having to <em>become an engineer.</em></h2>
+            <span className="eyebrow">LEARN THE TECHNOLOGY / KEEP YOUR POINT OF VIEW</span>
+            <h2>Learn what AI can do. <em>Decide what to do with it.</em></h2>
           </div>
           <div className="course-summary">
             <p>Build Your AI OS is one course for learning to use AI intentionally and building a system around your own knowledge and work. Learn what deserves your time, what to leave alone, and how to keep your judgment in charge. Less stress. Better work. More time to touch grass.</p>

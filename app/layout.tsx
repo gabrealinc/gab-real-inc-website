@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "AI education, advice, and useful systems that give people more time for the work and life that matter.",
   openGraph: {
     title: "Gab Real Inc. | AI Made Simple",
-    description: "Learn to make informed decisions around AI without having to become an engineer.",
+    description: "Understand what AI can do, where it falls short, and what belongs in your hands.",
     images: [{ url: "/hero-option-orbit-collage.png", width: 1536, height: 1024, alt: "Gabby at a creative desk beneath a collage of cosmic ideas" }],
   },
   twitter: { card: "summary_large_image" },
