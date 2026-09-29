@@ -297,7 +297,7 @@ export default function Home() {
             <img src="/about-gabby-portrait.jpg" alt="Gabby Greenberg smiling at the camera" width="2400" height="1600" />
             <figcaption><span>THE HUMAN BEHIND THE WORK</span><strong>Gabby Greenberg</strong></figcaption>
           </figure>
-          <div className="hero-editorial-stamp" aria-label="No fluff. No bullshit."><span>No fluff.<br />No bullshit.</span></div>
+          <div className="hero-editorial-stamp" aria-label="Good questions. Real work."><span>Good questions.<br />Real work.</span></div>
         </>}
         {isStudioHero && <>
           <div className="studio-giant-type" aria-hidden="true">AI</div>

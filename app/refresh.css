@@ -34,6 +34,7 @@
 .course-page .course-waitlist-form iframe{background:#f4efe3;border:0;min-height:375px}
 .course-page .course-waitlist-form>a{color:#171714}
 .course-page .course-waitlist-form .form-privacy-note{color:#48443e}
+.course-page .course-closing{background:#171714;color:#f4efe3}
 @media(max-width:760px){.course-page .course-waitlist-form{padding:22px;box-shadow:8px 8px 0 #832406}.course-page .course-waitlist-form iframe{min-height:395px}}
 .form-privacy-note{margin:12px 0 0!important;font-size:12px!important;line-height:1.55!important}
 .form-privacy-note a{text-decoration:underline;text-underline-offset:3px}
