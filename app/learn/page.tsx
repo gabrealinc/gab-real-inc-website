@@ -2,7 +2,6 @@ import { ArrowUpRight, Asterisk } from "lucide-react";
 import type { Metadata } from "next";
 import { SiteFooter } from "../site-footer";
 import { SiteNavigation } from "../site-navigation";
-import { LearningStepCards } from "./learning-step-cards";
 
 const waitlistUrl = "https://links.gabrealinc.com/widget/form/7MXragO1jKZmny3oNFkt";
 
@@ -33,8 +32,6 @@ export default function Learn() {
         <h2 id="course-shift-title">Know the technology. <em>Keep the choice.</em></h2>
         <div className="course-shift-grid"><p>You can use AI every day and still have questions about what it knows, what it gets wrong, and what information you should share with it.</p><p>This course helps you answer those questions, decide which work is worth changing, and put a system together around your own goals and boundaries.</p></div>
       </section>
-
-      <LearningStepCards />
 
       <section className="course-detail" id="course">
         <div>
